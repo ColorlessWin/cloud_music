@@ -1,0 +1,21 @@
+.effect-transition {
+  transition-property: all;
+  transition-duration: 0.4s;
+}
+
+.effect-hover-float:focus {
+  box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1)
+}
+
+
+.effect-hover-float:hover {
+  box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1)
+}
+
+.eff-shadow {
+  box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1)
+}
+
+.eff-text-shadow {
+  text-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
+}
