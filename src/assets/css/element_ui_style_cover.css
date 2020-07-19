@@ -27,7 +27,8 @@
 }
 
 .el-submenu .el-menu-item[style] {
-  /*padding: 0 10px !important*/
+  padding: 0 10px !important;
+  text-indent: 5px;
 }
 
 .el-submenu .el-menu-item.is-disabled,

@@ -22,15 +22,8 @@
   export default {
     name: "Banner",
     props: {
-      banners: {
-        type: Array,
-        default: () => []
-      },
-
-      loading: {
-        type: Boolean,
-        default: false
-      }
+      banners: { type: Array,    default: () => [] },
+      loading: { type: Boolean,  default: false }
     }
   }
 </script>

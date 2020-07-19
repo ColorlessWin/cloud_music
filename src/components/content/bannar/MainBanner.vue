@@ -23,7 +23,6 @@
         if (result.code === 200) {
           this.banners = result.banners
           this.loading = false
-          console.log(result)
         }
       })
     }

@@ -1,6 +1,6 @@
 <template>
   <div class="app-aside light-scroll">
-    <el-menu mode="vertical" :default-openeds="['1', '2']">
+    <el-menu router mode="vertical" :default-openeds="['1', '2']">
       <recommendation/>  <my-music/> <own-song-list/>  <collect-song-list/>
     </el-menu>
   </div>
@@ -25,9 +25,11 @@
 
 <style scoped>
   .app-aside {
+    box-sizing: border-box;
     width: 100%;
     height: 100%;
 
+    border-right: 1px solid #e0e0e0;
     overflow: auto;
   }
 </style>

@@ -1,18 +1,28 @@
 <template>
   <div class="own-song-list">
-    <el-submenu index="3" collapse="false" :disabled="$store.state.isLogin">
+    <el-submenu index="3" collapse="false" :disabled="!$store.state.isLogin">
       <div class="title" slot="title">创建的歌单</div>
-      <el-menu-item index="3-1">我喜欢的音乐</el-menu-item>
-      <el-menu-item index="3-2">私人FM</el-menu-item>
-      <el-menu-item index="3-3">视频</el-menu-item>
-      <el-menu-item index="3-4">朋友</el-menu-item>
+      <el-menu-item v-for="(item, index) in playlist" :index="`/playlist/${item.id}`" :key="item.id">{{item.name.trim()}}</el-menu-item>
     </el-submenu>
   </div>
 </template>
 
 <script>
+  import { playlist } from "@/network/request_uesr";
+
   export default {
-    name: "OwnSongList"
+    name: "OwnSongList",
+    data() {
+      return { playlist: {} }
+    },
+    created(){
+      playlist(this.$store.state.profile.UID).then(result => {
+        const resolved =  result.playlist.filter((value) => {
+          if (!value.subscribed) return value
+        })
+        this.playlist = resolved
+      })
+    }
   }
 </script>
 

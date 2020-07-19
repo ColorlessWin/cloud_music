@@ -1,7 +1,7 @@
 <template>
   <div class="window">
     <login/>
-    <el-container class="container">
+    <el-container class="__container">
       <el-header height="50px">
         <!--顶部-->
         <app-header/>
@@ -13,7 +13,7 @@
           <app-aside/>
 
         </el-aside>
-        <el-main>
+        <el-main class="light-scroll">
           <!--    主要视图      -->
           <router-view/>
 
@@ -46,15 +46,16 @@ export default {
     overflow: hidden;
 
     margin: auto;
+    margin-top: 20px;
     border-radius: 4px;
     border: 1px solid #eeeeee;
   }
 
-  .window .container {
+  .window .__container {
     height: 100%;
   }
 
-  .container .main-container {
+  .__container .main-container {
     height: calc(100% - 50px);
   }
 

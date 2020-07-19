@@ -16,7 +16,7 @@
     beforeCreate() {
       //进入时 检查登录状态并获取用户信息
 
-      return
+      // return
 
       login_status().then(result => {
         this.$store.commit(StoreTypes.UPDATE_LOGIN_STATUS, {

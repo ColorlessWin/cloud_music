@@ -4,6 +4,7 @@ import router from './router'
 import store from './store'
 import cookie from "./utils/cookie";
 import Bus from "./utils/bus";
+import Filter from "@/utils/filter";
 
 import {
   Button,
@@ -49,14 +50,22 @@ Vue.use(TabPane)
 Vue.use(Carousel)
 Vue.use(CarouselItem)
 
+//安装全局filter
+Vue.use(Filter)
 
+const Check = function(obj) {
+  if (!obj) return false
+  if (typeof obj === 'object' && Object.keys(obj).length === 0) return false
+  if (Array.isArray(obj) && obj.length === 0) return false
+  return true
+}
 
 Vue.config.productionTip = false
-
 
 Vue.prototype.$cookie = cookie
 Vue.prototype.$notify = Notification
 Vue.prototype.$bus = Bus
+Vue.prototype.$check = Check
 console.log('cookie: ', Vue.prototype.$cookie.value);
 
 new Vue({

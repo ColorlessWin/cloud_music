@@ -8,6 +8,8 @@ Vue.use(VueRouter)
 const Discover = () => import('@/views/pages/home/Discover')
 const PersonalRec = () => import('@/views/pages/home/PersonalRec')
 
+const SongListDetail =() => import('@/views/pages/SongsListDetail')
+
 const routes = [
   {
     path: '/',
@@ -28,12 +30,18 @@ const routes = [
         component: PersonalRec
       }
     ]
-  }
+  },
+
+  {
+    path: '/playlist/:id',
+    component: SongListDetail
+  },
 
 ]
 
 const router = new VueRouter({
-  routes
+  routes,
+  mode: 'history'
 })
 
 export default router
