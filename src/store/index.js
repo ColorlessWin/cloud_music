@@ -15,10 +15,10 @@ export default new Vuex.Store({
     }
   },
   mutations: {
-    [types.UPDATE_LOGIN_STATUS] ( state, { isLogin, profile} ) {
+    [types.UPDATE_LOGIN_STATUS] ( state, { isLogin, profile } ) {
       state.isLogin = isLogin
-      state.profile.name = profile.name
-      state.profile.UID = profile.UID
+      state.profile.name = profile.nickname
+      state.profile.UID = profile.userId
       state.profile.avatarUrl = profile.avatarUrl
     }
   },

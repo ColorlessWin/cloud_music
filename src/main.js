@@ -19,12 +19,17 @@ import {
   Menu,
   MenuItem,
   Submenu,
+  Tabs,
+  TabPane,
+  Carousel,
+  CarouselItem,
 
   Notification,
 } from 'element-ui';
 
 import 'element-ui/lib/theme-chalk/index.css';
 import '@/assets/css/effect.css'
+import '@/assets/css/element_ui_style_cover.css'
 
 Vue.use(Button)
 Vue.use(Select)
@@ -39,6 +44,11 @@ Vue.use(Option)
 Vue.use(MenuItem)
 Vue.use(Menu)
 Vue.use(Submenu)
+Vue.use(Tabs)
+Vue.use(TabPane)
+Vue.use(Carousel)
+Vue.use(CarouselItem)
+
 
 
 Vue.config.productionTip = false

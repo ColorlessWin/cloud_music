@@ -10,14 +10,14 @@
 </template>
 
 <script>
-  import LightInput from "components/common/LightInput.vue";
-  import StoreTypes from "../store/types";
+  import LightInput from "@/components/common/LightInput";
 
   import cookie from "../utils/cookie";
   import BusTypes from "../utils/bus/types";
+  import StoreTypes from "../store/types";
 
-  import { login_cellphone } from "../network/inter_login";
-  import { future, str_empty } from "../utils/utils";
+  import { login_cellphone } from "@/network/request_login";
+  import { future, str_empty } from "@/utils/utils";
 
   export default {
     name: "Login",
@@ -62,11 +62,7 @@
           .then(result => {
             this.$store.commit(StoreTypes.UPDATE_LOGIN_STATUS, {
               isLogin: true,
-              profile: {
-                name: result.profile.nickname,
-                UID: result.profile.userId,
-                avatarUrl: result.profile.avatarUrl,
-              }
+              profile: result.profile
             })
 
             //保存Cookie
@@ -113,7 +109,9 @@
     transform: translate(-50%, -50%);
     border-radius: 6px;
     background-color:  #fafafa;
-    box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1)
+    box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
+
+    z-index: 2000;
   }
 
   .login .el-icon-close {

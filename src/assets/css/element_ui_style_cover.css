@@ -1,0 +1,48 @@
+/*  用于覆盖Element UI组件的基本样式  */
+
+
+/*NavMenu Style*/
+.el-menu {
+  border: none;
+}
+
+.el-submenu .el-submenu__title {
+  height: 40px;
+  color: #37474f;
+  line-height: 40px;
+  font-size: 12px;
+  font-weight: bold;
+
+  background-color: #fafafa;
+}
+
+.el-submenu.is-disabled {
+  background-color: #fafafa;
+}
+
+.el-submenu .el-menu-item {
+  height: 35px;
+  line-height: 35px;
+  font-size: 11px;
+}
+
+.el-submenu .el-menu-item[style] {
+  /*padding: 0 10px !important*/
+}
+
+.el-submenu .el-menu-item.is-disabled,
+.el-submenu.is-disabled .el-submenu__title {
+  cursor: default;
+}
+
+
+/*Tabs Style*/
+
+.el-tabs .el-tabs__item {
+  font-size: 12px;
+}
+
+.el-tabs .el-tabs__nav-scroll {
+  display: flex;
+  justify-content: center;
+}

@@ -1,15 +1,33 @@
 <template>
-  <div class="aside">
-    <h1>hello</h1>
+  <div class="app-aside light-scroll">
+    <el-menu mode="vertical" :default-openeds="['1', '2']">
+      <recommendation/>  <my-music/> <own-song-list/>  <collect-song-list/>
+    </el-menu>
   </div>
 </template>
 
 <script>
+  import Recommendation from "@/components/aside/Recommendation";
+  import MyMusic from "@/components/aside/MyMusic";
+  import OwnSongList from "@/components/aside/OwnSongList";
+  import CollectSongList from "@/components/aside/CollectSongList";
+
   export default {
-    name: "Aside"
+    name: "Aside",
+    components: {
+      CollectSongList,
+      OwnSongList,
+      MyMusic,
+      Recommendation
+    }
   }
 </script>
 
 <style scoped>
+  .app-aside {
+    width: 100%;
+    height: 100%;
 
+    overflow: auto;
+  }
 </style>

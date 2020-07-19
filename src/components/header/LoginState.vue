@@ -1,7 +1,7 @@
 <template>
   <div class="login-state" @click="onClick">
     <div v-if="!$store.state.isLogin">
-      <img class="avatar" src="~assets/img/not_login_avattar.png" alt="">
+      <img class="avatar" src="~@/assets/img/default_avatar.png" alt="">
       <span class="user-name">未登录</span>
     </div>
     <div v-else>

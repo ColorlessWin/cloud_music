@@ -10,10 +10,10 @@
 </template>
 
 <script>
-  import Logo from 'components/header/Logo.vue'
-  import HistoryMove from "components/header/HistoryMove.vue";
-  import Search from "components/header/Search";
-  import LoginState from "components/header/LoginState";
+  import Logo from "@/components/header/Logo";
+  import HistoryMove from "@/components/header/HistoryMove.vue";
+  import Search from "@/components/header/Search";
+  import LoginState from "@/components/header/LoginState";
 
   export default {
     name: "Header",
