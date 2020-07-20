@@ -61,6 +61,7 @@ const Filter = {
         let h = hours > 9 ? hours : '0' + hours;
         let m = minutes > 9 ? minutes : '0' + minutes;
         let s = seconds > 9 ? seconds : '0' + seconds;
+        if (hours === 0) return m + ':' + s;
         return h + ':' + m + ':' + s;
       }
       else {

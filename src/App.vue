@@ -30,4 +30,8 @@
 
 <style>
   @import "assets/css/base.css";
+
+  body, html {
+    background-color: #eceff1;
+  }
 </style>

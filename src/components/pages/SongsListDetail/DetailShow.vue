@@ -1,15 +1,21 @@
 <template>
-  <div v-if="$check(detail)" class="container clearfix">
+  <div v-if="$Check(detail)" class="detail-show container clearfix">
     <div class="top clearfix">
       <div class="left">
-        <img class="cover eff-shadow" :src="detail.coverImgUrl" alt="">
+        <img class="cover eff-shadow" :src="detail['coverImgUrl']" alt="">
       </div>
       <div class="center">
-        <div class="title">{{detail.name}}</div>
+        <div class="title">{{ detail['name'] }}</div>
         <div class="user-detail">
-          <avatar class="avatar" size="40px" :avatar-url="detail.creator.avatarUrl" :uid="detail.creator.userId"/>
-          <user-name font-size="13px" class="user-name">{{detail.creator.nickname}}</user-name>
-          <span class="createTime">{{detail.createTime | dateTimeFormat('yyyy-MM-dd') }} 创建</span>
+          <avatar class="avatar" size="40px"
+                  :avatar-url="detail['creator']['avatarUrl']"
+                  :uid="detail['creator']['userId']"/>
+          <user-name font-size="13px" class="user-name">
+            {{detail['creator']['nickname']}}
+          </user-name>
+          <span class="createTime">
+            {{detail['createTime'] | dateTimeFormat('yyyy-MM-dd') }} 创建
+          </span>
         </div>
         <div class="option">
           <span style="background-color: #2979ff; color: white" class="icon el-icon-video-play"></span>
@@ -18,37 +24,62 @@
         </div>
       </div>
       <div class="info">
-        <div class="song-count">歌曲数：{{detail.trackCount | logogram}}</div>
-        <div class="play-count">播放：{{detail.playCount | logogram}}</div>
+        <div class="song-count">
+          歌曲数：{{detail['trackCount'] | logogram}}
+        </div>
+        <div class="play-count">
+          播放：{{detail['playCount'] | logogram}}
+        </div>
       </div>
     </div>
 
     <div class="desc">
-      <div class="tags">标签：{{detail.tags.join(' / ')}}</div>
-      <div class="synopsis">简介：{{detail.description}}</div>
+      <el-card :body-style="{ padding: '6px' }" shadow="always">
+        <div class="tags">
+          标签：{{detail['tags'] | resloveTags }}
+        </div>
+        <text-fold class="synopsis">
+          简介：{{detail['description'] | resloveSynopsis}}
+        </text-fold>
+      </el-card>
     </div>
   </div>
 </template>
 
 <script>
-  import { song_list_detail } from "@/network/request_show";
+
+  import { str_empty } from "@/utils/utils";
+
   import Avatar from "@/components/content/Avatar";
   import UserName from "@/components/content/UserName";
+  import TextFold from '@/components/common/TextFold'
 
   export default {
     name: "DetailShow",
-    components: {UserName, Avatar},
+    components: {UserName, Avatar, TextFold},
     props: {
       detail: { type: Object, default: () => {} }
     },
+
+    filters: {
+      resloveTags(value) {
+        return value.length === 0 ? '还没有添加标签' : value.join(' / ')
+      },
+
+      resloveSynopsis(value) {
+        return str_empty(value)
+          ? `没有谁的生活会一直完美，但无论什么时候，都要看着前方，满怀希望就会所向披靡。`
+          : value
+      }
+    }
   }
 </script>
 
 <style scoped>
-  .container {
+  .detail-show.container {
     /*display: flex;*/
+    padding-bottom: 20px;
     position: relative;
-    padding: 30px 30px 10px 30px
   }
 
   .left, .center {
@@ -94,6 +125,7 @@
 
   .desc {
     font-size: 12px;
+    font-weight: bold;
     margin-top: 20px;
   }
 
@@ -118,8 +150,8 @@
 
   .info {
     position: absolute;
-    top: 50px;
-    right: 80px;
+    top: 140px;
+    right: 0;
     font-size: 11px;
     font-weight: bold;
     color: #bdbdbd;

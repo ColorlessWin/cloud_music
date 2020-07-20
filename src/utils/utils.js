@@ -7,5 +7,6 @@ export function future(func, delay, _this) {
 }
 
 export function str_empty(str) {
-   return str.replace(/(^s*)|(s*$)/g, "").length === 0
+  if (!str) return true
+  return str.replace(/(^s*)|(s*$)/g, "").length === 0
 }

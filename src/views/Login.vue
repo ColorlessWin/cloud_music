@@ -62,11 +62,11 @@
           .then(result => {
             this.$store.commit(StoreTypes.UPDATE_LOGIN_STATUS, {
               isLogin: true,
-              profile: result.profile
+              profile: result['profile']
             })
 
             //保存Cookie
-            cookie.value = result.cookie
+            cookie.value = result['cookie']
 
             future(function () {
               this.logging = false; this.show = false

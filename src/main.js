@@ -24,6 +24,9 @@ import {
   TabPane,
   Carousel,
   CarouselItem,
+  Row,
+  Col,
+  Pagination,
 
   Notification,
 } from 'element-ui';
@@ -49,6 +52,9 @@ Vue.use(Tabs)
 Vue.use(TabPane)
 Vue.use(Carousel)
 Vue.use(CarouselItem)
+Vue.use(Row)
+Vue.use(Col)
+Vue.use(Pagination)
 
 //安装全局filter
 Vue.use(Filter)
@@ -65,7 +71,7 @@ Vue.config.productionTip = false
 Vue.prototype.$cookie = cookie
 Vue.prototype.$notify = Notification
 Vue.prototype.$bus = Bus
-Vue.prototype.$check = Check
+Vue.prototype.$Check = Check
 console.log('cookie: ', Vue.prototype.$cookie.value);
 
 new Vue({

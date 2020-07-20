@@ -4,9 +4,9 @@
       <el-carousel-item  v-for="(item, index) in banners" :key="index">
         <div class="warp">
           <a class="href" :href="item.url">
-            <img class="image" :src="item.imageUrl" alt="">
+            <img class="image" :src="item['imageUrl']" alt="">
           </a>
-          <span class="type-title" :style="{backgroundColor: item.titleColor}">{{item.typeTitle}}</span>
+          <span class="type-title" :style="{backgroundColor: item['titleColor']}">{{item['typeTitle']}}</span>
         </div>
       </el-carousel-item>
     </el-carousel>

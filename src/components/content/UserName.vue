@@ -14,6 +14,7 @@
 
 <style scoped>
   .u-name {
-    font-weight: bold;
+    /*font-weight: bold;*/
+    cursor: pointer;
   }
 </style>

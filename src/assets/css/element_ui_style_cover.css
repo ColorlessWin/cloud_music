@@ -47,3 +47,10 @@
   display: flex;
   justify-content: center;
 }
+
+
+/* Card Style */
+
+.el-card {
+  border: none;
+}

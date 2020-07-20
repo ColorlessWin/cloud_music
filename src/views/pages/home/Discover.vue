@@ -22,5 +22,8 @@
 </script>
 
 <style scoped>
-
+  .home {
+    width: 880px;
+    margin: 0 auto;
+  }
 </style>

@@ -1,5 +1,5 @@
 <template>
-  <div class="window">
+  <div class="window eff-shadow">
     <login/>
     <el-container class="__container">
       <el-header height="50px">
@@ -8,7 +8,7 @@
 
       </el-header>
       <el-container class="main-container">
-        <el-aside class="aside" width="21%">
+        <el-aside class="aside" width="240px">
           <!--侧边栏-->
           <app-aside/>
 
@@ -41,14 +41,21 @@ export default {
 
 <style>
   .window {
+    resize: both;
     height: 700px;
     width: 1200px;
     overflow: hidden;
 
-    margin: auto;
-    margin-top: 20px;
+    /*margin: 20px auto auto auto;*/
     border-radius: 4px;
-    border: 1px solid #eeeeee;
+    /*border: 1px solid #eeeeee;*/
+
+    background-color: white;
+  }
+
+  .window .el-aside {
+    resize: horizontal;
+    min-width: 120px;
   }
 
   .window .__container {

@@ -20,8 +20,8 @@
 
     beforeCreate() {
       main_banner(0).then(result => {
-        if (result.code === 200) {
-          this.banners = result.banners
+        if (result['code'] === 200) {
+          this.banners = result['banners']
           this.loading = false
         }
       })

@@ -17,8 +17,8 @@
     },
     created(){
       playlist(this.$store.state.profile.UID).then(result => {
-        const resolved =  result.playlist.filter((value) => {
-          if (value.subscribed) return value
+        const resolved =  result['playlist'].filter((value) => {
+          if (value['subscribed']) return value
         })
         this.playlist = resolved
       })

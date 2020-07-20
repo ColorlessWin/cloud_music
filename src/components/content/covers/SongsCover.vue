@@ -1,10 +1,10 @@
 <template>
-  <div class="songs-cover" @click="$router.push(`/playlist/${songs.id}`)">
-    <img :src="songs.picUrl" alt="">
+  <div class="songs-cover" @click="$router.push(`/playlist/${songs['id']}`)">
+    <img :src="songs['picUrl']" alt="">
     <div class="visible">
       <div class="detail">
-        <div class="name">{{songs.name}}</div>
-        <div class="copywriter">{{ songs.copywriter }}</div>
+        <div class="name">{{songs['name']}}</div>
+        <div class="copywriter">{{ songs['copywriter'] }}</div>
       </div>
     </div>
   </div>
