@@ -11,7 +11,11 @@
       <el-tab-pane label="用户" ></el-tab-pane>
     </el-tabs>
 
-    <song-tracks :songs="result" :adapter="adapter"/>
+    <song-tracks :songs="result" :adapter="$adapter.search_to_songs"/>
+
+<!--    <artist-track :artists="result" :adapter="$adapter.search_to_artists"/>-->
+
+<!--    <album-track :albums="result"/>-->
 
   </div>
 </template>
@@ -19,30 +23,24 @@
 <script>
   import { search } from "@/network/request_show";
   import SongTracks from "@/components/pages/SongsListDetail/SongTracks";
+  import ArtistTrack from "@/components/content/track/ArtistTrack";
+  import AlbumTrack from "@/components/content/track/AlbumTrack";
 
   export default {
     name: "SearchDetail",
-    components: {SongTracks},
+    components: {AlbumTrack, ArtistTrack, SongTracks},
     data() {
       return {
         result: [],
-        adapter: {
-          index:      (song) => song['__index'],
-          name:       (song) => song['name'],
-          ars:        (song) => song['artists'],
-          ar_id:      (ar)   => ar['id'],
-          ar_name:    (ar)   => ar['name'],
-          album_name: (song) => song['album']['name'],
-          duration:   (song) => song['duration']
-        }
       }
     },
 
     methods: {
       load(keyword, offset, limit, type) {
         search(keyword, offset, limit, type).then(res => {
-          console.log(res)
+
           this.result = res['result']['songs']
+          // console.log(this.result)
         })
       }
     },

@@ -5,6 +5,7 @@ import store from './store'
 import cookie from "./utils/cookie";
 import Bus from "./utils/bus";
 import Filter from "@/utils/filter";
+import Adapter from "@/utils/adapter";
 
 import {
   Button,
@@ -72,6 +73,7 @@ Vue.prototype.$cookie = cookie
 Vue.prototype.$notify = Notification
 Vue.prototype.$bus = Bus
 Vue.prototype.$Check = Check
+Vue.prototype.$adapter = Adapter
 console.log('cookie: ', Vue.prototype.$cookie.value);
 
 new Vue({
