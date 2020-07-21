@@ -3,23 +3,77 @@
     <input v-model="key"
            class="search-box"
            type="search"
-           placeholder="搜索音乐，视频，歌手">
+           placeholder="搜索音乐，视频，歌手"
+           v-on:input="inputChange"
+           v-on:focus="focus = true"
+           v-on:focusout="focus = false">
     <span class="el-icon-search search-icon"></span>
+
+    <div :class="{ hidden: !focus }" class="search-preview eff-shadow light-scroll">
+
+      <search-suggest-preview v-if="isPreview" :suggest="suggest"/>
+
+      <search-hot-preview v-else :hots="hots"/>
+
+    </div>
   </div>
 </template>
 
 <script>
+  import { search_hot_detail, search_suggest } from "@/network/request_show";
+  import {debounce, str_empty} from "@/utils/utils";
+
+  import SearchHotPreview from "@/components/header/SearchHotPreview";
+  import SearchSuggestPreview from "@/components/header/SearchSuggestPreview";
+
   export default {
     name: "Search",
+    components: {SearchSuggestPreview, SearchHotPreview},
     data() {
       return {
-        key: ''
+        key: '',
+        hots: null,
+        suggest: [],
+
+        searchPreview: null,
+        isPreview: false,
+        focus: false
       }
-    }
+    },
+
+    created() {
+
+      this.searchPreview = debounce(function () {
+        if (str_empty(this.key)) {
+          this.suggest.splice(0, this.suggest.length)
+          this.isPreview = false
+          return
+        }
+
+        search_suggest(this.key,'mobile').then(res => {
+          this.isPreview = true
+          this.suggest = res['result']['allMatch']
+        })
+      }, 300, this)
+
+      search_hot_detail().then(res => {
+        this.hots = res['data']
+      })
+    },
+
+    methods: {
+      inputChange() {
+        this.searchPreview()
+      },
+    },
   }
 </script>
 
 <style scoped>
+  .search {
+    position: relative;
+  }
+
   .search-box::-webkit-input-placeholder {
     font-size: 12px;
     font-weight: bold;
@@ -60,5 +114,24 @@
     width: 30px;
     cursor: pointer;
     transform: translate(-23px, 0);
+  }
+
+  .search-preview {
+    z-index: 1000;
+    position: absolute;
+    top: 30px;
+
+    border-radius: 5px;
+    background-color: white;
+
+    overflow: auto;
+    transition: opacity 0.4s;
+
+    opacity: 1;
+  }
+
+  .hidden {
+    opacity: 0;
+    visibility: hidden;
   }
 </style>

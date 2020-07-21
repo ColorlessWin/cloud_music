@@ -13,7 +13,8 @@
                 v-model="songTracks" :limit="40"
                 :total="detail['trackCount']"
                 :filling="filling"
-                :unique="this.$route.params.id"/>
+                :unique="this.$route.params.id"
+                :index="true"/>
 
   </div>
 </template>

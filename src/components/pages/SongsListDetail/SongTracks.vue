@@ -39,14 +39,14 @@
   }
 
   .song-track .el-row {
-    height: 2.8em;
+    height: 3.5em;
     border-radius: 4px;
   }
 
   .song-track .el-col {
     text-overflow: ellipsis;
-    line-height: 2.8em;
-    height: 2.8em;
+    line-height: 3.5em;
+    height: 3.5em;
     overflow: hidden;
   }
 

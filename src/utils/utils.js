@@ -10,3 +10,14 @@ export function str_empty(str) {
   if (!str) return true
   return str.replace(/(^s*)|(s*$)/g, "").length === 0
 }
+
+
+export function debounce(func, delay, _this) {
+  let timer = null;
+  return function (...args) {
+    if (timer) clearTimeout(timer)
+    timer = setTimeout(() =>{
+      func.apply(_this, args)
+    }, delay)
+  }
+}

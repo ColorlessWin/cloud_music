@@ -7,6 +7,19 @@ export function main_banner( type ) {
   return request({ url: '/banner', params: { type: type } }) }
 
 
+//获取热搜列表(简略)
+export function search_hot() { return request({ url: '/search/hot'}) }
+
+
+//获取热搜列表(详情)
+export function search_hot_detail() { return request({ url: '/search/hot/detail'}) }
+
+
+//获取搜索建议
+export function search_suggest( keywords, type ) {
+  return request({ url: '/search/suggest', params: { keywords , type} }) }
+
+
 //获取推荐歌单
 export function personalized( limit ) {
   return request({ url: '/personalized', params: { limit: limit } }) }

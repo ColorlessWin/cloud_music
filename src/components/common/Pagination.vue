@@ -18,6 +18,7 @@
       unique:  { default: null },
       limit:   { type: Number,      default: 20 },
       total:   { type: Number,      default: 0 },
+      index:   { type: Boolean,     default: false },
       filling: {
         type: Function,
         default: (...args) => { console.warn( 'expect a "filling" func' ); return {}}
@@ -47,7 +48,6 @@
       },
 
       async fillingData() {
-        let err = null
         let result = this.filling(this.offset, this.limit)
         if (result.then && (typeof result.then) === 'function') {
           return new Promise((resolve, reject) => {
@@ -68,7 +68,7 @@
 
       commit() {
         let res = this.discharge(this.page).map(( value, index ) => {
-          value.__index = index + this.offset + 1
+          if (this.index) value.__index = index + this.offset + 1
           return value
         })
 
@@ -79,9 +79,9 @@
         this.datas = { 1 : [] }
         this.offset = 0
         this.page = 1
-
+        
         this.fillingData().then(res => { this.commit(); })
-      }
+      },
     },
 
     created() {
