@@ -8,15 +8,15 @@
       <el-col :span="2">时长</el-col>
     </el-row>
     <el-row v-for="(song, index) in songs" :key="index">
-      <el-col class="index" :span="2">{{ song['__index'] }}</el-col>
-      <el-col :span="8">{{ song['name'] }}</el-col>
+      <el-col class="index" :span="2">{{ adapter.index(song) }}</el-col>
+      <el-col :span="8">{{ adapter.name(song) }}</el-col>
       <el-col :span="5">
-        <user-name v-for="(ar, index) in song['ar']" font-size="11px" :uid="ar['id']">
-          {{ ar['name'] }}
+        <user-name v-for="(ar, index) in adapter.ars(song)" font-size="11px" :uid="adapter.ar_id(ar)">
+          {{ adapter.ar_name(ar) }}
         </user-name>
       </el-col>
-      <el-col :span="7">{{ song['al']['name'] }}</el-col>
-      <el-col :span="2">{{ song['dt'] | timeLongFormat(true)}}</el-col>
+      <el-col :span="7">{{ adapter.album_name(song) }}</el-col>
+      <el-col :span="2">{{ adapter.duration(song) | timeLongFormat(true)}}</el-col>
     </el-row>
   </div>
 </template>
@@ -27,7 +27,8 @@
     name: "SongTracks",
     components: {UserName},
     props: {
-      songs: { type: Array,  default: () => [] }
+      songs:   { type: Array,  default: () => [] },
+      adapter: { type: Object, default: () => {} }
     },
   }
 </script>

@@ -20,6 +20,10 @@ export function search_suggest( keywords, type ) {
   return request({ url: '/search/suggest', params: { keywords , type} }) }
 
 
+//传入搜索关键词可以搜索该音乐 / 专辑 / 歌手 / 歌单 / 用户 , 关键词可以多个 , 以空格隔开
+export function search( keywords, offset, limit , type) {
+  return request({ url: '/search', params: { keywords , offset, limit, type } }) }
+
 //获取推荐歌单
 export function personalized( limit ) {
   return request({ url: '/personalized', params: { limit: limit } }) }

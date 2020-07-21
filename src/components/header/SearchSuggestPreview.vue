@@ -1,6 +1,7 @@
 <template>
   <div class="result">
-    <div v-for="(item, index) in suggest" :key="index" class="item">
+    <div v-for="(item, index) in suggest" :key="index" class="item"
+         @click="$emit('on-click', item['keyword'])">
       <span class="el-icon-search"></span> <span>{{ suggest[index]['keyword'] }}</span>
     </div>
   </div>

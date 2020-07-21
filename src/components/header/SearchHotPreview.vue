@@ -1,7 +1,7 @@
 <template>
   <div class="hot">
     <h5 style="font-weight: unset">热搜榜</h5>
-    <div v-for="(item, index) in hots" class="hots">
+    <div v-for="(item, index) in hots" class="hots" @click="$emit('on-click', item['searchWord'])">
       <div class="top">{{ index + 1 }}</div>
       <div class="right">
         <span class="s-word"> {{ item['searchWord'] }} </span>

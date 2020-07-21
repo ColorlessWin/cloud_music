@@ -9,33 +9,22 @@ const Discover = () => import('@/views/pages/home/Discover')
 const PersonalRec = () => import('@/views/pages/home/PersonalRec')
 
 const SongListDetail =() => import('@/views/pages/SongsListDetail')
+const SearchDetail = () => import('@/views/pages/SearchDetail')
 
 const routes = [
-  {
-    path: '/',
-    redirect: '/discover'
-  },
+  {  path: '/',  redirect: '/discover'  },
 
   {
-    path: '/discover',
-    component: Discover,
+    path: '/discover',  component: Discover,
     children: [
-      {
-        path: '/',
-        redirect: '/discover/recommend'
-      },
-
-      {
-        path: '/discover/recommend',
-        component: PersonalRec
-      }
+      { path: '/',  redirect: '/discover/recommend' },
+      { path: '/discover/recommend', component: PersonalRec }
     ]
   },
 
-  {
-    path: '/playlist/:id',
-    component: SongListDetail
-  },
+  {  path: '/playlist/:id',  component: SongListDetail },
+
+  { path: '/search' , component: SearchDetail },
 
 ]
 

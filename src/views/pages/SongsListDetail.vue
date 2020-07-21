@@ -5,7 +5,7 @@
 
     <el-card :body-style="{ padding: '15px 10px 10px 10px', boxSizing: 'border-box' }">
 <!--歌曲列表-->
-      <song-tracks :songs="songTracks"/>
+      <song-tracks :songs="songTracks" :adapter="adapter"/>
     </el-card>
 
 <!--页码-->
@@ -35,6 +35,16 @@
         detail: null,
         songTracks: null,
         limit: 30,
+
+        adapter: {
+          index:      (song) => song['__index'],
+          name:       (song) => song['name'],
+          ars:        (song) => song['ar'],
+          ar_id:      (ar) => ar['id'],
+          ar_name:    (ar) => ar['name'],
+          album_name: (song) => song['al']['name'],
+          duration:   (song) => song['dt']
+        }
       }
     },
 
@@ -52,6 +62,7 @@
       filling(offset, limit) {
         return new Promise((resolve, reject) => {
           song_tracks(this.$route.params.id, offset, limit).then(res => {
+            console.log(res);
             resolve(res['songs'])
           })
         })

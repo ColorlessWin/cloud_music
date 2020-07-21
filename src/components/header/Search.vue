@@ -6,14 +6,15 @@
            placeholder="搜索音乐，视频，歌手"
            v-on:input="inputChange"
            v-on:focus="focus = true"
-           v-on:focusout="focus = false">
+           v-on:focusout.capture="focus = false"
+           v-on:keydown.enter="toSearch(key)">
     <span class="el-icon-search search-icon"></span>
 
     <div :class="{ hidden: !focus }" class="search-preview eff-shadow light-scroll">
 
-      <search-suggest-preview v-if="isPreview" :suggest="suggest"/>
+      <search-suggest-preview v-if="isPreview" :suggest="suggest" @on-click="OnClick"/>
 
-      <search-hot-preview v-else :hots="hots"/>
+      <search-hot-preview v-else :hots="hots" @on-click="OnClick"/>
 
     </div>
   </div>
@@ -42,7 +43,6 @@
     },
 
     created() {
-
       this.searchPreview = debounce(function () {
         if (str_empty(this.key)) {
           this.suggest.splice(0, this.suggest.length)
@@ -65,6 +65,14 @@
       inputChange() {
         this.searchPreview()
       },
+
+      OnClick(keyword) {
+        this.toSearch(keyword)
+      },
+
+      toSearch(keyword, type = 1) {
+        this.$router.push(`/search?keywords=${keyword}&type=${type}`)
+      }
     },
   }
 </script>
@@ -125,7 +133,7 @@
     background-color: white;
 
     overflow: auto;
-    transition: opacity 0.4s;
+    transition: all 0.4s;
 
     opacity: 1;
   }
