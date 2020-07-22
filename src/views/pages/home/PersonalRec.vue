@@ -17,6 +17,7 @@
   import LArea from "@/components/common/LArea";
   import SongsCover from "@/components/content/covers/SongsCover";
   import Personalized from "@/components/main/Personalized";
+  import CoverTemplate from "@/components/content/covers/CoverTemplate";
 
   export default {
     name: "PersonalRec",
@@ -26,10 +27,7 @@
       }
     },
 
-    components: {Personalized, SongsCover, LArea, MainBanner },
-    created() {
-
-    }
+    components: { Personalized, SongsCover, LArea, MainBanner },
   }
 </script>
 

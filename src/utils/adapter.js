@@ -18,6 +18,40 @@ const search_to_album = {
   },
 }
 
+const search_to_video = {
+  coverUrl: (video) => video['coverUrl'] + '?param=200y110',
+  title:    (video) => video['title'],
+  author:   (video) => {
+    return {
+      name: video['creator'][0]['userName'],
+      id  : video['creator'][0]['userId']
+    }
+  },
+  duration: (video) => video['durationms'],
+  id:       (video) => video['vid'],
+  play:     (video) => video['playTime']
+}
+
+const search_to_users = {
+  avatarUrl: (user) => user['avatarUrl'] + '?param=50y50',
+  uid:       (user) => user['userId'],
+  name:      (user) => user['nickname'],
+  synopsis:  (user) => user['signature']
+}
+
+const search_to_playlists = {
+  cover: (songs) =>  songs['coverImgUrl'] + '?param=50y50',
+  name:  (songs) =>  songs['name'],
+  total: (songs) =>  songs['trackCount'],
+  id:    (songs) =>  songs['id'],
+  creator:(songs)=>  {
+    return {
+      name: songs['creator']['nickname'],
+      id:  songs['creator']['userId']
+    }
+  }
+}
+
 
 const search_to_songs = {
     index     :  (song) => song['__index'],
@@ -52,5 +86,8 @@ export default {
   search_to_artists,
   search_to_songs,
   songs_list_to_songs,
-  search_to_album
+  search_to_album,
+  search_to_playlists,
+  search_to_users,
+  search_to_video
 }

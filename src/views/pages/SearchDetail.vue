@@ -19,7 +19,7 @@
 
 
     <pagination class="pagination" :total="total" v-model="result"
-                :limit="30"        :filling="load"
+                :limit="40"        :filling="load"
                 :unique="$route.query" :index="true"/>
 
   </div>
@@ -28,13 +28,20 @@
 <script>
   import { search } from "@/network/request_show";
   import SongTracks from "@/components/pages/SongsListDetail/SongTracks";
-  import ArtistTrack from "@/components/content/track/ArtistTrack";
-  import AlbumTrack from "@/components/content/track/AlbumTrack";
+  import ArtistTrack from "@/components/content/tracks/ArtistTrack";
+  import AlbumTrack from "@/components/content/tracks/AlbumTrack";
+  import SongsTrack from "@/components/content/tracks/SongsTrack";
+  import UserTrack from "@/components/content/tracks/UserTrack";
+  import VideoMatrices from "@/components/content/matrices/VideoMatrices";
+
   import Pagination from "@/components/common/Pagination";
 
   export default {
     name: "SearchDetail",
-    components: {Pagination, AlbumTrack, ArtistTrack, SongTracks},
+    components: {
+      Pagination, AlbumTrack, ArtistTrack,
+      SongTracks, SongsTrack, UserTrack, VideoMatrices
+    },
     data() {
       return {
         component: 'SongTracks',
@@ -47,17 +54,17 @@
           '1'     : { component: 'SongTracks', props: { adapter: this.$adapter.search_to_songs  }},
           '10'    : { component: 'AlbumTrack', props: { adapter: this.$adapter.search_to_album  }},
           '100'   : { component: 'ArtistTrack',props: { adapter: this.$adapter.search_to_artists}},
-          '1000'  : { },
-          '1002'  : { },
+          '1000'  : { component: 'SongsTrack', props: { adapter: this.$adapter.search_to_playlists}},
+          '1002'  : { component: 'UserTrack',  props: { adapter: this.$adapter.search_to_users}},
           '1006'  : { },
           '1009'  : { },
-          '1014'  : { }
+          '1014'  : { component: 'VideoMatrices', props: { adapter: this.$adapter.search_to_video} }
         },
         field: {
-          '1'     : { result: 'songs',       total: 'songCount',     },
-          '10'    : { result: 'albums',      total: 'albumCount',    },
-          '100'   : { result: 'artists',     total: 'artistCount',   },
-          '1000'  : { result: 'playlists',   total: 'playlistCount'  },
+          '1'     : { result: 'songs',       total: 'songCount',      },
+          '10'    : { result: 'albums',      total: 'albumCount',     },
+          '100'   : { result: 'artists',     total: 'artistCount',    },
+          '1000'  : { result: 'playlists',   total: 'playlistCount'   },
           '1002'  : { result: 'userprofiles',total: 'userprofileCount'},
           '1006'  : { result: 'songs',       total: 'songCount'       },
           '1009'  : { result: 'djRadios',    total: 'djRadiosCount'   },
@@ -110,6 +117,9 @@
     font-weight: bold;
 
     padding: 20px 10px;
+  }
+  .search {
+    min-width: 700px;
   }
 
   .pagination {

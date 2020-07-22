@@ -1,7 +1,7 @@
 <template>
   <div style="display: inline-block" class="history-move">
-    <span class="el-icon-arrow-left"></span>
-    <span class="el-icon-arrow-right"></span>
+    <span class="el-icon-arrow-left" @click="$router.back()"></span>
+    <span class="el-icon-arrow-right" @click="$router.forward()"></span>
   </div>
 </template>
 

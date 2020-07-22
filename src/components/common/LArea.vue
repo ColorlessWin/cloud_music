@@ -1,7 +1,7 @@
 <template>
   <div class="area">
     <div class="header">
-      <div style="display: inline-block" class="title">{{title}}</div>
+      <div style="display: inline-block" class="primary">{{title}}</div>
       <span v-if="is_more" class="more">更多<span class="el-icon-arrow-right"></span></span>
     </div>
     <div class="content">
@@ -35,7 +35,7 @@
     border-bottom: 2px solid #eeeeee;
   }
 
-  .title {
+  .primary {
     position: absolute;
     bottom: 5px;
     font-size: 16px;

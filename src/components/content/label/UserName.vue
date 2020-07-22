@@ -1,5 +1,5 @@
 <template>
-  <span class="u-name" :style="{ fontSize: fontSize }" ><slot></slot></span>
+  <span class="u-name" ><slot></slot></span>
 </template>
 
 <script>

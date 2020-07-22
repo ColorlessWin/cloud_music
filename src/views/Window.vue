@@ -63,7 +63,7 @@ export default {
   }
 
   .__container .main-container {
-    height: calc(100% - 50px);
+    height: calc(100% - 95px);
   }
 
   .container .main-container .aside {

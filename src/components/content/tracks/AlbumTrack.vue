@@ -13,8 +13,7 @@
     name: "AlbumTrack",
     components: {AlbumCaluse, List},
     props: {
-      // album:    { type: Object,   default: () => {} },
-      datas:   { type: Array,     default: () => [] },
+      datas:    { type: Array,     default: () => [] },
       adapter:  { type: Object,   default: () => {} }
     },
   }

@@ -1,7 +1,7 @@
 <template>
   <div class="login" :class="{'show': show}">
     <div class="el-icon-close" @click="show = false"></div>
-    <h1 class="title">Login</h1>
+    <h1 class="primary">Login</h1>
     <light-input class="eff-shadow" v-model="loginFrom.account" placeholder="手机号"/>
     <light-input class="eff-shadow" v-model="loginFrom.password" type="password" placeholder="密码"/>
     <el-button class="login-button eff-shadow" type="primary" :loading="logging"
@@ -122,7 +122,7 @@
     cursor: pointer;
   }
 
-  .login .title {
+  .login .primary {
     color: #4caf50;
     font-weight: bold;
     font-size: 40px;

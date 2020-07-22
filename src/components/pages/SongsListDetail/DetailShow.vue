@@ -5,7 +5,7 @@
         <img class="cover eff-shadow" :src="detail['coverImgUrl']" alt="">
       </div>
       <div class="center">
-        <div class="title">{{ detail['name'] }}</div>
+        <div class="primary">{{ detail['name'] }}</div>
         <div class="user-detail">
           <avatar class="avatar" size="40px"
                   :avatar-url="detail['creator']['avatarUrl']"
@@ -96,7 +96,7 @@
   }
 
 
-  .center .title {
+  .center .primary {
     font-size: 20px;
     font-weight: bold;
 
