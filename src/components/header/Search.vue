@@ -67,6 +67,7 @@
       },
 
       OnClick(keyword) {
+        this.key = keyword
         this.toSearch(keyword)
       },
 
@@ -83,7 +84,7 @@
   }
 
   .search-box::-webkit-input-placeholder {
-    font-size: 12px;
+    font-size: 11px;
     font-weight: bold;
   }
 
@@ -102,7 +103,7 @@
     width: 175px;
     padding-right: 25px;
 
-    font-size: 13px;
+    font-size: 12px;
     text-indent: 10px;
     outline: none;
     border: none;

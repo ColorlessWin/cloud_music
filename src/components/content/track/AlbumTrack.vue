@@ -1,7 +1,7 @@
 <template>
-  <list :list="albums">
+  <list class="album-list" :list="datas">
     <template v-slot:default="slotProps">
-      <album-caluse :album="slotProps.item" :adapter="adapter"/>
+      <album-caluse class="album-caluse" :album="slotProps.item" :adapter="adapter"/>
     </template>
   </list>
 </template>
@@ -13,13 +13,19 @@
     name: "AlbumTrack",
     components: {AlbumCaluse, List},
     props: {
-      album:    { type: Object,   default: () => {} },
-      albums:   { type: Array,    default: () => [] },
+      // album:    { type: Object,   default: () => {} },
+      datas:   { type: Array,     default: () => [] },
       adapter:  { type: Object,   default: () => {} }
     },
   }
 </script>
 
 <style scoped>
+  .album-list .album-caluse:nth-of-type(odd) {
+    background-color: #f5f5f5;
+  }
 
+  .album-list .album-caluse:hover {
+    background-color: #eeeeee;
+  }
 </style>

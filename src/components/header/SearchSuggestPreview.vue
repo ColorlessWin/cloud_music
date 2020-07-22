@@ -18,6 +18,9 @@
 
 <style scoped>
   .result {
+    font-size: 12px;
+    font-weight: bold;
+    color: #616161;
     min-width: 300px;
     padding: 15px 0px;
 
@@ -25,7 +28,7 @@
   }
 
   .result .item {
-    line-height: 2.3em;
+    line-height: 3em;
     padding: 0 20px;
 
     cursor: pointer;

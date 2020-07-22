@@ -1,5 +1,5 @@
 <template>
-  <list class="artist-list" :list="artists">
+  <list class="artist-list" :list="datas">
     <template  v-slot:default="slotProps">
       <artist-caluse class="artist-cover" :artist="slotProps.item" :adapter="adapter"/>
     </template>
@@ -13,8 +13,8 @@
     name: "ArtistTrack",
     components: {ArtistCaluse, List },
     props: {
-      artist:   { type: Object,   default: () => {} },
-      artists:  { type: Array,    default: () => [ 'test' ] },
+      // artist:   { type: Object,   default: () => {} },
+      datas:    { type: Array,      default: () => [] },
       adapter:  { type: Object,   default: () => {} }
     },
 

@@ -50,8 +50,8 @@
 
   import { str_empty } from "@/utils/utils";
 
-  import Avatar from "@/components/content/Avatar";
-  import UserName from "@/components/content/UserName";
+  import Avatar from "@/components/content/label/Avatar";
+  import UserName from "@/components/content/label/UserName";
   import TextFold from '@/components/common/TextFold'
 
   export default {
@@ -95,6 +95,7 @@
     margin-left: 30px;
   }
 
+
   .center .title {
     font-size: 20px;
     font-weight: bold;
@@ -119,6 +120,7 @@
   }
 
   .user-detail .createTime {
+    font-size: 11px;
     margin-left: 25px;
     color: #b0bec5;
   }

@@ -2,6 +2,9 @@
   <div class="artist">
     <img :src="adapter.avatarUrl(artist)" alt="" class="avatar">
     <span class="name"> {{ adapter.name(artist) }} </span>
+    <span  v-if="adapter.alias(artist).length != 0" class="alias">
+      ({{ adapter.alias(artist).join(' / ') }})
+    </span>
   </div>
 </template>
 
@@ -21,7 +24,8 @@
     line-height: 45px;
     padding: 6px 10px;
 
-    font-size: 12px;
+    font-size: 11px;
+    font-weight: bold;
     border-radius: 5px;
 
     cursor: pointer;
@@ -40,5 +44,9 @@
     height: 45px;
     width: 45px;
     border-radius: 5px;
+  }
+
+  .artist .alias {
+    color: #9e9e9e;
   }
 </style>

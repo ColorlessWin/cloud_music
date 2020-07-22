@@ -1,5 +1,5 @@
 <template>
-  <div v-if="$Check(songs)" class="song-track">
+  <div v-if="$Check(datas)" class="song-track">
     <el-row class="titles" type="flex">
       <el-col class="index" :span="2">序号</el-col>
       <el-col :span="8">音乐标题</el-col>
@@ -7,13 +7,14 @@
       <el-col :span="7">专辑</el-col>
       <el-col :span="2">时长</el-col>
     </el-row>
-    <el-row v-for="(song, index) in songs" :key="index">
+    <el-row v-for="(song, index) in datas" :key="index">
       <el-col class="index" :span="2">{{ adapter.index(song) }}</el-col>
       <el-col :span="8">{{ adapter.name(song) }}</el-col>
       <el-col :span="5">
-        <user-name v-for="(ar, index) in adapter.ars(song)" font-size="11px" :uid="adapter.ar_id(ar)">
-          {{ adapter.ar_name(ar) }}
-        </user-name>
+<!--        <user-name v-for="(ar, index) in adapter.ars(song)" font-size="11px" :uid="adapter.ar_id(ar)">-->
+<!--          {{ adapter.ar_name(ar) }}-->
+<!--        </user-name>-->
+        <artists :artists="adapter.artists(song)"/>
       </el-col>
       <el-col :span="7">{{ adapter.album_name(song) }}</el-col>
       <el-col :span="2">{{ adapter.duration(song) | timeLongFormat(true)}}</el-col>
@@ -22,12 +23,13 @@
 </template>
 
 <script>
-  import UserName from "@/components/content/UserName";
+  import UserName from "@/components/content/label/UserName";
+  import Artists from "@/components/content/label/Artists";
   export default {
     name: "SongTracks",
-    components: {UserName},
+    components: {Artists, UserName},
     props: {
-      songs:   { type: Array,  default: () => [] },
+      datas:   { type: Array,  default: () => [] },
       adapter: { type: Object, default: () => {} }
     },
   }

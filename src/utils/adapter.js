@@ -1,41 +1,56 @@
 
 const search_to_artists = {
-  avatarUrl: (artist) => artist['img1v1Url'],
-  name:      (artist) => artist['name']
+  avatarUrl: (artist) => artist['img1v1Url'] + '?param=50y50',
+  name:      (artist) => artist['name'],
+  alias:     (artist) => artist['alias'],
 };
 
 
+const search_to_album = {
+  cover:    (album) =>  album['picUrl'] + '?param=50y50',
+  name :    (album) =>  album['name'],
+  artist:   (album) =>  {
+    return  {
+      name: album['artist']['name'],
+      id:   album['artist']['id'],
+      alia: album['artist']['alias']
+    }
+  },
+}
+
+
 const search_to_songs = {
-    index:      (song) => song['__index'],
-    name:       (song) => song['name'],
-    ars:        (song) => song['artists'],
-    ar_id:      (ar)   => ar['id'],
-    ar_name:    (ar)   => ar['name'],
-    album_name: (song) => song['album']['name'],
-    duration:   (song) => song['duration']
+    index     :  (song) => song['__index'],
+    name      :  (song) => song['name'],
+    artists   :  (song) => song['artists'].map((value) => {
+      return {
+        name: value['name'],
+        id: value['id'],
+        alia: value['alias']
+      }
+    }),
+    album_name:  (song) => song['album']['name'],
+    duration  :  (song) => song['duration']
 };
 
 
 const songs_list_to_songs = {
     index:      (song) => song['__index'],
     name:       (song) => song['name'],
-    ars:        (song) => song['ar'],
-    ar_id:      (ar) => ar['id'],
-    ar_name:    (ar) => ar['name'],
+    artists:    (song) => song['ar'].map((value) => {
+      return {
+        name: value['name'],
+        id: value['id'],
+        alia: value['alias']
+      }
+    }),
     album_name: (song) => song['al']['name'],
     duration:   (song) => song['dt']
 }
 
-//   index:      (song) => song['__index'],
-//   name:       (song) => song['name'],
-//   ars:        (song) => song['artists'],
-//   ar_id:      (song)   => song['ar']['id'],
-//   ar_name:    (song)   => (song['ar'].map((value) => value['name']).join(' / ')),
-//   album_name: (song) => song['album']['name'],
-//   duration:   (song) => song['duration']
-
 export default {
   search_to_artists,
   search_to_songs,
-  songs_list_to_songs
+  songs_list_to_songs,
+  search_to_album
 }
