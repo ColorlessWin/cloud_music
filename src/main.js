@@ -6,6 +6,7 @@ import cookie from "./utils/cookie";
 import Bus from "./utils/bus";
 import Filter from "@/utils/filter";
 import Adapter from "@/utils/adapter";
+import Audioer from "@/utils/audioer";
 
 import {
   Button,
@@ -28,6 +29,7 @@ import {
   Row,
   Col,
   Pagination,
+  Slider,
 
   Notification,
 } from 'element-ui';
@@ -56,9 +58,13 @@ Vue.use(CarouselItem)
 Vue.use(Row)
 Vue.use(Col)
 Vue.use(Pagination)
+Vue.use(Slider)
 
 //安装全局filter
 Vue.use(Filter)
+
+//安装全局audio
+Vue.use(Audioer)
 
 const Check = function(obj) {
   if (!obj) return false
@@ -74,7 +80,7 @@ Vue.prototype.$notify = Notification
 Vue.prototype.$bus = Bus
 Vue.prototype.$Check = Check
 Vue.prototype.$adapter = Adapter
-console.log('cookie: ', Vue.prototype.$cookie.value);
+// console.log('cookie: ', Vue.prototype.$cookie.value);
 
 new Vue({
   router,

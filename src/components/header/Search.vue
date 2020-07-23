@@ -8,7 +8,7 @@
            v-on:focus="focus = true"
            v-on:focusout.capture="focus = false"
            v-on:keydown.enter="toSearch(key)">
-    <span class="el-icon-search search-icon"></span>
+    <span class="el-icon-search search-icon" @click="toSearch(key)"></span>
 
     <div :class="{ hidden: !focus }" class="search-preview eff-shadow light-scroll">
 
@@ -103,7 +103,8 @@
     width: 175px;
     padding-right: 25px;
 
-    font-size: 12px;
+    font-size: 11px;
+    font-weight: bold;
     text-indent: 10px;
     outline: none;
     border: none;
@@ -111,15 +112,17 @@
   }
 
   .search-box {
-    transition: all 0.3s;
+    transition: all 0.3s 0.2s;
   }
 
   .search-box:hover, .search-box:focus {
+
     width: 230px;
     box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
   }
 
   .search-icon {
+    font-size: 13px;
     width: 30px;
     cursor: pointer;
     transform: translate(-23px, 0);

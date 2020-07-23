@@ -24,9 +24,11 @@
     mounted() {
       let c_h = this.$el.querySelector('.cover').clientHeight
       let h   = this.$el.clientHeight
+
       let mark      = this.$el.querySelector('.mark')
       let primary     = this.$el.querySelector('.primary')
       let secondary = this.$el.querySelector('.secondary')
+
       primary.style.height     = `${h - c_h}px`
       secondary.style.height   = `${h - c_h}px`
       mark.style.height        = `${h - c_h}px`
@@ -54,7 +56,8 @@
   }
 
   .c-t .info {
-    transition:all 0.4s 0.4s;
+    background-color: #fafafa;
+    transition:all 0.3s 0.4s;
   }
 
   .c-t:hover {

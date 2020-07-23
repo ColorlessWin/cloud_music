@@ -22,6 +22,6 @@
 
 .light-scroll::-webkit-scrollbar-thumb {
   width: 3px;
-  border-radius: 1.5px;
+  border-radius: 2px;
   background-color: #e0e0e0;
 }

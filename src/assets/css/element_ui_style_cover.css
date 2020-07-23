@@ -54,3 +54,29 @@
 .el-card {
   border: none;
 }
+
+
+/* Slider */
+
+.el-slider .el-slider__bar, .el-slider .el-slider__runway {
+  height: 4px;
+}
+
+.el-slider .el-slider__runway {
+  background-clip: content-box;
+  padding: 4px 0;
+}
+
+.el-slider .el-slider__button {
+  height: 5px;
+  width: 5px;
+}
+
+.el-slider .el-slider__button-wrapper {
+  outline: none;
+  transform: translate(-15px, 3px);
+}
+
+.el-slider .el-slider__runway {
+  margin: 8px 0;
+}

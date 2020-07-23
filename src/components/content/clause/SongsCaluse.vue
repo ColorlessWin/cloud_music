@@ -6,8 +6,8 @@
     </div>
     <div class="right">
       <span class="total">{{adapter.total(songs)}}首</span>
-      <span class="by">by</span>
-      <user-name :uid="adapter.creator(songs)['id']">{{ adapter.creator(songs)['name'] }}</user-name>
+<!--      <span class="by">by</span>-->
+<!--      <user-name :uid="adapter.creator(songs)['id']">{{ adapter.creator(songs)['name'] }}</user-name>-->
     </div>
   </div>
 </template>

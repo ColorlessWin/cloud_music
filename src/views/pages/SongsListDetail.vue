@@ -5,7 +5,7 @@
 
     <el-card :body-style="{ padding: '15px 10px 10px 10px', boxSizing: 'border-box' }">
 <!--歌曲列表-->
-      <song-tracks :datas="songTracks" :adapter="$adapter.songs_list_to_songs"/>
+      <song-tracks :datas="songTracks" :id="detail['id']" :adapter="$adapter.songs_list_to_songs"/>
     </el-card>
 
 <!--页码-->
@@ -52,7 +52,7 @@
       filling(offset, limit) {
         return new Promise((resolve, reject) => {
           song_tracks(this.$route.params.id, offset, limit).then(res => {
-            console.log(res);
+            // console.log(res);
             resolve(res['songs'])
           })
         })

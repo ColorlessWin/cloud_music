@@ -18,6 +18,7 @@ const search_to_album = {
   },
 }
 
+
 const search_to_video = {
   coverUrl: (video) => video['coverUrl'] + '?param=200y110',
   title:    (video) => video['title'],
@@ -32,12 +33,14 @@ const search_to_video = {
   play:     (video) => video['playTime']
 }
 
+
 const search_to_users = {
   avatarUrl: (user) => user['avatarUrl'] + '?param=50y50',
   uid:       (user) => user['userId'],
   name:      (user) => user['nickname'],
   synopsis:  (user) => user['signature']
 }
+
 
 const search_to_playlists = {
   cover: (songs) =>  songs['coverImgUrl'] + '?param=50y50',
@@ -79,8 +82,10 @@ const songs_list_to_songs = {
       }
     }),
     album_name: (song) => song['al']['name'],
-    duration:   (song) => song['dt']
+    duration:   (song) => song['dt'],
+    id:         (song) => song['id']
 }
+
 
 export default {
   search_to_artists,

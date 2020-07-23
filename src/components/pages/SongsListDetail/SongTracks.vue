@@ -7,13 +7,11 @@
       <el-col :span="7">专辑</el-col>
       <el-col :span="2">时长</el-col>
     </el-row>
-    <el-row v-for="(song, index) in datas" :key="index">
+    <el-row v-for="(song, index) in datas" :key="index" @click.native="onClick(id, index, adapter.id(song))">
+
       <el-col class="index" :span="2">{{ adapter.index(song) }}</el-col>
       <el-col :span="8">{{ adapter.name(song) }}</el-col>
       <el-col :span="5">
-<!--        <user-name v-for="(ar, index) in adapter.ars(song)" font-size="11px" :uid="adapter.ar_id(ar)">-->
-<!--          {{ adapter.ar_name(ar) }}-->
-<!--        </user-name>-->
         <artists :artists="adapter.artists(song)"/>
       </el-col>
       <el-col :span="7">{{ adapter.album_name(song) }}</el-col>
@@ -23,15 +21,24 @@
 </template>
 
 <script>
+  import BusTypes from "@/utils/bus/types";
+
   import UserName from "@/components/content/label/UserName";
   import Artists from "@/components/content/label/Artists";
   export default {
     name: "SongTracks",
     components: {Artists, UserName},
     props: {
+      id:      { type: Number, default: null },
       datas:   { type: Array,  default: () => [] },
       adapter: { type: Object, default: () => {} }
     },
+
+    methods: {
+      onClick(songsId, index, id) {
+        this.$bus.$emit(BusTypes.AUDIO_PLAY, { songsId, index, id })
+      }
+    }
   }
 </script>
 

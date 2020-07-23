@@ -118,6 +118,7 @@
 
     padding: 20px 10px;
   }
+
   .search {
     min-width: 700px;
   }

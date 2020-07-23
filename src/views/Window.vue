@@ -19,7 +19,10 @@
 
         </el-main>
       </el-container>
-      <el-footer height="45px"></el-footer>
+      <el-footer height="45px">
+
+        <app-footer/>
+      </el-footer>
     </el-container>
   </div>
 </template>
@@ -28,10 +31,12 @@
 import AppHeader from '@/views/Header.vue';
 import AppAside from '@/views/Aside.vue'
 import Login from "@/views/Login";
+import AppFooter from "@/views/Footer";
 
 export default {
   name: 'Window',
   components: {
+    AppFooter,
     Login,
     AppHeader,
     AppAside,
@@ -46,10 +51,7 @@ export default {
     width: 1200px;
     overflow: hidden;
 
-    /*margin: 20px auto auto auto;*/
     border-radius: 4px;
-    /*border: 1px solid #eeeeee;*/
-
     background-color: white;
   }
 
@@ -66,11 +68,15 @@ export default {
     height: calc(100% - 95px);
   }
 
-  .container .main-container .aside {
-    border-right: 1px solid #e6e6e6;
-  }
-
   .window .el-header {
     background-color: #eceff1;
+  }
+
+  .window .el-aside {
+    border-right: 1px solid #e0e0e0;;
+  }
+
+  .window .el-footer {
+    border-top: 1px solid #e0e0e0;;
   }
 </style>

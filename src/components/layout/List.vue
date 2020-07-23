@@ -1,6 +1,6 @@
 <template>
   <div v-if="$Check(list)" class="list">
-    <slot  v-for="(clause, index) in list" :item="clause"> <!--Item--> </slot>
+    <slot v-for="(clause, index) in list" :item="clause"> <!--Item--> </slot>
   </div>
 </template>
 
