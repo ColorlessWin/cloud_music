@@ -48,6 +48,15 @@
   justify-content: center;
 }
 
+.el-tabs.align-left .el-tabs__nav-scroll {
+  display: flex;
+  justify-content: left;
+}
+
+.el-tabs.align-left .el-tabs__nav-wrap  {
+  padding-left: 40px ;
+}
+
 
 /* Card Style */
 

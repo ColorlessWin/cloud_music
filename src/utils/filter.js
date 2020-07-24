@@ -49,7 +49,7 @@ const Filter = {
     });
 
     //秒、毫秒（时长）格式化为时分秒（例：65000ms => 00:01:05）
-    Vue.filter('timeLongFormat', function (value, isMs=false,dft = '00:00:00') {
+    Vue.filter('timeLongFormat', function (value, isMs=false,dft = '00:00') {
       let total = parseInt(value);
       if (!isNaN(total)) {
         if (isMs) {

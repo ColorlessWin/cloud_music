@@ -87,6 +87,17 @@ const songs_list_to_songs = {
     id:         (song) => song['id']
 }
 
+const comment_caluse = {
+  user:         (comment) => comment['user'],
+  avatarUrl:    (user) => user['avatarUrl'] + '?param=50y50',
+  name:         (user) => user['nickname'],
+  uid:          (user) => user['userId'],
+  content:      (comment) => comment['content'],
+  unreplied:    (comment) => comment['beReplied'].length === 0,
+  replied:      (comment) => comment['beReplied'][0],
+  commentId:    (comment) => comment['commentId']
+}
+
 
 export default {
   search_to_artists,
@@ -95,5 +106,6 @@ export default {
   search_to_album,
   search_to_playlists,
   search_to_users,
-  search_to_video
+  search_to_video,
+  comment_caluse
 }

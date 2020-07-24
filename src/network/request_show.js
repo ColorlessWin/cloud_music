@@ -38,3 +38,9 @@ export function song_list_detail( id ) {
 export function song_detail( ids ) {
   return request( { url: '/song/detail', params: { ids } } )
 }
+
+//调用此接口 , 传入音乐 id 和 limit 参数 , 可获得该音乐的所有评论 ( 不需要 登录 )
+export function comment_playlist(id, offset, limit ) {
+  return request( { url: '/comment/playlist', params: { id, offset, limit } } )
+}
+

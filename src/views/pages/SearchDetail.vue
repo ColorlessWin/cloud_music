@@ -13,14 +13,18 @@
 
     <div class="result-total"> 为你找到 {{this.total}} 条内容</div>
 
-    <component :is="dynComponent[type].component"
-               :datas="result"
-               v-bind="dynComponent[type].props"/>
+    <div class="content" v-loading="loading">
+
+      <component :is="dynComponent[type].component"
+                 :datas="result"
+                 v-bind="dynComponent[type].props"/>
 
 
-    <pagination class="pagination" :total="total" v-model="result"
-                :limit="40"        :filling="load"
-                :unique="$route.query" :index="true"/>
+      <pagination class="pagination" :total="total" v-model="result"
+                  :limit="40"        :filling="load"
+                  :unique="$route.query" :index="true"/>
+
+    </div>
 
   </div>
 </template>
@@ -50,6 +54,7 @@
         keywords: '',
         type: '1',
         total: 0,
+        loading: true,
         dynComponent: {
           '1'     : { component: 'SongTracks', props: { adapter: this.$adapter.search_to_songs  }},
           '10'    : { component: 'AlbumTrack', props: { adapter: this.$adapter.search_to_album  }},
@@ -88,12 +93,15 @@
       },
 
       load(offset, limit) {
+        this.loading = true
         return new Promise(resolve => {
           search(this.keywords, offset, limit, this.type).then(res => {
             this.total = res['result'][this.field[this.type].total]
             let result = res['result'][this.field[this.type].result]
             console.log(res)
             resolve(result)
+
+            this.loading = false
           })
         })
       },
@@ -114,7 +122,7 @@
 <style scoped>
   .result-total {
     font-size: 10px;
-    font-weight: bold;
+    /*font-weight: bold;*/
 
     padding: 20px 10px;
   }
@@ -125,5 +133,10 @@
 
   .pagination {
     margin-top: 20px;
+  }
+
+  .content {
+    width: 100%;
+    min-height: 500px;
   }
 </style>

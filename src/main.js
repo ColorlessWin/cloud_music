@@ -31,6 +31,7 @@ import {
   Pagination,
   Slider,
 
+  Loading,
   Notification,
 } from 'element-ui';
 
@@ -59,6 +60,7 @@ Vue.use(Row)
 Vue.use(Col)
 Vue.use(Pagination)
 Vue.use(Slider)
+Vue.use(Loading.directive)
 
 //安装全局filter
 Vue.use(Filter)

@@ -47,7 +47,6 @@
 <style scoped>
   .song-track {
     font-size: 11px;
-    font-weight: bold;
   }
 
   .song-track .el-row {
