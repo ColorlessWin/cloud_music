@@ -7,7 +7,7 @@
       <el-col :span="7">专辑</el-col>
       <el-col :span="2">时长</el-col>
     </el-row>
-    <el-row v-for="(song, index) in datas" :key="index" @click.native="onClick(id, index, adapter.id(song))">
+    <el-row v-for="(song, index) in datas" :key="index" @dblclick.native="onClick(index, adapter.id(song))">
 
       <el-col class="index" :span="2">{{ adapter.index(song) }}</el-col>
       <el-col :span="8">{{ adapter.name(song) }}</el-col>
@@ -35,8 +35,10 @@
     },
 
     methods: {
-      onClick(songsId, index, id) {
-        this.$bus.$emit(BusTypes.AUDIO_PLAY, { songsId, index, id })
+      onClick(index, id) {
+        if (this.id)
+          this.$bus.$emit(BusTypes.AUDIO_PLAY, { songsId: this.id, index, id })
+        else this.$bus.$emit(BusTypes.SINGLE_AUDIO_PLAY, id)
       }
     }
   }

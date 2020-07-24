@@ -67,7 +67,8 @@ const search_to_songs = {
       }
     }),
     album_name:  (song) => song['album']['name'],
-    duration  :  (song) => song['duration']
+    duration  :  (song) => song['duration'],
+    id:         (song) => song['id']
 };
 
 

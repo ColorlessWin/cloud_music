@@ -9,8 +9,12 @@
       </el-header>
       <el-container class="main-container">
         <el-aside class="aside" width="240px">
+
           <!--侧边栏-->
           <app-aside/>
+
+          <!--当前播放的歌曲预览-->
+          <play-preview/>
 
         </el-aside>
         <el-main class="light-scroll">
@@ -32,10 +36,12 @@ import AppHeader from '@/views/Header.vue';
 import AppAside from '@/views/Aside.vue'
 import Login from "@/views/Login";
 import AppFooter from "@/views/Footer";
+import PlayPreview from "@/views/PlayPreview";
 
 export default {
   name: 'Window',
   components: {
+    PlayPreview,
     AppFooter,
     Login,
     AppHeader,
@@ -57,7 +63,8 @@ export default {
 
   .window .el-aside {
     resize: horizontal;
-    min-width: 120px;
+    min-width: 230px;
+    border-right: 1px solid #e0e0e0;;
   }
 
   .window .__container {
@@ -70,10 +77,6 @@ export default {
 
   .window .el-header {
     background-color: #eceff1;
-  }
-
-  .window .el-aside {
-    border-right: 1px solid #e0e0e0;;
   }
 
   .window .el-footer {

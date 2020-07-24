@@ -36,8 +36,8 @@ export default new Vuex.Store({
       state.player.songsId = songsId
     },
 
-    [types.AUDIO_PLAY] (state) { state.playing = true },
-    [types.AUDIO_STOP] (state) { state.playing = false }
+    [types.AUDIO_PLAY] (state) { state.player.playing = true },
+    [types.AUDIO_STOP] (state) { state.player.playing = false }
   },
   actions: {
     [types.AUDIO_CHANGE] (content, { songsId, index }) {

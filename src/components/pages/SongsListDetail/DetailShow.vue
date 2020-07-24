@@ -116,6 +116,7 @@
   }
 
   .user-detail .user-name {
+    font-size: 13px;
     margin-left: 8px;
   }
 
