@@ -1,10 +1,10 @@
 <template>
   <div class="personal-rec">
 
-轮播图
+<!--轮播图-->
     <main-banner/>
 
-推荐歌单
+<!--推荐歌单-->
     <personalized :limit="10"/>
 
   </div>

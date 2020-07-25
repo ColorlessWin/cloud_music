@@ -55,11 +55,10 @@
   import Avatar from "@/components/content/label/Avatar";
   import UserName from "@/components/content/label/UserName";
   import TextFold from '@/components/common/TextFold'
-  import BlurBackground from "@/components/common/BlurBackground";
 
   export default {
     name: "DetailShow",
-    components: {BlurBackground, UserName, Avatar, TextFold},
+    components: {UserName, Avatar, TextFold},
     props: {
       detail: { type: Object, default: () => {} }
     },
