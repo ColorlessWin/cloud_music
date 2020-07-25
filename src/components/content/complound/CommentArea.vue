@@ -1,22 +1,24 @@
 <template>
   <div>
-    <l-area v-if="$Check(hotComment)"
-            title="精彩评论"
-            font-size="12px"
-            v-loading="loading">
+    <div class="content" v-loading="loading">
 
-      <comment-track :datas="hotComment" :adapter="$adapter.comment_caluse"/>
-    </l-area>
+      <l-area v-if="$Check(hotComment)"
+              title="精彩评论"
+              font-size="12px">
 
-    <l-area  v-if="$Check(comment)"
-             title="最新评论"
-             font-size="12px"
-             v-loading="loading">
+        <comment-track :datas="hotComment" :adapter="$adapter.comment_caluse"/>
+      </l-area>
 
-      <comment-track :datas="comment" :adapter="$adapter.comment_caluse"/>
-    </l-area>
-    <div v-else class="empty">
-      <h1>还没有任何评论，快来抢沙发吧~</h1>
+      <l-area  v-if="$Check(comment)"
+               title="最新评论"
+               font-size="12px">
+
+        <comment-track :datas="comment" :adapter="$adapter.comment_caluse"/>
+      </l-area>
+      <div v-else class="empty">
+        <h1>还没有任何评论，快来抢沙发吧~</h1>
+      </div>
+
     </div>
 
     <pagination class="pagination"

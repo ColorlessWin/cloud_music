@@ -33,7 +33,7 @@
     padding: 6px 10px;
 
     font-size: 11px;
-    font-weight: bold;
+    /*font-weight: bold;*/
     border-radius: 5px;
 
     cursor: pointer;

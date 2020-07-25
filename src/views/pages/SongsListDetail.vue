@@ -1,28 +1,34 @@
 <template>
   <div v-if="$Check(detail)" class="song-list-detail container">
-    <!--歌单详情-->
-    <detail-show :detail="detail" v-loading="loading_one"/>
+    <blur-background height="200px" :bg="this.detail['coverImgUrl']">
 
-    <el-card :body-style="{ padding: '15px 10px 10px 10px', boxSizing: 'border-box' }">
-      <el-tabs class="tabs align-left" v-model="selected">
-        <el-tab-pane label="歌曲列表" name="song-tracks" :lazy="true">
+      <!--歌单详情-->
+      <detail-show :detail="detail" v-loading="loading_one"/>
 
-          <!--歌曲列表-->
-          <better-song-track :id="$route.params.id"/>
+      <el-card :body-style="{ padding: '15px 10px 10px 10px', boxSizing: 'border-box' }">
+        <el-tabs class="tabs align-left" v-model="selected">
+          <el-tab-pane label="歌曲列表" name="song-tracks" :lazy="true">
 
-        </el-tab-pane>
-        <el-tab-pane label="评论" name="comments" :lazy="true">
+<!--          歌曲列表-->
+            <better-song-track :id="$route.params.id"/>
 
-          <!--评论列表-->
-          <comment-area :id="$route.params.id"/>
+          </el-tab-pane>
+          <el-tab-pane label="评论" name="comments" :lazy="true">
 
-        </el-tab-pane>
-        <el-tab-pane label="收藏者" name="collect" :lazy="true">
+<!--          评论列表-->
+            <comment-area :id="$route.params.id"/>
 
-        </el-tab-pane>
-      </el-tabs>
-    </el-card>
+          </el-tab-pane>
+          <el-tab-pane label="收藏者" name="collect" :lazy="true">
 
+<!--          收藏者列表-->
+            <SongsSubscribers :id="$route.params.id" :total="detail['subscribedCount']"/>
+
+          </el-tab-pane>
+        </el-tabs>
+      </el-card>
+
+    </blur-background>
   </div>
 </template>
 
@@ -32,10 +38,14 @@
   import DetailShow from "@/components/pages/SongsListDetail/DetailShow";
   import CommentArea from "@/components/content/complound/CommentArea";
   import BetterSongTrack from "@/components/content/complound/BetterSongTrack";
+  import SongsSubscribers from "@/components/content/complound/SongsSubscribers";
+  import BlurBackground from "@/components/common/BlurBackground";
 
   export default {
     name: "SongsListDetail",
     components: {
+      BlurBackground,
+      SongsSubscribers,
       BetterSongTrack, CommentArea, DetailShow
     },
 
@@ -76,9 +86,5 @@
   .song-list-detail.container {
     min-width: 600px;
     padding: 10px 20px 10px 20px;
-  }
-
-  .song-list-detail .pagination {
-    margin: 20px auto auto auto;
   }
 </style>

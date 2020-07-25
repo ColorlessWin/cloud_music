@@ -1,48 +1,50 @@
 <template>
   <div v-if="$Check(detail)" class="detail-show container clearfix">
-    <div class="top clearfix">
-      <div class="left">
-        <img class="cover eff-shadow" :src="detail['coverImgUrl']" alt="">
-      </div>
-      <div class="center">
-        <div class="primary">{{ detail['name'] }}</div>
-        <div class="user-detail">
-          <avatar class="avatar" size="40px"
-                  :avatar-url="detail['creator']['avatarUrl']"
-                  :uid="detail['creator']['userId']"/>
-          <user-name font-size="13px" class="user-name">
-            {{detail['creator']['nickname']}}
-          </user-name>
-          <span class="createTime">
+
+      <div class="top clearfix">
+        <div class="left">
+          <img class="cover eff-shadow" :src="detail['coverImgUrl']" alt="">
+        </div>
+        <div class="center">
+          <div class="primary">{{ detail['name'] }}</div>
+          <div class="user-detail">
+            <avatar class="avatar" size="40px"
+                    :avatar-url="detail['creator']['avatarUrl']"
+                    :uid="detail['creator']['userId']"/>
+            <user-name font-size="13px" class="user-name">
+              {{detail['creator']['nickname']}}
+            </user-name>
+            <span class="createTime">
             {{detail['createTime'] | dateTimeFormat('yyyy-MM-dd') }} 创建
           </span>
+          </div>
+          <div class="option">
+            <span style="background-color: #2979ff; color: white" class="icon el-icon-video-play"></span>
+            <span style="background-color: #ff3d00; color: white" class="icon el-icon-star-off"></span>
+            <span style="background-color: #00e676; color: white" class="icon el-icon-link"></span>
+          </div>
         </div>
-        <div class="option">
-          <span style="background-color: #2979ff; color: white" class="icon el-icon-video-play"></span>
-          <span style="background-color: #ff3d00; color: white" class="icon el-icon-star-off"></span>
-          <span style="background-color: #00e676; color: white" class="icon el-icon-link"></span>
+        <div class="info">
+          <div class="song-count">
+            歌曲数：{{detail['trackCount'] | logogram}}
+          </div>
+          <div class="play-count">
+            播放：{{detail['playCount'] | logogram}}
+          </div>
         </div>
       </div>
-      <div class="info">
-        <div class="song-count">
-          歌曲数：{{detail['trackCount'] | logogram}}
-        </div>
-        <div class="play-count">
-          播放：{{detail['playCount'] | logogram}}
-        </div>
-      </div>
-    </div>
 
-    <div class="desc">
-      <el-card :body-style="{ padding: '6px' }" shadow="always">
-        <div class="tags">
-          标签：{{detail['tags'] | resloveTags }}
-        </div>
-        <text-fold class="synopsis">
-          简介：{{detail['description'] | resloveSynopsis}}
-        </text-fold>
-      </el-card>
-    </div>
+      <div class="desc">
+        <el-card :body-style="{ padding: '6px' }" shadow="always">
+          <div class="tags">
+            标签：{{detail['tags'] | resloveTags }}
+          </div>
+          <text-fold class="synopsis">
+            简介：{{detail['description'] | resloveSynopsis}}
+          </text-fold>
+        </el-card>
+      </div>
+
   </div>
 </template>
 
@@ -53,10 +55,11 @@
   import Avatar from "@/components/content/label/Avatar";
   import UserName from "@/components/content/label/UserName";
   import TextFold from '@/components/common/TextFold'
+  import BlurBackground from "@/components/common/BlurBackground";
 
   export default {
     name: "DetailShow",
-    components: {UserName, Avatar, TextFold},
+    components: {BlurBackground, UserName, Avatar, TextFold},
     props: {
       detail: { type: Object, default: () => {} }
     },
@@ -123,12 +126,12 @@
   .user-detail .createTime {
     font-size: 11px;
     margin-left: 25px;
-    color: #b0bec5;
+    color: #000;
   }
 
   .desc {
-    font-size: 12px;
-    font-weight: bold;
+    font-size: 11px;
+    /*font-weight: bold;*/
     margin-top: 20px;
   }
 

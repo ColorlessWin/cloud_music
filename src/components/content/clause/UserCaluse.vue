@@ -1,7 +1,7 @@
 <template>
   <div class="user-caluse clearfix">
     <div class="left">
-      <avatar class="avatar" :avatar-url="adapter.avatarUrl(user)" :uid="adapter.uid(user)" size="40px"/>
+      <avatar class="avatar" :avatar-url="adapter.avatarUrl(user)" :uid="adapter.uid(user)" size="35px"/>
       <span class="name"> {{ adapter.name(user) }} </span>
     </div>
     <div class="right">
@@ -25,8 +25,8 @@
 <style scoped>
   .user-caluse {
     min-width: 50px;
-    font-size: 12px;
-    font-weight: bold;
+    font-size: 11px;
+    /*font-weight: bold;*/
     padding: 6px 10px;
 
     border-radius: 5px;

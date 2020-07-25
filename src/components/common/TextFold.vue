@@ -26,7 +26,9 @@ export default {
 
   methods: {
     update() {
-      this.overflow = this.content.clientHeight > this.boxHeight
+      this.$nextTick(()=>{
+        this.overflow = this.content.clientHeight > this.boxHeight
+      })
     }
   },
 
@@ -42,7 +44,7 @@ export default {
 <style scoped>
   .fold {
     position: relative;
-    height: 3em;
+    height: 2.8em;
     padding-right: 20px;
     border-radius: 5px;
     overflow: hidden;

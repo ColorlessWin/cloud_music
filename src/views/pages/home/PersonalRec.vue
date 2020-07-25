@@ -1,10 +1,10 @@
 <template>
   <div class="personal-rec">
 
-<!--轮播图-->
+轮播图
     <main-banner/>
 
-<!--推荐歌单-->
+推荐歌单
     <personalized :limit="10"/>
 
   </div>
@@ -17,7 +17,6 @@
   import LArea from "@/components/common/LArea";
   import SongsCover from "@/components/content/covers/SongsCover";
   import Personalized from "@/components/main/Personalized";
-  import CoverTemplate from "@/components/content/covers/CoverTemplate";
 
   export default {
     name: "PersonalRec",

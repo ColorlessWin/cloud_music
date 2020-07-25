@@ -98,7 +98,6 @@
           search(this.keywords, offset, limit, this.type).then(res => {
             this.total = res['result'][this.field[this.type].total]
             let result = res['result'][this.field[this.type].result]
-            console.log(res)
             resolve(result)
 
             this.loading = false

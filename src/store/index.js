@@ -45,12 +45,12 @@ export default new Vuex.Store({
         song_list_detail(songsId).then(result => {
           content.commit(
             types.AUDIO_CHANGE,
-            { songsId, songsTracks: result['playlist']['trackIds'], index: index } )
+            { songsId, songsTracks: result['playlist']['trackIds'], index } )
         })
       } else {
         content.commit(
           types.AUDIO_CHANGE,
-          { songsId, songsTracks: content.state.player.playTracks, index: index } )
+          { songsId, songsTracks: content.state.player.playTracks, index } )
       }
     }
   },
