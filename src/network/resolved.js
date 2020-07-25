@@ -6,7 +6,10 @@ import {
 
 export async function song_tracks(sid, offset, limit) {
   let result = await song_list_detail(sid)
-  result = result['playlist']['trackIds'].slice(offset, offset + limit).map(value => value['id'])
-  result = await song_detail(result.join(','))
-  return result
+  let songs = result['playlist']['trackIds'].slice(offset, offset + limit).map(value => value['id'])
+  songs = await song_detail(songs.join(','))
+  return {
+    metadata: { id: sid, total:  result['playlist']['trackCount']},
+    data: songs
+  }
 }

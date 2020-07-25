@@ -95,7 +95,10 @@ const comment_caluse = {
   content:      (comment) => comment['content'],
   unreplied:    (comment) => comment['beReplied'].length === 0,
   replied:      (comment) => comment['beReplied'][0],
-  commentId:    (comment) => comment['commentId']
+  commentId:    (comment) => comment['commentId'],
+  time:         (comment) => comment['time'],
+  liked:        (comment) => comment['liked'],
+  likedCount:   (comment) => comment['likedCount']
 }
 
 

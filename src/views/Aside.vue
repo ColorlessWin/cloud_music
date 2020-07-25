@@ -1,7 +1,15 @@
 <template>
   <div class="app-aside light-scroll">
     <el-menu router mode="vertical" :default-openeds="['1', '2']">
-      <recommendation/>  <my-music/> <own-song-list/>  <collect-song-list/>
+
+      <recommendation/>
+
+      <my-music/>
+
+      <own-song-list/>
+
+      <collect-song-list/>
+
     </el-menu>
   </div>
 </template>

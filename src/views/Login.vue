@@ -36,9 +36,8 @@
     },
 
     created() {
-      const _this = this
-      this.$bus.$on(BusTypes.LOGIN_PANEL_CUTOVER, function () {
-        _this.show = !_this.show
+      this.$bus.$on(BusTypes.LOGIN_PANEL_CUTOVER,  () => {
+        this.show = !this.show
       })
     },
 

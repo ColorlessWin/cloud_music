@@ -41,10 +41,18 @@
         this.offset = (val - 1) * this.limit
 
         if (!this.datas[this.page]) {
-          this.fillingData().then(res => { this.commit(); })
+          this.load()
         }else {
           this.commit()
         }
+      },
+
+      load() {
+        this.$emit('loading')
+        this.fillingData().then(res => {
+          this.commit();
+          this.$emit('loaded')
+        })
       },
 
       async fillingData() {
@@ -79,8 +87,8 @@
         this.datas = { 1 : [] }
         this.offset = 0
         this.page = 1
-        
-        this.fillingData().then(res => { this.commit(); })
+
+        this.load()
       },
     },
 

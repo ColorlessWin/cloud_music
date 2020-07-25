@@ -50,7 +50,7 @@
   .__volume .icon-volume {
     width: 18px;
     height: 16px;
-    background-size: 18px 16px;
+    background-size: 16px 14px;
     background-repeat: no-repeat;
   }
 

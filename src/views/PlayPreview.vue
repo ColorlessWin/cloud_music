@@ -10,8 +10,8 @@
 </template>
 
 <script>
-  import BusTypes from "@/utils/bus/types";
   import { song_detail } from "@/network/request_show";
+  import BusTypes from "@/utils/bus/types";
   import Artists from "@/components/content/label/Artists";
 
   export default {

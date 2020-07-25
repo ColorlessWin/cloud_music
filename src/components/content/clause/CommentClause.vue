@@ -13,9 +13,18 @@
         </user-name>
         <span class="content"> {{ ater.content((ater.replied(comment))) }} </span>
       </div>
-    </div>
-    <div class="other">
-
+      <div class="other">
+        <span class="time"> {{ ater.time(comment) | dateTimeFormat('yyyy-MM-dd HH:mm') }} </span>
+        <span class="option">
+          <icon :normal="require('@/assets/img/like.svg')"
+                         :active="require('@/assets/img/liked.svg')"
+                         :activated="ater.liked(comment)"
+                         size="15px"
+                         class="icon-liked"/>
+          <span class="liked-count"> {{ ater.likedCount(comment) | logogram }} </span>
+          <span class="rep"> | 回复</span>
+      </span>
+      </div>
     </div>
   </div>
 </template>
@@ -23,9 +32,11 @@
 <script>
   import Avatar from "@/components/content/label/Avatar";
   import UserName from "@/components/content/label/UserName";
+  import Icon from "@/components/common/Icon";
+
   export default {
     name: "CommentClause",
-    components: {UserName, Avatar},
+    components: {Icon, UserName, Avatar},
     props: {
       comment:  { type: Object,   default: {} },
       ater:  { type: Object,   default: ()=> {} }
@@ -61,7 +72,24 @@
   .replied {
     margin-top: 6px;
     background-color: #eeeeee;
-    padding: 5px;
+    padding: 7px 5px;
     border-radius: 4px;
+  }
+
+  .other {
+    margin-top: 5px;
+  }
+
+  .time {
+    float: left;
+  }
+
+  .option {
+    float: right;
+  }
+
+  .time, .rep, .liked-count {
+    color: #9e9e9e;
+    vertical-align: middle;
   }
 </style>

@@ -1,7 +1,9 @@
 <template>
   <div class="area">
     <div class="header">
-      <div style="display: inline-block" class="primary">{{title}}</div>
+      <div style="display: inline-block"
+           :style="{ fontSize: fontSize }"
+           class="primary">{{title}}</div>
       <span v-if="is_more" class="more">更多<span class="el-icon-arrow-right"></span></span>
     </div>
     <div class="content">
@@ -16,6 +18,7 @@
   export default {
     name: "LArea",
     props: {
+      fontSize: { type: String, default: '16px' },
       title: { type: String,   default: '未命名' },
       more:  { type: String,   default: "" }
     },
@@ -38,7 +41,6 @@
   .primary {
     position: absolute;
     bottom: 5px;
-    font-size: 16px;
   }
 
   .content {
