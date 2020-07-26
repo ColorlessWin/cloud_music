@@ -25,7 +25,6 @@
 <style scoped>
   .blur {
     position: relative;
-    padding: 15px 0;
   }
 
   .wrapper {
@@ -33,9 +32,10 @@
     width: 100%;
     height: 100%;
     overflow: hidden;
+    padding: 15px 0;
 
     background-color: white;
-    filter: blur(80px);
+    filter: blur(100px);
   }
 
   .bg {
@@ -45,7 +45,7 @@
     transform: translate(-50%, -50%);
     display: inline-block;
     width: 70%;
-    height: 40%;
+    height: 60%;
   }
 
   .content {

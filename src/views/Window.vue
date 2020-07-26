@@ -8,6 +8,7 @@
 
       </el-header>
       <el-container class="main-container">
+
         <el-aside class="aside" width="240px">
 
           <!--侧边栏-->
@@ -22,6 +23,9 @@
           <router-view/>
 
         </el-main>
+
+        <play/>
+
       </el-container>
       <el-footer height="45px">
 
@@ -37,10 +41,12 @@ import AppAside from '@/views/Aside.vue'
 import Login from "@/views/Login";
 import AppFooter from "@/views/Footer";
 import PlayPreview from "@/views/PlayPreview";
+import Play from "@/views/Play";
 
 export default {
   name: 'Window',
   components: {
+    Play,
     PlayPreview,
     AppFooter,
     Login,
@@ -72,6 +78,7 @@ export default {
   }
 
   .__container .main-container {
+    position: relative;
     height: calc(100% - 95px);
   }
 

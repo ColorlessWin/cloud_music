@@ -13,6 +13,7 @@
     props: {
       value: { type: Number,    default: 0 },
     },
+
     data() {
       return {
         isMute: false,

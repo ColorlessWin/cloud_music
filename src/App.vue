@@ -24,6 +24,10 @@
           profile: result.profile
         })
       })
+    },
+
+
+    created() {
     }
   }
 </script>

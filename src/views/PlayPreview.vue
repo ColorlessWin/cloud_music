@@ -1,6 +1,6 @@
 <template>
   <div v-if="$Check(song)" class="play-preview">
-    <img class="cover" :src="song['al']['picUrl'] + '?param=100y100'" alt="">
+    <img class="cover" :src="song['al']['picUrl'] + '?param=100y100'" alt="" @click="onclick">
     <div class="other">
       <span class="name"> {{ song['name'] }} </span>
       <br/>
@@ -37,6 +37,12 @@
           })
         })
       })
+    },
+
+    methods: {
+      onclick() {
+        this.$bus.$emit(BusTypes.OPEN_PLAYING_PLANE)
+      }
     }
   }
 </script>
@@ -79,5 +85,7 @@
     height: 40px;
     width: 40px;
     border: 1px solid #e0e0e0;
+
+    cursor: pointer;
   }
 </style>
