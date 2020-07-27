@@ -1,6 +1,8 @@
 import {
   song_detail,
-  song_list_detail
+  song_list_detail,
+  comment_music,
+  comment_playlist
 } from "@/network/request_show";
 
 
@@ -12,4 +14,12 @@ export async function song_tracks(sid, offset, limit) {
     metadata: { id: sid, total:  result['playlist']['trackCount']},
     data: songs
   }
+}
+
+export function get_comment_request(type) {
+  let request = null
+  if (type === 'playlist') request = comment_playlist
+  if (type === 'music') request = comment_music
+  if (!request) console.error('no type request')
+  return request
 }

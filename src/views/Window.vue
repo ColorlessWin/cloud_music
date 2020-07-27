@@ -24,7 +24,7 @@
 
         </el-main>
 
-        <play/>
+        <playing/>
 
       </el-container>
       <el-footer height="45px">
@@ -41,12 +41,12 @@ import AppAside from '@/views/Aside.vue'
 import Login from "@/views/Login";
 import AppFooter from "@/views/Footer";
 import PlayPreview from "@/views/PlayPreview";
-import Play from "@/views/Play";
+import Playing from "@/views/Playing";
 
 export default {
   name: 'Window',
   components: {
-    Play,
+    Playing,
     PlayPreview,
     AppFooter,
     Login,
@@ -65,6 +65,8 @@ export default {
 
     border-radius: 4px;
     background-color: white;
+
+    margin: 20px auto auto auto;
   }
 
   .window .el-aside {

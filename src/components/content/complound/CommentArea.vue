@@ -25,9 +25,11 @@
                 :filling="filling"
                 :total="total" :limit="30"
                 v-model="comment"
+                :enable="enable"
                 :unique="parseInt(id)"
                 @loading="loading = true"
                 @loaded="loading = false"/>
+
   </div>
 </template>
 
@@ -35,37 +37,29 @@
   import LArea from "@/components/common/LArea";
   import CommentTrack from "@/components/content/tracks/CommentTrack";
   import Pagination from "@/components/common/Pagination";
-  import {comment_playlist} from "@/network/request_show";
+  import {get_comment_request} from "@/network/resolved";
   export default {
     name: "CommentArea",
     components: {CommentTrack, LArea, Pagination},
     props: {
-      id: { type: [Number, String],   default: 0 }
+      id:     { type: [Number, String],   default: 0 },
+      type:   { type: String,  default: 'playlist' },
+      enable: { type: Boolean,  default: true }
     },
     data() {
       return {
         hotComment: [],
         comment: [],
         total: 0,
-        loading: false
+        loading: false,
       }
     },
 
-    created() {
-      // this.reload()
-    },
-
     methods: {
-      reload() {
-        comment_playlist(this.detail['id'], 0, 20).then(res => {
-          this.commentTracks = res['comments']
-          console.log(res)
-        })
-      },
 
       filling(offset, limit) {
         return new Promise(resolve => {
-          comment_playlist(this.id, offset, limit).then(res => {
+          get_comment_request(this.type)(this.id, offset, limit).then(res => {
             let comment =     res['comments']
             this.hotComment = res['hotComments']
             this.total =      res['total']

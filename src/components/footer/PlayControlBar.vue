@@ -19,7 +19,6 @@
 </template>
 
 <script>
-  import cookie from "@/utils/cookie";
   import BusTypes from "@/utils/bus/types";
   import { future } from "@/utils/utils";
 

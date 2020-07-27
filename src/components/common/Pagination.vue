@@ -5,7 +5,8 @@
                    :total="total"
                    :page-size="limit"
                    :current-page="page"
-                   @current-change="onPageChange"/>
+                   @current-change="onPageChange"
+                   :disabled="!enable"/>
   </div>
 </template>
 
@@ -19,6 +20,7 @@
       limit:   { type: Number,      default: 20 },
       total:   { type: Number,      default: 0 },
       index:   { type: Boolean,     default: false },
+      enable:  { type: Boolean,     default: true },
       filling: {
         type: Function,
         default: (...args) => { console.warn( 'expect a "filling" func' ); return {}}
@@ -48,6 +50,7 @@
       },
 
       load() {
+        if (!this.enable) return
         this.$emit('loading')
         this.fillingData().then(res => {
           this.commit();
@@ -99,6 +102,10 @@
     watch: {
       unique: function (newVal, oldVal) {
         if (newVal !== oldVal) this.reload()
+      },
+
+      enable: function () {
+        this.load()
       }
     }
   }

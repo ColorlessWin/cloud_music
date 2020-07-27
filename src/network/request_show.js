@@ -50,6 +50,12 @@ export function comment_playlist(id, offset, limit ) {
   return request( { url: '/comment/playlist', params: { id, offset, limit } } )
 }
 
+// 调用此接口 , 传入音乐 id 和 limit 参数 , 可获得该音乐的所有评论 ( 不需要 登录 )
+export function comment_music(id, offset, limit ) {
+  return request( { url: '/comment/music', params: { id, offset, limit } } )
+}
+
+
 //调用此接口 , 传入歌单 id 可获取歌单的所有收藏者
 export function playlist_subscribers(id, offset, limit ) {
   return request( { url: '/playlist/subscribers', params: { id, offset, limit } } )
