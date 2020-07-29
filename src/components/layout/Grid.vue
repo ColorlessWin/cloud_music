@@ -1,5 +1,7 @@
 <template>
-  <div v-if="$Check(list)" class="grid">
+  <div v-if="$Check(list)" class="grid"
+       :style="{ gridTemplateColumns: `repeat(${col}, auto)`,
+                 gridTemplateRows: `repeat(${row}, auto)`}">
     <slot v-for="(clause, index) in list" :item="clause"> <!--Item--> </slot>
   </div>
 </template>
@@ -9,6 +11,8 @@
     name: "Grid",
     props: {
       list: { type: Array,   default: [] },
+      col:  { type: [Number, String],  default: '0' },
+      row:  { type: [Number, String],  default: '0' },
       item: null,
     }
   }
@@ -16,13 +20,7 @@
 
 <style scoped>
   .grid {
-    display: flex;
-    flex-wrap: wrap;
-
-    justify-content: space-between;
-  }
-
-  .grid > * {
-
+    display: grid;
+    grid-gap: 20px 20px;
   }
 </style>

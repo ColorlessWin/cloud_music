@@ -77,7 +77,7 @@
 
   .lyric-caluse {
     font-size: 12px;
-    height: 2.4em;
+    padding: 0.5em 0;
   }
 
   .lyric .wrapper {

@@ -2,7 +2,8 @@ import {
   song_detail,
   song_list_detail,
   comment_music,
-  comment_playlist
+  comment_playlist,
+  comment_video
 } from "@/network/request_show";
 
 
@@ -20,6 +21,7 @@ export function get_comment_request(type) {
   let request = null
   if (type === 'playlist') request = comment_playlist
   if (type === 'music') request = comment_music
+  if (type === 'video') request = comment_video
   if (!request) console.error('no type request')
   return request
 }

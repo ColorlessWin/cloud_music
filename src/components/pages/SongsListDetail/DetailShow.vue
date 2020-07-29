@@ -39,9 +39,9 @@
           <div class="tags">
             标签：{{detail['tags'] | resloveTags }}
           </div>
-          <text-fold class="synopsis">
-            简介：{{detail['description'] | resloveSynopsis}}
-          </text-fold>
+          <text-fold class="synopsis" 
+                    :text="detail['description'] | resloveSynopsis"/>
+
         </el-card>
       </div>
 
@@ -70,8 +70,8 @@
 
       resloveSynopsis(value) {
         return str_empty(value)
-          ? `没有谁的生活会一直完美，但无论什么时候，都要看着前方，满怀希望就会所向披靡。(默认简介)`
-          : value
+          ? `简介：没有谁的生活会一直完美，但无论什么时候，都要看着前方，满怀希望就会所向披靡。(默认简介)`
+          : '简介：' + value
       }
     }
   }

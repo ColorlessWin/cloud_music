@@ -86,6 +86,11 @@
       secondary: function () {
         this.animating = true
         future(function () { this.animating = false }, 500, this)
+      },
+
+      $route(to, from) {
+        // 对路由变化作出响应...
+        if (this.show) this.close()
       }
     }
   }

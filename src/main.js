@@ -7,6 +7,7 @@ import Bus from "./utils/bus";
 import Filter from "@/utils/filter";
 import Adapter from "@/utils/adapter";
 import Audioer from "@/utils/audioer";
+import Directive from "@/utils/directive"
 
 
 import {
@@ -69,6 +70,9 @@ Vue.use(Filter)
 //安装全局audio
 Vue.use(Audioer)
 
+//自定义v-指令
+Vue.use(Directive)
+
 const Check = function(obj) {
   if (!obj) return false
   if (typeof obj === 'object' && Object.keys(obj).length === 0) return false
@@ -83,7 +87,7 @@ Vue.prototype.$notify = Notification
 Vue.prototype.$bus = Bus
 Vue.prototype.$Check = Check
 Vue.prototype.$adapter = Adapter
-// console.log('cookie: ', Vue.prototype.$cookie.value);
+
 
 new Vue({
   router,

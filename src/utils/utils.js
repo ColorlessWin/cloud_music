@@ -33,7 +33,7 @@ export function lyricParse(lyric) {
     str_time = str_time[0]
     let time = (parseInt(/(?<=\[)\d{2}/.exec(str_time)[0]) * 60) + parseInt(/(?<=\[\d{2}:)\d{2}/.exec(str_time)[0])
     let result = /(?<=]).+/.exec(lyrics_arr[i])
-    lyric_map[time] = result ? result[0] : '...'
+    lyric_map[time] = result ? result[0] : ''
   }
   return lyric_map
 }

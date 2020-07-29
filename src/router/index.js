@@ -10,9 +10,15 @@ const PersonalRec = () => import('@/views/pages/home/PersonalRec')
 
 const SongListDetail =() => import('@/views/pages/SongsListDetail')
 const SearchDetail = () => import('@/views/pages/SearchDetail')
+const VideoPlay = () => import('@/views/pages/VideoPlay')
 
 const routes = [
   {  path: '/',  redirect: '/discover'  },
+
+  {
+    path: '/test',
+    component: () => import('@/test')
+  },
 
   {
     path: '/discover',  component: Discover,
@@ -25,6 +31,8 @@ const routes = [
   {  path: '/playlist/:id',  component: SongListDetail },
 
   { path: '/search' , component: SearchDetail },
+
+  { path: '/video/:id' , component: VideoPlay },
 
 ]
 

@@ -1,5 +1,7 @@
 <template>
-  <cover-template height="145px" width="200px" cover-height="110px">
+  <cover-template height="145px" width="200px" 
+                  cover-height="110px" 
+                  @click.native="$router.push(`/video/${adapter.id(video)}`)">
     <img slot="cover" :src="adapter.coverUrl(video)" alt="">
     <div class="primary" slot="primary">
       <div class="title">{{ adapter.title(video) }}</div>
@@ -32,10 +34,6 @@
 <style scoped>
   .primary, .secondary {
     font-size: 11px;
-  }
-
-  .secondary .el-icon-view {
-    margin-left: 8px;
   }
 
   .secondary .author {

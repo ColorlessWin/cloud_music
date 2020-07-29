@@ -45,7 +45,7 @@ export function lyric( id ) {
 }
 
 
-//调用此接口 , 传入音乐 id 和 limit 参数 , 可获得该音乐的所有评论 ( 不需要 登录 )
+//调用此接口 , 传入歌单 id 和 limit 参数 , 可获得该歌单的所有评论 ( 不需要 登录 )
 export function comment_playlist(id, offset, limit ) {
   return request( { url: '/comment/playlist', params: { id, offset, limit } } )
 }
@@ -55,10 +55,22 @@ export function comment_music(id, offset, limit ) {
   return request( { url: '/comment/music', params: { id, offset, limit } } )
 }
 
+// 调用此接口 , 传入视频 id 和 limit 参数 , 可获得该视频的所有评论 ( 不需要 登录 )
+export function comment_video(id, offset, limit ) {
+  return request( { url: '/comment/video', params: { id, offset, limit } } )
+}
 
 //调用此接口 , 传入歌单 id 可获取歌单的所有收藏者
 export function playlist_subscribers(id, offset, limit ) {
   return request( { url: '/playlist/subscribers', params: { id, offset, limit } } )
 }
 
+//调用此接口 , 可获取视频详情
+export function video_detail(id) {
+  return request( { url: '/video/detail', params: { id } } )
+}
 
+//调用此接口 , 可获取视频详情
+export function get_video_url(id) {
+  return request( { url: '/video/url', params: { id } } )
+}

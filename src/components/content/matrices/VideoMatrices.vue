@@ -1,5 +1,5 @@
 <template>
-  <grid class="video-matrices" :list="datas">
+  <grid class="video-matrices" :list="datas" col="4">
     <template v-slot:default="slotProps">
       <video-cover class="video-cover" :video="slotProps.item" :adapter="adapter"/>
     </template>
@@ -20,7 +20,5 @@
 </script>
 
 <style scoped>
-  .video-cover {
-    margin: 15px 6px;
-  }
+
 </style>

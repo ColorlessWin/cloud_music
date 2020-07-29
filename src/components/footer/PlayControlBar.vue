@@ -38,8 +38,6 @@
     },
 
     created() {
-      this.$root.$el.appendChild(this.$audioer)
-
 
       //下面都是初始化工作
       this.$audioer.volume = this.volume / 100

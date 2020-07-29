@@ -44,7 +44,7 @@
   }
 
   .content {
-    margin-top: 15px;
+    margin-top: 5px;
   }
 
   .area .more {

@@ -1,6 +1,6 @@
 <template>
   <div class="fold" :class="{ 'unfold': unfold }">
-    <div class="content"><slot></slot></div>
+    <div class="content" v-mline-text="text"></div>
     <span v-if="overflow"
           :class="{ 'reverse': unfold }"
           class="collapse el-icon-arrow-down"
@@ -11,6 +11,9 @@
 <script>
 export default {
   name: "TextFold",
+  props: {
+    text: { type: String, default: '' }
+  },
   data() {
     return {
       overflow: false,
@@ -26,9 +29,7 @@ export default {
 
   methods: {
     update() {
-      this.$nextTick(()=>{
-        this.overflow = this.content.clientHeight > this.boxHeight
-      })
+      this.overflow = this.content.clientHeight > this.boxHeight  
     }
   },
 
@@ -44,7 +45,7 @@ export default {
 <style scoped>
   .fold {
     position: relative;
-    height: 2.8em;
+    height: 3.9em;
     padding-right: 20px;
     border-radius: 5px;
     overflow: hidden;
