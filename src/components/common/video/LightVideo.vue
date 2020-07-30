@@ -67,14 +67,12 @@
     mounted() {
       this.video = this.$el.querySelector('.play-view')
 
-      this.video.onloadeddata = () => {
-        setInterval(()=> {
-          this.ctime = this.video.currentTime
-          let index = this.video.buffered.length - 1
-          if (this.video.buffered.length !== 0)
-            this.buffered = this.video.buffered.end(index)
-        }, 1000)
-      }
+      setInterval(()=> {
+        this.ctime = this.video.currentTime
+        let index = this.video.buffered.length - 1
+        if (this.video.buffered.length !== 0)
+          this.buffered = this.video.buffered.end(index)
+      }, 1000)
 
       this.video.onloadedmetadata = () => {
         this.duration = this.video.duration
@@ -85,6 +83,16 @@
     },
 
     methods: {
+
+      refresh() {
+        this.playing = false
+        this.duration = 0
+        this.ctime = 0
+        this.buffered = 0
+        this.loading = false
+        this.ended = false
+      },
+
       progressChange(value) {
         this.video.currentTime = value
       },
@@ -142,6 +150,12 @@
         else {
           return dft;
         }
+      }
+    },
+
+    watch: {
+      src: function () {
+        this.refresh()
       }
     }
   }

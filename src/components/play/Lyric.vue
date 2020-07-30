@@ -3,8 +3,16 @@
     <div :style="{ transform: offset }" class="wrapper light-scroll">
       <div v-for="(lyric, index) in Object.values(lyric_map)"
            class="lyric-caluse"
-          :class="{ active: index == yindex }"> {{ lyric }} </div>
+          :class="{ active: index == yindex }">
+        <div>{{ lyric['lyric'] }} </div>
+        <div v-if="transformLyric">{{ lyric['tlyric'] }} </div>
+      </div>
     </div>
+    <icon class="icon-fanyi"
+          :activated="transformLyric"
+          :normal="require('@/assets/img/fanyi.svg')"
+          :active="require('@/assets/img/fanyi_full.svg')"
+          @click="onTLyric"/>
   </div>
 </template>
 
@@ -12,8 +20,11 @@
   import {lyric} from "@/network/request_show";
   import {lyricParse} from "@/utils/utils";
 
+  import Icon from "@/components/common/Icon";
+
   export default {
     name: "Lyric",
+    components: { Icon },
     props: {
       id:  { type: Number,  default: 0 },
     },
@@ -21,6 +32,7 @@
     data() {
       return {
         lyric_map: {},
+        transformLyric: true,
         yindex: 0,
         offset: 'translate(0px, -90px)'
       }
@@ -37,7 +49,23 @@
     methods: {
       reload() {
         lyric(this.id).then(res=> {
-          this.lyric_map = lyricParse(res['lrc']['lyric'])
+
+          if (res['needDesc']) {
+            this.lyric_map = { 0: { lyric: '纯音乐, 请欣赏。' }}
+            return
+          }
+
+          let lyric = lyricParse(res['lrc']['lyric'])
+          let tlyric = lyricParse(res['tlyric']? res['tlyric']['lyric']: null)
+
+          let lyric_map = {}
+          Object.keys(lyric).forEach((value) => {
+            lyric_map[value] = {
+              lyric : lyric[value],
+              tlyric: tlyric[value] ? tlyric[value] : ''
+            }
+          })
+          this.lyric_map = lyric_map
         })
       },
 
@@ -54,9 +82,24 @@
         return i
       },
 
+      onTLyric() {
+        this.transformLyric = ! this.transformLyric
+        this.$nextTick(() => {
+          this.moveTo(this.current_index())
+        })
+      },
+
+      moveTo(index) {
+        let wrapper = this.$el.querySelector('.wrapper')
+        let target =  Array.from(wrapper.childNodes)[index]
+        wrapper.style.transition = 'all 0s'
+        this.offset = `translate(0px, ${-(target.offsetTop - 110)}px)`
+      },
+
       move(index) {
         let wrapper = this.$el.querySelector('.wrapper')
         let target =  Array.from(wrapper.childNodes)[index]
+        wrapper.style.transition = 'all 0.8s'
         this.offset = `translate(0px, ${-(target.offsetTop - 110)}px)`
       }
     },
@@ -71,20 +114,28 @@
 
 <style scoped>
   .lyric {
-    height: 350px;
+    position: absolute;
+    height: 300px;
+    width: 270px;
     overflow: hidden;
   }
 
   .lyric-caluse {
     font-size: 12px;
-    padding: 0.5em 0;
+    padding: 0.5em 20px 0.5em 0;
   }
 
-  .lyric .wrapper {
-    transition: all 0.8s;
-  }
+  /*.lyric .wrapper {*/
+  /*  transition: all 0.8s;*/
+  /*}*/
 
   .lyric-caluse.active {
     color: white;
+  }
+
+  .icon-fanyi {
+    position: absolute;
+    top: 0;
+    right: 0;
   }
 </style>

@@ -9,9 +9,9 @@
         <comment-track :datas="hotComment" :adapter="$adapter.comment_caluse"/>
       </l-area>
 
-      <l-area  v-if="$Check(comment)"
-               title="最新评论"
-               font-size="12px">
+      <l-area v-if="$Check(comment)"
+              title="最新评论"
+              font-size="12px">
 
         <comment-track :datas="comment" :adapter="$adapter.comment_caluse"/>
       </l-area>

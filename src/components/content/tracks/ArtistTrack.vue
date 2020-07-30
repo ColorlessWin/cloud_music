@@ -13,7 +13,7 @@
     name: "ArtistTrack",
     components: {ArtistCaluse, List },
     props: {
-      datas:    { type: Array,      default: () => [] },
+      datas:    { type: Array,    default: () => [] },
       adapter:  { type: Object,   default: () => {} }
     },
 

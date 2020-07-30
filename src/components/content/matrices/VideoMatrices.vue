@@ -20,5 +20,8 @@
 </script>
 
 <style scoped>
-
+  .video-matrices {
+    width: 870px;
+    margin: 0 auto;
+  }
 </style>

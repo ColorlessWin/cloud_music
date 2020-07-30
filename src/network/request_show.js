@@ -74,3 +74,9 @@ export function video_detail(id) {
 export function get_video_url(id) {
   return request( { url: '/video/url', params: { id } } )
 }
+
+//调用此接口 , 可获取相关视频
+export function related_allvideo(id) {
+  return request( { url: '/related/allvideo', params: { id } } )
+}
+

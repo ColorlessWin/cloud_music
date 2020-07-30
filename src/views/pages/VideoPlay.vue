@@ -2,7 +2,7 @@
   <div v-if='$Check(videoInfo)' class="video-container">
     <div class="main">
       <span class="el-icon-arrow-left">{{ videoInfo['title'] }}</span>
-      <user-name class="creator" 
+      <user-name class="creator"
                  :uid="videoInfo['creator']['userId']">
         by {{ videoInfo['creator']['nickname'] }}
       </user-name>
@@ -15,9 +15,7 @@
         <span class="play-time">播放：{{ videoInfo['playTime'] | logogram }}</span>
         <div class="description" v-mline-text="videoInfo['description']"></div>
       </l-area>
-      <l-area title="相关推荐" font-size="14px">
-        
-      </l-area>
+      <related-video :id="id"/>
     </div>
   </div>
 </template>
@@ -26,11 +24,12 @@
   import UserName from "@/components/content/label/UserName";
   import LightVideo from "@/components/common/video/LightVideo";
   import CommentArea from '@/components/content/complound/CommentArea'
+  import RelatedVideo from "@/components/content/complound/pendant/RelatedVideo";
   import LArea from "@/components/common/LArea";
   import {video_detail, get_video_url} from "@/network/request_show";
   export default {
     name: "VideoPlay",
-    components: {LArea, LightVideo, UserName, CommentArea},
+    components: {LArea, LightVideo, UserName, CommentArea, RelatedVideo},
     data() {
       return {
         id: 0,
@@ -40,14 +39,26 @@
     },
 
     created() {
-      video_detail(this.$route.params.id).then(result => {
-        this.videoInfo = result['data']
-        this.id = this.videoInfo['vid']
-        console.log(result)
-        return get_video_url(result['data']['vid'])
-      }).then(result => {
-        this.videoUrl = result['urls'][0]['url']
-      })
+      this.refresh()
+    },
+
+    methods: {
+      refresh() {
+        video_detail(this.$route.params.id).then(result => {
+          this.videoInfo = result['data']
+          this.id = this.videoInfo['vid']
+          console.log(result)
+          return get_video_url(result['data']['vid'])
+        }).then(result => {
+          this.videoUrl = result['urls'][0]['url']
+        })
+      }
+    },
+
+    watch: {
+      $route: function () {
+        this.refresh()
+      }
     }
   }
 </script>
@@ -56,6 +67,7 @@
   .video-container {
     max-width: 1200px;
     min-width: 800px;
+    margin: 0 auto;
     display: flex;
   }
 
@@ -77,7 +89,11 @@
     width: 25%;
   }
 
-  .video-presentation .publish-time, 
+  .video-presentation {
+    min-height: 150px;
+  }
+
+  .video-presentation .publish-time,
   .video-presentation .play-time {
     color: #9e9e9e;
   }
@@ -90,7 +106,7 @@
     font-size: 11px;
   }
 
-  .video-presentation .description {    
+  .video-presentation .description {
     padding-top: 5px;
     color:#212121;
   }

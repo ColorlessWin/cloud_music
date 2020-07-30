@@ -1,15 +1,16 @@
 <!--TEST-->
 <template>
   <div>
-    <light-video/>
+    <related-video id="53C2ACAFC4D0644C391703F096F82785"/>
   </div>
 </template>
 
 <script>
   import LightVideo from "@/components/common/video/LightVideo";
+  import RelatedVideo from "@/components/content/complound/pendant/RelatedVideo";
   export default {
     name: "test",
-    components: {LightVideo}
+    components: {RelatedVideo, LightVideo}
   }
 </script>
 
