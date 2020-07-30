@@ -15,7 +15,7 @@
 
   import MainBanner from "@/components/content/bannar/MainBanner";
   import LArea from "@/components/common/LArea";
-  import SongsCover from "@/components/content/covers/SongsCover";
+  import SongsCover from "@/components/content/covers/RelatedSongsCover";
   import Personalized from "@/components/main/Personalized";
 
   export default {

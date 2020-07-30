@@ -28,10 +28,21 @@ export function search( keywords, offset, limit , type) {
 export function personalized( limit ) {
   return request({ url: '/personalized', params: { limit: limit } }) }
 
+//获取热门歌单分类
+export function playlist_category() {
+  return request({ url: '/playlist/hot' })}
+
+
+//获取热门歌单分类
+export function top_playlist(cat, offset, limit, order = 'hot') {
+  return request({ url: '/top/playlist', params: { cat, offset, limit, order } })
+}
+
 
 //获取歌单详情
 export function song_list_detail( id ) {
-  return request({ url: '/playlist/detail', params: { id } }) }
+  return request({ url: '/playlist/detail', params: { id } })
+}
 
 
 //传入音乐 id(支持多个 id, 用 , 隔开), 可获得歌曲详情

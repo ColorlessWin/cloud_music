@@ -2,7 +2,7 @@
   <div class="personalized">
     <l-area title="推荐歌单" more="todo">
       <div class="content">
-        <songs-cover class="cover" v-for="(item, index) in result" :songs="item" :key="index"/>
+        <related-songs-cover class="cover" v-for="(item, index) in result" :songs="item" :key="index"/>
       </div>
     </l-area>
   </div>
@@ -11,11 +11,11 @@
 <script>
   import { personalized } from "@/network/request_show";
 
-  import SongsCover from "@/components/content/covers/SongsCover";
+  import RelatedSongsCover from "@/components/content/covers/RelatedSongsCover";
   import LArea from "@/components/common/LArea";
   export default {
     name: "Personalized",
-    components: {LArea, SongsCover},
+    components: {LArea, RelatedSongsCover},
     props: {
       limit: { type: Number,   default: 5 }
     },
@@ -42,5 +42,9 @@
 
   .cover:nth-child(n+6) {
     margin-top: 35px;
+  }
+
+  .content {
+    padding-top: 8px;
   }
 </style>

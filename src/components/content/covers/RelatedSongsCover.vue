@@ -12,7 +12,7 @@
 
 <script>
   export default {
-    name: "SongsCover",
+    name: "RelatedSongsCover",
     props: {
       songs: { type: Object,   default: ()=> {} }
     }

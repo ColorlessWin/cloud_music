@@ -35,7 +35,7 @@
   .header {
     height: 40px;
     position: relative;
-    border-bottom: 2px solid #eeeeee;
+    border-bottom: 1px solid #eeeeee;
   }
 
   .primary {
