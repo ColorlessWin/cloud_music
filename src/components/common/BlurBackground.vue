@@ -1,6 +1,6 @@
 <template>
   <div :style="{ width: width, height: height }" class="blur">
-    <div class="wrapper">
+    <div v-if="enable" class="wrapper">
       <img class="bg" :src="bg" alt="">
     </div>
 
@@ -17,7 +17,8 @@
     props: {
       bg:     { type: String,   default: '' },
       width:  { type: String,   default: '100%' },
-      height: { type: String,   default: '100%' }
+      height: { type: String,   default: '100%' },
+      enable: { type: Boolean,  default: true }
     }
   }
 </script>

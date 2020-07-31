@@ -47,7 +47,6 @@
         video_detail(this.$route.params.id).then(result => {
           this.videoInfo = result['data']
           this.id = this.videoInfo['vid']
-          console.log(result)
           return get_video_url(result['data']['vid'])
         }).then(result => {
           this.videoUrl = result['urls'][0]['url']

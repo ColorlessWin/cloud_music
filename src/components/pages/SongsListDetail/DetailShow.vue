@@ -1,5 +1,5 @@
 <template>
-  <div v-if="$Check(detail)" class="detail-show container clearfix">
+  <div v-if="$Check(detail)" class="detail-show container clearfix" :class="{ small: small }">
 
       <div class="top clearfix">
         <div class="left">
@@ -35,14 +35,12 @@
       </div>
 
       <div class="desc">
-        <el-card :body-style="{ padding: '6px' }" shadow="always">
-          <div class="tags">
-            标签：{{detail['tags'] | resloveTags }}
-          </div>
-          <text-fold class="synopsis" 
-                    :text="detail['description'] | resloveSynopsis"/>
+        <div class="tags">
+          标签：{{detail['tags'] | resloveTags }}
+        </div>
+        <text-fold class="synopsis"
+                  :text="detail['description'] | resloveSynopsis"/>
 
-        </el-card>
       </div>
 
   </div>
@@ -60,7 +58,8 @@
     name: "DetailShow",
     components: {UserName, Avatar, TextFold},
     props: {
-      detail: { type: Object, default: () => {} }
+      detail: { type: Object,  default: () => {} },
+      small:  { type: Boolean, default: false }
     },
 
     filters: {
@@ -78,8 +77,31 @@
 </script>
 
 <style scoped>
+
+  /*small样式*/
+
+  .small .left .cover {
+    width: 150px;
+    margin-top: 20px;
+    border-radius: 10px;
+  }
+
+  .small .center {
+    margin-top: 5px;
+  }
+
+  .small .center .primary {
+    font-size: 17px;
+  }
+
+  .small .center > * {
+    margin-top: 15px;
+  }
+
+
+  /*普通样式*/
+
   .detail-show.container {
-    /*display: flex;*/
     padding-bottom: 20px;
     position: relative;
   }

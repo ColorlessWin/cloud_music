@@ -20,8 +20,8 @@
                  v-bind="dynComponent[type].props"/>
 
 
-      <pagination class="pagination" :total="total" v-model="result"
-                  :limit="40"        :filling="load"
+      <pagination class="pagination"     :total="total" v-model="result"
+                  :limit="40"            :filling="load"
                   :unique="$route.query" :index="true"/>
 
     </div>

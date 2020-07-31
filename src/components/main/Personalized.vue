@@ -1,6 +1,6 @@
 <template>
   <div class="personalized">
-    <l-area title="推荐歌单" more="todo">
+    <l-area title="推荐歌单" more="/discover/playlists">
       <div class="content">
         <related-songs-cover class="cover" v-for="(item, index) in result" :songs="item" :key="index"/>
       </div>

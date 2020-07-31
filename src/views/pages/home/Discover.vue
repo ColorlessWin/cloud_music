@@ -4,7 +4,7 @@
       <el-tab-pane label="个性推荐" name="personal"></el-tab-pane>
       <el-tab-pane label="歌单" name="playlist"></el-tab-pane>
       <el-tab-pane label="主播电台"></el-tab-pane>
-      <el-tab-pane label="排行榜"></el-tab-pane>
+      <el-tab-pane label="排行榜" name="toplist"></el-tab-pane>
       <el-tab-pane label="歌手"></el-tab-pane>
       <el-tab-pane label="最新音乐"></el-tab-pane>
     </el-tabs>
@@ -23,7 +23,8 @@
         selected: 'personal',
         router_map: {
           'personal': '/discover/recommend',
-          'playlist': '/discover/playlists'
+          'playlist': '/discover/playlists',
+          'toplist' : '/discover/toplist',
         }
       }
     },

@@ -91,3 +91,10 @@ export function related_allvideo(id) {
   return request( { url: '/related/allvideo', params: { id } } )
 }
 
+//调用此接口 , 可获取所有榜单
+export function toplist() {
+  return request( { url: '/toplist' } )
+}
+
+
+

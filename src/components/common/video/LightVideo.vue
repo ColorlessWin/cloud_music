@@ -230,7 +230,7 @@
 
   .left .time-text {
     color: white;
-    font-size: 14px;
+    font-size: 12px;
     margin-left: 10px;
   }
 

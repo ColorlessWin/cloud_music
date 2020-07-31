@@ -26,7 +26,7 @@
       let h   = this.$el.clientHeight
 
       let mark      = this.$el.querySelector('.mark')
-      let primary     = this.$el.querySelector('.primary')
+      let primary   = this.$el.querySelector('.primary')
       let secondary = this.$el.querySelector('.secondary')
 
       primary.style.height     = `${h - c_h}px`
@@ -61,7 +61,7 @@
   }
 
   .c-t:hover {
-    transform: translate(0, -8px);
+    transform: translate(0, -6px);
     box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
   }
 

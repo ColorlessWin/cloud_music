@@ -4,9 +4,9 @@
       <div style="display: inline-block"
            :style="{ fontSize: fontSize }"
            class="primary">{{title}}</div>
-      <span v-if="is_more" class="more">更多<span class="el-icon-arrow-right"></span></span>
+      <span v-if="is_more" class="more" @click="$router.push(more)">更多<span class="el-icon-arrow-right"></span></span>
     </div>
-    <div class="content">
+    <div v-if="!header" class="content">
       <slot></slot>
     </div>
   </div>
@@ -20,7 +20,8 @@
     props: {
       fontSize: { type: String, default: '16px' },
       title: { type: String,   default: '未命名' },
-      more:  { type: String,   default: "" }
+      more:  { type: String,   default: "" },
+      header:{ type: Boolean,  default: false }
     },
 
     computed: {

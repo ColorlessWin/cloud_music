@@ -1,32 +1,30 @@
 <template>
   <div v-if="$Check(detail)" class="song-list-detail container">
-    <blur-background height="200px" :bg="this.detail['coverImgUrl']">
+    <blur-background :enable="!small" height="200px" :bg="this.detail['coverImgUrl']">
 
       <!--歌单详情-->
-      <detail-show :detail="detail" v-loading="loading_one"/>
+      <detail-show :small="small" :detail="detail" v-loading="loading_one"/>
 
-      <el-card :body-style="{ padding: '15px 10px 10px 10px', boxSizing: 'border-box' }">
-        <el-tabs class="tabs align-left" v-model="selected">
-          <el-tab-pane label="歌曲列表" name="song-tracks" :lazy="true">
+      <el-tabs class="tabs align-left" v-model="selected">
+        <el-tab-pane label="歌曲列表" name="song-tracks" :lazy="true">
 
 <!--          歌曲列表-->
-            <better-song-track :id="$route.params.id"/>
+          <better-song-track :id="id"/>
 
-          </el-tab-pane>
-          <el-tab-pane label="评论" name="comments" :lazy="true">
+        </el-tab-pane>
+        <el-tab-pane label="评论" name="comments" :lazy="true">
 
 <!--          评论列表-->
-            <comment-area :id="$route.params.id"/>
+          <comment-area :id="id"/>
 
-          </el-tab-pane>
-          <el-tab-pane label="收藏者" name="collect" :lazy="true">
+        </el-tab-pane>
+        <el-tab-pane label="收藏者" name="collect" :lazy="true">
 
 <!--          收藏者列表-->
-            <SongsSubscribers :id="$route.params.id" :total="detail['subscribedCount']"/>
+          <SongsSubscribers :id="id" :total="detail['subscribedCount']"/>
 
-          </el-tab-pane>
-        </el-tabs>
-      </el-card>
+        </el-tab-pane>
+      </el-tabs>
 
     </blur-background>
   </div>
@@ -43,6 +41,10 @@
 
   export default {
     name: "SongsListDetail",
+    props: {
+      id: { type: [Number, String] },
+      small: { type: Boolean,  default: false }
+    },
     components: {
       BlurBackground,
       SongsSubscribers,
@@ -65,7 +67,7 @@
 
       loadData() {
         this.loading_one = true
-        song_list_detail(this.$route.params.id).then(result => {
+        song_list_detail(this.id).then(result => {
           this.detail = result['playlist']
           this.loading_one = false
         })
@@ -73,10 +75,8 @@
     },
 
     watch: {
-      '$route' (to, from) {
-        if(to.params.id !== from.params.id){
-          this.loadData()
-        }
+      id (to, from) {
+        this.loadData()
       }
     },
   }

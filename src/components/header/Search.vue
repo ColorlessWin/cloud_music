@@ -104,7 +104,6 @@
     padding-right: 25px;
 
     font-size: 11px;
-    font-weight: bold;
     text-indent: 10px;
     outline: none;
     border: none;
