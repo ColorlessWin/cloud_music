@@ -96,5 +96,10 @@ export function toplist() {
   return request( { url: '/toplist' } )
 }
 
+//调用此接口 , 获取歌手分类列表
+export function artist_cate_list(area, type, initial, offset, limit) {
+  return request( { url: '/artist/list', params: { area, type, initial, offset, limit } } )
+}
+
 
 

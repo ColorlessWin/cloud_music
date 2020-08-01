@@ -9,6 +9,7 @@ const Discover = () => import('@/views/pages/home/Discover')
 const PersonalRec = () => import('@/views/pages/home/PersonalRec')
 const PlaylistCategory = () => import('@/views/pages/home/PlaylistCategory')
 const TopList = () => import('@/views/pages/home/TopList')
+const ArtistCategory = ()=> import('@/views/pages/home/ArtistsCategory')
 
 const SongsDetail = () => import('@/views/pages/SongsDetail')
 const SearchDetail = () => import('@/views/pages/SearchDetail')
@@ -29,7 +30,8 @@ const routes = [
       { path: '/',  redirect: '/discover/recommend' },
       { path: '/discover/recommend', component: PersonalRec },
       { path: '/discover/playlists', component: PlaylistCategory },
-      { path: '/discover/toplist', component: TopList }
+      { path: '/discover/toplist', component: TopList },
+      { path: '/discover/artists', component: ArtistCategory }
     ]
   },
 

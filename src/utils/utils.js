@@ -1,4 +1,26 @@
 
+/**
+ * 看起来很多余的一个方法 但其实是为了实现类似Python中的列表构造语法
+ * 示例：
+ * let arr = [
+ *   { n: '热门', v: '-1' },
+ *   ...call(()=> {
+ *      let map = []
+ *      let str_code = String.fromCharCode
+ *      for (let i = 0; i < 26; i++) {
+ *          map.push({ 'n': str_code(65 + i), 'v': str_code(97 + i)})
+ *      } return map
+ *    }), { n: '#', v: '0' }
+ *
+ * ]
+ * 在数组初始化时就优雅的构造了一个复杂的数据:
+ * arr: [ { n: A, v: a}, { n: B, v: b}, { n: C, v: c} ... { n: Z, v: 'z } ]
+ * */
+export function call(func) { return func() }
+
+
+
+
 export function future(func, delay, _this) {
   setTimeout(function () {
     if (_this) func.call(_this)
@@ -17,7 +39,8 @@ export function debounce(func, delay, _this) {
   return function (...args) {
     if (timer) clearTimeout(timer)
     timer = setTimeout(() =>{
-      func.apply(_this, args)
+      if (_this) func.apply(_this, args)
+      else func(args)
     }, delay)
   }
 }
@@ -39,3 +62,5 @@ export function lyricParse(lyric) {
   }
   return lyric_map
 }
+
+

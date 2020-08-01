@@ -13,14 +13,10 @@
 
     </div>
 
-    <pagination class="pagination"
-                v-model="users" :limit="40"
-                :total="total"
-                :filling="filling"
-                :unique="id"
-                :index="true"
-                @loading="loading = true"
-                @loaded="loading = false"/>
+    <pagination class="pagination"          :unique="id"
+                v-model="users" :limit="40" :index="true"
+                :total="total"              @loading="loading = true"
+                :filling="filling"          @loaded="loading = false"/>
 
   </div>
 

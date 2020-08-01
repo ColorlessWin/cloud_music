@@ -16,7 +16,7 @@
 
 <script>
   import { song_tracks } from "@/network/resolved";
-  import SongTracks from "@/components/pages/SongsListDetail/SongTracks";
+  import SongTracks from "@/components/content/tracks/SongTracks";
   import Pagination from "@/components/common/Pagination";
   export default {
     name: "BetterSongTrack",

@@ -87,7 +87,7 @@
   }
 
   .small .center {
-    margin-top: 5px;
+    margin-top: 10px;
   }
 
   .small .center .primary {

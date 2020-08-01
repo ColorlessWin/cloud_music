@@ -31,7 +31,7 @@
 
 <script>
   import { search } from "@/network/request_show";
-  import SongTracks from "@/components/pages/SongsListDetail/SongTracks";
+  import SongTracks from "@/components/content/tracks/SongTracks";
   import ArtistTrack from "@/components/content/tracks/ArtistTrack";
   import AlbumTrack from "@/components/content/tracks/AlbumTrack";
   import SongsTrack from "@/components/content/tracks/SongsTrack";

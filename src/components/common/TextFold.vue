@@ -25,27 +25,30 @@ export default {
 
   mounted() {
     this.boxHeight = this.$el.clientHeight
+    this.refresh()
   },
 
   methods: {
-    update() {
-      this.overflow = this.content.clientHeight > this.boxHeight
+    refresh() {
+      this.$nextTick(() => {
+        this.content = this.$el.querySelector('.content')
+        this.overflow = this.content.clientHeight > this.boxHeight
+      })
     }
   },
 
-  updated() {
-    this.$nextTick(function () {
-      this.content = this.$el.querySelector('.content')
-      this.update()
-    })
-  },
+  watch: {
+    text: function () {
+      this.refresh()
+    }
+  }
 }
 </script>
 
 <style scoped>
   .fold {
     position: relative;
-    height: 2.9em;
+    height: 3em;
     padding-right: 20px;
     border-radius: 5px;
     overflow: hidden;

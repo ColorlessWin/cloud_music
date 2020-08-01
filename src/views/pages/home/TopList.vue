@@ -51,10 +51,11 @@
 
   .aside {
     width: 150px;
-    border-right: 1px solid #eeeeee;
+    /*border-right: 1px solid #eeeeee;*/
   }
 
   .songs {
+    margin-top: 15px;
     flex-grow: 1;
   }
 
