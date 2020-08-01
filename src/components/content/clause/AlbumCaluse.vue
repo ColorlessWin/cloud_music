@@ -1,8 +1,8 @@
 <template>
-  <div class="album-caluse">
+  <div class="album-caluse" @click="$router.push(`/album/${adapter.id(album)}`)">
     <div class="left">
       <div class="cover">
-        <img :src="adapter.cover(album)" alt="">
+        <album-cover-style height="45px" :img="adapter.cover(album)"/>
       </div>
       <span class="name">{{ adapter.name(album) }}</span>
     </div>
@@ -16,9 +16,10 @@
 
 <script>
   import Artist from "@/components/content/label/Artist";
+  import AlbumCoverStyle from "@/components/content/covers/AlbumCoverStyle";
   export default {
     name: "AlbumCaluse",
-    components: {Artist},
+    components: {AlbumCoverStyle, Artist},
     props: {
       album:    { type: Object,   default: () => {} },
       adapter:  { type: Object,   default: () => {} }
@@ -33,7 +34,6 @@
     padding: 6px 10px;
 
     font-size: 11px;
-    /*font-weight: bold;*/
     border-radius: 5px;
 
     cursor: pointer;
@@ -52,7 +52,7 @@
   }
 
   .album-caluse .name {
-    margin-left: 10px;
+    margin-left: 18px;
   }
 
   .album-caluse .cover, .album-caluse .name {

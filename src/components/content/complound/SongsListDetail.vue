@@ -3,7 +3,7 @@
     <blur-background :enable="!small" height="200px" :bg="this.detail['coverImgUrl']">
 
       <!--歌单详情-->
-      <detail-show :small="small" :detail="detail" v-loading="loading_one"/>
+      <songs-info-show :small="small" :detail="detail" v-loading="loading_one"/>
 
       <el-tabs class="tabs align-left" v-model="selected">
         <el-tab-pane label="歌曲列表" name="song-tracks" :lazy="true">
@@ -33,7 +33,7 @@
 <script>
   import { song_list_detail } from "@/network/request_show";
 
-  import DetailShow from "@/components/pages/SongsListDetail/DetailShow";
+  import SongsInfoShow from "@/components/pages/topinfo/SongsInfoShow";
   import CommentArea from "@/components/content/complound/CommentArea";
   import BetterSongTrack from "@/components/content/complound/BetterSongTrack";
   import SongsSubscribers from "@/components/content/complound/SongsSubscribers";
@@ -48,7 +48,7 @@
     components: {
       BlurBackground,
       SongsSubscribers,
-      BetterSongTrack, CommentArea, DetailShow
+      BetterSongTrack, CommentArea, SongsInfoShow
     },
 
     data() {

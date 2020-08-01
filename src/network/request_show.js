@@ -44,6 +44,11 @@ export function song_list_detail( id ) {
   return request({ url: '/playlist/detail', params: { id } })
 }
 
+//获取专辑详情
+export function album_detail( id ) {
+  return request({ url: '/album', params: { id } })
+}
+
 
 //传入音乐 id(支持多个 id, 用 , 隔开), 可获得歌曲详情
 export function song_detail( ids ) {
@@ -70,6 +75,12 @@ export function comment_music(id, offset, limit ) {
 export function comment_video(id, offset, limit ) {
   return request( { url: '/comment/video', params: { id, offset, limit } } )
 }
+
+// 调用此接口 , 传入视频 id 和 limit 参数 , 可获得该专辑的所有评论 ( 不需要 登录 )
+export function comment_album(id, offset, limit ) {
+  return request( { url: '/comment/album', params: { id, offset, limit } } )
+}
+
 
 //调用此接口 , 传入歌单 id 可获取歌单的所有收藏者
 export function playlist_subscribers(id, offset, limit ) {

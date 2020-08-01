@@ -9,6 +9,7 @@ const search_to_artists = {
 const search_to_album = {
   cover:    (album) =>  album['picUrl'] + '?param=50y50',
   name :    (album) =>  album['name'],
+  id   :    (album) =>  album['id'],
   artist:   (album) =>  {
     return  {
       name: album['artist']['name'],

@@ -14,6 +14,7 @@ const ArtistCategory = ()=> import('@/views/pages/home/ArtistsCategory')
 const SongsDetail = () => import('@/views/pages/SongsDetail')
 const SearchDetail = () => import('@/views/pages/SearchDetail')
 const VideoPlay = () => import('@/views/pages/VideoPlay')
+const AlbumDetail = ()=> import('@/views/pages/AlbumDetail')
 
 
 const routes = [
@@ -35,11 +36,13 @@ const routes = [
     ]
   },
 
-  {  path: '/playlist/:id',  component: SongsDetail },
+  { path: '/playlist/:id',  component: SongsDetail },
 
   { path: '/search' , component: SearchDetail },
 
   { path: '/video/:id' , component: VideoPlay },
+
+  { path: '/album/:id' , component: AlbumDetail },
 
 ]
 
