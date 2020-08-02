@@ -4,7 +4,7 @@
       <span :class="{ active: option === selected }"
             class="label"
             @click="onClick(option)"
-      >{{ option }}</span>
+            >{{ option }}</span>
       <span class="split" v-if="index !== options.length - 1">|</span>
     </span>
   </div>

@@ -112,5 +112,26 @@ export function artist_cate_list(area, type, initial, offset, limit) {
   return request( { url: '/artist/list', params: { area, type, initial, offset, limit } } )
 }
 
+//调用此接口 , 传入歌手 id, 可获得歌手部分信息和热门歌曲
+export function artist_info(id) {
+  return request( { url: '/artists', params: { id } } )
+}
+
+//调用此接口 , 传入歌手 id, 可获得歌手 mv 信息
+export function artist_mv(id) {
+  return request( { url: '/artist/mv', params: { id } } )
+}
+
+//调用此接口 , 传入歌手 id, 可获得歌手专辑内容
+export function artist_album(id, offset = 0, limit = 50) {
+  return request( { url: '/artist/album', params: { id, offset, limit } } )
+}
+
+//调用此接口 , 传入歌手 id, 可获得歌手描述
+export function artist_desc(id) {
+  return request( { url: '/artist/desc', params: { id } } )
+}
+
+
 
 

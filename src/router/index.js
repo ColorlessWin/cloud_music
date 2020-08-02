@@ -15,6 +15,7 @@ const SongsDetail = () => import('@/views/pages/SongsDetail')
 const SearchDetail = () => import('@/views/pages/SearchDetail')
 const VideoPlay = () => import('@/views/pages/VideoPlay')
 const AlbumDetail = ()=> import('@/views/pages/AlbumDetail')
+const ArtistDetail = ()=> import('@/views/pages/ArtistDetail')
 
 
 const routes = [
@@ -44,6 +45,7 @@ const routes = [
 
   { path: '/album/:id' , component: AlbumDetail },
 
+  { path: '/artist/:id' , component: ArtistDetail },
 ]
 
 const router = new VueRouter({

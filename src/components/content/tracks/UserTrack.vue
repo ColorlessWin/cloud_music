@@ -21,7 +21,7 @@
 
 <style scoped>
   .user-track .user-caluse:nth-of-type(odd) {
-    background-color: #f5f5f5;
+    background-color: #fafafa;
   }
 
   .user-track .user-caluse:hover {

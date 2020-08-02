@@ -14,20 +14,22 @@
       <el-col :span="5">
         <artists :artists="adapter.artists(song)"/>
       </el-col>
-      <el-col :span="7">{{ adapter.album_name(song) }}</el-col>
+      <el-col :span="7">
+        <album :name="adapter.album_name(song)" :id="adapter.album_id(song)"/>
+      </el-col>
       <el-col :span="2">{{ adapter.duration(song) | timeLongFormat(true)}}</el-col>
     </el-row>
   </div>
 </template>
-
 <script>
   import BusTypes from "@/utils/bus/types";
 
   import UserName from "@/components/content/label/UserName";
   import Artists from "@/components/content/label/Artists";
+  import Album from "@/components/content/label/Album";
   export default {
     name: "SongTracks",
-    components: {Artists, UserName},
+    components: {Album, Artists, UserName},
     props: {
       id:      { type: Number, default: null },
       datas:   { type: Array,  default: () => [] },
@@ -62,7 +64,7 @@
   }
 
   .song-track .el-row:nth-of-type(odd) {
-    background-color: #f5f5f5;
+    background-color: #fafafa;
   }
 
   .index {

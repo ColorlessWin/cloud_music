@@ -3,6 +3,7 @@ const search_to_artists = {
   avatarUrl: (artist) => artist['img1v1Url'] + '?param=50y50',
   name:      (artist) => artist['name'],
   alias:     (artist) => artist['alias'],
+  id:        (artist) => artist['id']
 };
 
 
@@ -68,6 +69,7 @@ const search_to_songs = {
       }
     }),
     album_name:  (song) => song['album']['name'],
+    album_id  :  (song) => song['album']['id'],
     duration  :  (song) => song['duration'],
     id:         (song) => song['id']
 };
@@ -84,6 +86,7 @@ const songs_list_to_songs = {
       }
     }),
     album_name: (song) => song['al']['name'],
+    album_id  :  (song) => song['al']['id'],
     duration:   (song) => song['dt'],
     id:         (song) => song['id']
 }

@@ -6,8 +6,8 @@
     </div>
     <div class="right">
       <span class="total">{{adapter.total(songs)}}首</span>
-<!--      <span class="by">by</span>-->
-<!--      <user-name :uid="adapter.creator(songs)['id']">{{ adapter.creator(songs)['name'] }}</user-name>-->
+      <span class="by">by </span>
+      <user-name :uid="adapter.creator(songs)['id']">{{ adapter.creator(songs)['name'] }}</user-name>
     </div>
   </div>
 </template>
@@ -28,10 +28,9 @@
   .songs-caluse {
     height: 45px;
     line-height: 45px;
-    padding: 6px 10px;
+    padding: 5px 10px;
 
     font-size: 11px;
-    font-weight: bold;
     border-radius: 5px;
 
     cursor: pointer;
@@ -47,6 +46,8 @@
   }
 
   .cover {
+    height: 43px;
+    width: 43px;
     border-radius: 5px;
   }
 

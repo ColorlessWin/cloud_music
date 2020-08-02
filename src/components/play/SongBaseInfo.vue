@@ -1,22 +1,23 @@
 <template>
   <div v-if="$Check(song)">
     <div class="name">{{ song['name'] }}</div>
-    <span>专辑：</span><span class="album">{{ song['al']['name'] }}</span>
-    <span>歌手：</span><artists class="artists" :artists="song['ar'] | artists"/>
+    <span>专辑：</span><album class="album" :name="song['al']['name']" :id="song['al']['id']"/>
+    <span>歌手：</span><artists class="artists" :artists="artists(song['ar'])"/>
   </div>
 </template>
 
 <script>
   import Artists from "@/components/content/label/Artists";
+  import Album from "@/components/content/label/Album";
   export default {
     name: "SongBaseInfo",
-    components: {Artists},
+    components: {Album, Artists},
     props: {
       song:  { type: Object,  default: {} }
     },
 
 
-    filters: {
+    methods: {
       artists(artists) {
         return artists.map(value => {
           return {

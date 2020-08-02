@@ -1,5 +1,5 @@
 <template>
-  <div class="artist">
+  <div class="artist" @click="$router.push(`/artist/${adapter.id(artist)}`)">
     <img :src="adapter.avatarUrl(artist)" alt="" class="avatar">
     <span class="name"> {{ adapter.name(artist) }} </span>
     <span  v-if="adapter.alias(artist).length != 0" class="alias">

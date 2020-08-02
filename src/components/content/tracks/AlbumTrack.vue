@@ -21,7 +21,7 @@
 
 <style scoped>
   .album-list .album-caluse:nth-of-type(odd) {
-    background-color: #f5f5f5;
+    background-color: #fafafa;
   }
 
   .album-list .album-caluse:hover {

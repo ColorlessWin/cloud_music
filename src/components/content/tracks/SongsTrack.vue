@@ -21,7 +21,7 @@
 
 <style scoped>
   .songs-track .songs-caluse:nth-of-type(odd) {
-    background-color: #f5f5f5;
+    background-color: #fafafa;
   }
 
   .songs-track .songs-caluse:hover {

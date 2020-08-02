@@ -1,5 +1,5 @@
 <template>
-  <span class="u-name" ><slot></slot></span>
+  <span @click.stop="onclick" class="u-name" ><slot></slot></span>
 </template>
 
 <script>
@@ -8,6 +8,10 @@
     props: {
       uid:       { type: Number,  default: -1     },
       fontSize:  { type: String,  default: '13px' }
+    },
+
+    methods: {
+      onclick() {}
     }
   }
 </script>

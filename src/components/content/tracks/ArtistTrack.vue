@@ -25,7 +25,7 @@
 
 <style scoped>
   .artist-list .artist-cover:nth-of-type(odd) {
-    background-color: #f5f5f5;
+    background-color: #fafafa;
   }
 
   .artist-list .artist-cover:hover {

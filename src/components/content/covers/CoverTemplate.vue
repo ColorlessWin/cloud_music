@@ -56,7 +56,7 @@
   }
 
   .c-t .info {
-    background-color: #fafafa;
+    background-color: white;
     transition:all 0.3s 0.4s;
   }
 
