@@ -37,6 +37,10 @@
     font-size: 11px;
   }
 
+  .publish-time {
+    color: #666666;
+  }
+
   .cover {
     cursor: pointer;
   }

@@ -1,7 +1,7 @@
 <template>
   <div class="artist-info-show">
     <div class="left">
-      <img height="170px" :src="artist['img1v1Url'] + '?param=170y170'"/>
+      <img :src="artist['img1v1Url'] + '?param=170y170'"/>
     </div>
     <div class="right">
       <div class="name">
@@ -37,6 +37,8 @@
 
   .left img {
     border-radius: 6px;
+    height: 170px;
+    width: 170px;
   }
 
   .left {

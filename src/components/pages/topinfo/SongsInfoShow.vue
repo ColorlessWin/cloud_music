@@ -11,7 +11,7 @@
             <avatar class="avatar" size="40px"
                     :avatar-url="detail['creator']['avatarUrl']"
                     :uid="detail['creator']['userId']"/>
-            <user-name font-size="13px" class="user-name">
+            <user-name font-size="13px" class="user-name" :uid="detail['creator']['userId']">
               {{detail['creator']['nickname']}}
             </user-name>
             <span class="createTime">

@@ -11,7 +11,9 @@
     },
 
     methods: {
-      onclick() {}
+      onclick() {
+        this.$router.push(`/profile/${this.uid}`)
+      }
     }
   }
 </script>

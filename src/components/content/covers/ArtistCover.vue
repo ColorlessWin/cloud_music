@@ -1,6 +1,7 @@
 <template>
   <cover-template height="190px" width="155px"
-                  cover-height="155px">
+                  cover-height="155px"
+                  @click.native="$router.push(`/artist/${adapter.id(artist)}`)">
     <img slot="cover" :src="adapter.picUrl(artist)" alt="">
     <div class="primary" slot="primary">
       <div class="title">{{ adapter.name(artist) }}</div>

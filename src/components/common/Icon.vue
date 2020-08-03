@@ -31,6 +31,9 @@
 
 <style scoped>
   span {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
     vertical-align: middle;
     cursor: pointer;
   }

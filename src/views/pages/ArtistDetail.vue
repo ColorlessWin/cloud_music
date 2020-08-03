@@ -59,7 +59,6 @@
             value['__index'] = index + 1
             return value
           })
-          console.log(result)
         })
       }
     },

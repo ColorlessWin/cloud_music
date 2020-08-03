@@ -50,6 +50,7 @@
         adapter: {
           picUrl    : (artist) => artist['img1v1Url'] + '?param=150y150',
           name      : (artist) => artist['name'],
+          id        : (artist) => artist['id'],
           musicSize : (artist) => artist['musicSize'],
           albumCount: (artist) => artist['albumSize'],
         }

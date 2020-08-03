@@ -10,7 +10,7 @@
   import Grid from "@/components/layout/Grid";
   import NormalSongsCover from "@/components/content/covers/NormalSongsCover";
   export default {
-    name: "VideoMatrices",
+    name: "NormalSongsMatrices",
     components: {NormalSongsCover, Grid},
     props: {
       datas:    { type: Array,    default: () => [] },

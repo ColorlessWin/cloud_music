@@ -44,7 +44,4 @@
     margin-top: 35px;
   }
 
-  .content {
-    padding-top: 8px;
-  }
 </style>
