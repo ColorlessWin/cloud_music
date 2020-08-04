@@ -1,5 +1,5 @@
 const Audioer = {
-  install: function (Vue) {
+  install(Vue) {
     Vue.prototype.$audioer = new Audio()
   }
 }

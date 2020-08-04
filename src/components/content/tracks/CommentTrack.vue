@@ -1,7 +1,7 @@
 <template>
   <list class="comment-track" :list="datas">
     <template v-slot:default="slotProps">
-      <comment-clause class="comment-caluse" :comment="slotProps.item" :ater="adapter"/>
+      <comment-clause class="comment-caluse" :comment="slotProps.item" :ater="adapter" v-bind="$attrs"/>
     </template>
   </list>
 </template>

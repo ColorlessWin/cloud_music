@@ -6,14 +6,20 @@
               title="精彩评论"
               font-size="12px">
 
-        <comment-track :datas="hotComment" :adapter="$adapter.comment_caluse"/>
+        <comment-track :datas="hotComment" 
+                       :sid="id"
+                       :type="type"
+                       :adapter="$adapter.comment_caluse"/>
       </l-area>
 
       <l-area v-if="$Check(comment)"
               title="最新评论"
               font-size="12px">
 
-        <comment-track :datas="comment" :adapter="$adapter.comment_caluse"/>
+        <comment-track :datas="comment" 
+                       :sid="id"
+                       :type="type"
+                       :adapter="$adapter.comment_caluse"/>
       </l-area>
       <div v-else class="empty">
         <h1>还没有任何评论，快来抢沙发吧~</h1>

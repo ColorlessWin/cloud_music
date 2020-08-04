@@ -19,9 +19,11 @@
           </span>
           </div>
           <div class="option">
-            <span style="background-color: #2979ff; color: white" class="icon el-icon-video-play"></span>
-            <span style="background-color: #ff3d00; color: white" class="icon el-icon-star-off"></span>
-            <span style="background-color: #00e676; color: white" class="icon el-icon-link"></span>
+            <span class="icon el-icon-video-play"></span>
+            <span :class="{ disabled: isMySongs, active: detail['subscribed'] }"
+                  class="icon el-icon-star-off"
+                  @click="onCollect"></span>
+            <span class="icon el-icon-link"></span>
           </div>
         </div>
         <div class="info">
@@ -49,10 +51,12 @@
 <script>
 
   import { str_empty } from "@/utils/utils";
+  import BusTypes from "@/utils/bus/types"
 
   import Avatar from "@/components/content/label/Avatar";
   import UserName from "@/components/content/label/UserName";
   import TextFold from '@/components/common/TextFold'
+  import {playlist_sub} from "@/network/behavior";
 
   export default {
     name: "DetailShow",
@@ -60,6 +64,30 @@
     props: {
       detail: { type: Object,  default: () => {} },
       small:  { type: Boolean, default: false }
+    },
+
+    methods: {
+      onCollect() {
+        if (!this.$store.state.isLogin) {
+          this.$bus.$emit(BusTypes.PLACE_LOGIN)
+          return
+        }
+
+        playlist_sub(this.detail['id'], !this.detail['subscribed']).then(res => {
+          let message = this.detail['subscribed']? '已取消收藏': '收藏成功'
+          this.detail['subscribed'] = !this.detail['subscribed']
+          this.$notify.success({
+            title: '提示',
+            message
+          })
+        })
+      }
+    },
+
+    computed: {
+      isMySongs() {
+        return this.$store.state.profile.UID == this.detail['creator']['userId']
+      }
     },
 
     filters: {
@@ -165,8 +193,8 @@
   }
 
   .option .icon {
-    font-size: 18px;
-    padding: 10px;
+    font-size: 20px;
+    padding: 8px;
     border-radius: 50%;
     box-shadow: 2px 2px 10px 0 rgba(0, 0, 0, 0.2);
 
@@ -174,6 +202,13 @@
     cursor: pointer;
   }
 
+  .option .icon.disabled {
+    opacity: 0.5;
+  }
+
+  .option .icon.active {
+    color: #d35400
+  }
 
   .info {
     position: absolute;

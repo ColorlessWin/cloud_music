@@ -6,7 +6,6 @@ import {
   comment_video, comment_album
 } from "@/network/request_show";
 
-
 export async function song_tracks(sid, offset, limit) {
   let result = await song_list_detail(sid)
   let songs = result['playlist']['trackIds'].slice(offset, offset + limit).map(value => value['id'])

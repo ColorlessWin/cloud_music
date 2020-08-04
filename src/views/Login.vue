@@ -76,10 +76,10 @@
             }, 1000, this)
 
           }).catch(error => {
-          future(function () {
-            this.$notify.error({ title: '登录失败', message: `请检查用户名或密码` })
-            this.logging = false;
-          }, 1000, this)
+            future(function () {
+              this.$notify.error({ title: '登录失败', message: `请检查用户名或密码` })
+              this.logging = false;
+            }, 1000, this)
         })
       }
     }
@@ -97,19 +97,20 @@
 
   .login {
     width: 360px;
-    height: 0;
+    height: 400px;
 
     visibility: hidden;
     position: absolute;
     top: 50%;
     left: 50%;
 
-    transition: all 0.6s;
-    transform: translate(-50%, -50%);
+    transition: all 0.3s;
+    transform: translate(-50%, -40%);
     border-radius: 6px;
     background-color:  #fafafa;
     box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
 
+    opacity: 0;
     z-index: 2000;
   }
 
@@ -129,7 +130,7 @@
   }
 
   .show {
-    height: 400px;
+    opacity: 1;
     visibility: visible;
     transform: translate(-50%, -50%)
   }

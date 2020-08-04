@@ -10,7 +10,15 @@
   import RelatedVideo from "@/components/content/complound/pendant/RelatedVideo";
   export default {
     name: "test",
-    components: {RelatedVideo, LightVideo}
+    components: {RelatedVideo, LightVideo},
+
+    created() {
+      
+    },
+
+    methods: {
+      
+    }
   }
 </script>
 

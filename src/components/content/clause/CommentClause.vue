@@ -20,7 +20,8 @@
                          :active="require('@/assets/img/liked.svg')"
                          :activated="ater.liked(comment)"
                          size="15px"
-                         class="icon-liked"/>
+                         class="icon-liked"
+                         @click="onLike"/>
           <span class="liked-count"> {{ ater.likedCount(comment) | logogram }} </span>
           <span class="rep"> | 回复</span>
       </span>
@@ -34,12 +35,35 @@
   import UserName from "@/components/content/label/UserName";
   import Icon from "@/components/common/Icon";
 
+  import { comment_like } from "@/network/behavior"
+  import BusTypes from "@/utils/bus/types"
+
   export default {
     name: "CommentClause",
     components: {Icon, UserName, Avatar},
     props: {
+      sid:   { type: [String, Number] },
       comment:  { type: Object,   default: {} },
+      type:  { type: String,   default: '-1' },
       ater:  { type: Object,   default: ()=> {} }
+    },
+
+    methods: {
+      onLike() {
+        if (!this.$store.state.isLogin) {
+          this.$bus.$emit(BusTypes.PLACE_LOGIN)
+          return
+        }
+        comment_like(
+          this.sid, 
+          this.ater.commentId(this.comment), 
+          this.type, 
+          !this.ater.liked(this.comment))
+
+          .then(result => {
+            this.comment['liked'] = !this.comment['liked']
+          })
+      }
     }
   }
 </script>
