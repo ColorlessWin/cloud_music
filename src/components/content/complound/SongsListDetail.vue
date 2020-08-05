@@ -9,7 +9,7 @@
         <el-tab-pane label="歌曲列表" name="song-tracks" :lazy="true">
 
 <!--          歌曲列表-->
-          <better-song-track :id="id"/>
+          <better-song-track playType="songs" :id="id"/>
 
         </el-tab-pane>
         <el-tab-pane label="评论" name="comments" :lazy="true">
@@ -61,7 +61,6 @@
 
     created() {
       this.loadData()
-      console.log(this.isIE())
     },
 
     methods: {

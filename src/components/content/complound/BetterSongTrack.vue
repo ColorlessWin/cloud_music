@@ -1,6 +1,9 @@
 <template>
   <div>
-    <song-tracks :datas="songTrack" :id="parseInt(id)" v-loading="loading"
+    <song-tracks :datas="songTrack"
+                 :id="parseInt(id)"
+                 v-loading="loading"
+                 v-on="$attrs"
                  :adapter="$adapter.songs_list_to_songs"/>
 
     <pagination class="pagination"

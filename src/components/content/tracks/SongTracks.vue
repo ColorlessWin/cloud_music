@@ -27,20 +27,35 @@
   import UserName from "@/components/content/label/UserName";
   import Artists from "@/components/content/label/Artists";
   import Album from "@/components/content/label/Album";
+  import StoreTypes from "@/store/types";
   export default {
     name: "SongTracks",
     components: {Album, Artists, UserName},
     props: {
       id:      { type: Number, default: null },
+      playType:{ type: String, default: 'songs'},
       datas:   { type: Array,  default: () => [] },
       adapter: { type: Object, default: () => {} }
     },
 
     methods: {
       onClick(index, id) {
-        if (this.id)
-          this.$bus.$emit(BusTypes.AUDIO_PLAY, { songsId: this.id, index, id })
-        else this.$bus.$emit(BusTypes.SINGLE_AUDIO_PLAY, id)
+        if (this.playType === 'songs') {
+          if (this.id) {
+            this.$store.dispatch(StoreTypes.AUDIO_CHANGE, {
+              songsId: this.id,
+              index: index
+            })}
+        }else if (this.playType === 'next') {
+          // TODO
+        }else if (this.playType === 'track')  {
+          this.$store.commit(StoreTypes.AUDIO_CHANGE, {
+            songsId: -1,
+            songsTracks: this.datas,
+            index: index
+          })
+        }
+        this.$bus.$emit(BusTypes.AUDIO_PLAY, { id })
       }
     }
   }

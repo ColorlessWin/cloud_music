@@ -1,6 +1,6 @@
 <template>
   <div :style="{ width: width, height: height }" class="blur">
-    <div v-if="(enable && !isIE())" class="wrapper">
+    <div v-if="(enable && !isIE)" class="wrapper">
       <img class="bg" :src="bg" alt="">
     </div>
 
@@ -21,7 +21,7 @@
       enable: { type: Boolean,  default: true }
     },
 
-    methods:{
+    computed:{
       isIE() {
         return (!!window.ActiveXObject || "ActiveXObject" in window)
       },

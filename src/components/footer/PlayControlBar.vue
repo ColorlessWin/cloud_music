@@ -1,10 +1,10 @@
 <template>
   <div class="play-control-bar">
     <div class="control">
-      <img src="~assets/img/icon-prev.svg" alt="" class="prev" @click="prev">
+      <img src="~assets/img/icon-prev.svg" alt="" class="prev" @click="onPrev">
       <span class="s-p play" @click="ControlPlay"
             :class="{ 'stop': $store.state.player.playing }"></span>
-      <img src="~assets/img/icon-next.svg" alt="" class="next" @click="next">
+      <img src="~assets/img/icon-next.svg" alt="" class="next" @click="onNext">
     </div>
     <div class="progress">
       <progress-bar :show-tooltip="false" :duration="duration" v-model="ctime" @change="ProgressChange"/>
@@ -13,7 +13,15 @@
       <volume :show-tooltip="false" v-model="volume" @input="VolumeChange"/>
     </div>
     <div class="other">
-<!--      //TODO-->
+      <icon-switch
+        :icons="[
+          require('@/assets/img/order_play.svg'),
+          require('@/assets/img/random_play.svg'),
+          require('@/assets/img/single_play.svg'),
+        ]"
+        size="18px"
+        v-model="mode"
+      />
     </div>
   </div>
 </template>
@@ -25,14 +33,15 @@
   import StoreTypes from "@/store/types";
   import ProgressBar from "@/components/common/ProgressBar";
   import Volume from "@/components/common/Volume";
+  import IconSwitch from "@/components/common/IconSwitch";
   export default {
     name: "PlayControlBar",
-    components: {Volume, ProgressBar},
+    components: {IconSwitch, Volume, ProgressBar},
     data() {
       return {
         ctime: 0,
         duration: 0,
-
+        mode: 0, // 0 循环列表 1 随机播放 2单曲循环
         volume: 60,
       }
     },
@@ -43,14 +52,13 @@
       this.$audioer.volume = this.volume / 100
 
       this.$audioer.addEventListener("ended", () => {
-        // console.log('ended')
-        this.next()
+        this.next(true)
       })
 
 
-      this.$audioer.addEventListener('onerror', ()=> {
+      this.$audioer.addEventListener('error', ()=> {
+        this.next(true, true)
         future(() => {
-          this.next()
           this.$notify.warning({
             title: '播放失败',
             message: `你暂时无法播放该歌曲，将自动播放下一曲`
@@ -64,8 +72,7 @@
         this.ctime = this.$audioer.currentTime
       }, 1000)
 
-      this.$bus.$on(BusTypes.AUDIO_PLAY, ({ songsId, index, id }) => {
-        this.commit_play(songsId, index)
+      this.$bus.$on(BusTypes.AUDIO_PLAY, ({ id }) => {
         this.play(id)
       })
 
@@ -76,16 +83,38 @@
 
     methods: {
 
+      hasTrack () {
+        if (this.$store.getters.TrackLength === 0) {
+          this.$notify.warning({
+            title: '提示',
+            message : '播放列表为空'
+          })
+          return false
+        }
+        return true
+      },
+
+      onNext() {
+        if (this.hasTrack())
+          this.next(false)
+      },
+
+      onPrev() {
+        if (this.hasTrack())
+          this.prev()
+      },
+
+      ControlPlay() {
+        if (this.hasTrack())
+          this.$store.state.player.playing ? this.pause() : this.start()
+      },
+
       VolumeChange() {
         this.$audioer.volume = this.volume / 100
       },
 
       ProgressChange() {
         this.$audioer.currentTime = this.ctime
-      },
-
-      ControlPlay() {
-        this.$store.state.player.playing ? this.pause() : this.start()
       },
 
       pause() {
@@ -118,9 +147,32 @@
         this.play(this.takeout(index))
       },
 
-      next() {
+      next(auto = false, jump = false) {
         let { songsId, current } =  this.$store.state.player
-        let index = this.range(current + 1)
+        let index = 0
+        if (jump) {
+          index = index + 1
+          if (index > this.$store.getters.TrackLength - 1) {
+            this.pause()
+            return
+          }
+        } else {
+          //单曲循环模式下手动切歌
+          if (this.mode === 2 && !auto) {
+            index = this.range(current + 1)
+          }else {
+            // 列表循环
+            if (this.mode === 0) {
+              index = this.range(current + 1)
+            // 随机播放
+            }else if (this.mode === 1) {
+              index = Math.floor(Math.random() * this.$store.getters.TrackLength);
+              // 单曲循环
+            }else if (this.mode === 2) {
+              index = current
+            }
+          }
+        }
         this.commit_play(songsId, index)
         this.play(this.takeout(index))
       },
@@ -192,10 +244,13 @@
   }
 
   .progress {
-    width: 65%;
+    width: 70%;
   }
 
   .volume {
-    width: 10%;
+    width: 11%;
+  }
+  .other {
+    padding-left: 15px;
   }
 </style>

@@ -22,6 +22,13 @@ export default new Vuex.Store({
       playTracks: [],
     }
   },
+
+  getters: {
+    TrackLength: state => {
+      return state.player.playTracks.length
+    }
+  },
+
   mutations: {
     [types.UPDATE_LOGIN_STATUS] ( state, { isLogin, profile } ) {
       state.isLogin = isLogin

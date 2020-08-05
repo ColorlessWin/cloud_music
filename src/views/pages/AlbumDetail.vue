@@ -6,7 +6,7 @@
       <el-tab-pane label="歌曲列表" name="song-tracks" :lazy="true">
 
         <!--  歌曲列表-->
-        <song-tracks :datas="songs" :adapter="$adapter.songs_list_to_songs"/>
+        <song-tracks :datas="songs" play-type="track" :adapter="$adapter.songs_list_to_songs"/>
 
       </el-tab-pane>
       <el-tab-pane label="评论" name="comments" :lazy="true">

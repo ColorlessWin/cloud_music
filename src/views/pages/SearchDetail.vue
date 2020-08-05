@@ -56,7 +56,11 @@
         total: 0,
         loading: true,
         dynComponent: {
-          '1'     : { component: 'SongTracks', props: { adapter: this.$adapter.search_to_songs  }},
+          '1'     : { component: 'SongTracks',
+                      props: {
+                        adapter: this.$adapter.search_to_songs,
+                        playType: 'next'
+                      }},
           '10'    : { component: 'AlbumTrack', props: { adapter: this.$adapter.search_to_album  }},
           '100'   : { component: 'ArtistTrack',props: { adapter: this.$adapter.search_to_artists}},
           '1000'  : { component: 'SongsTrack', props: { adapter: this.$adapter.search_to_playlists}},
