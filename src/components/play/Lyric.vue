@@ -123,14 +123,15 @@
   .lyric-caluse {
     font-size: 12px;
     padding: 0.5em 20px 0.5em 0;
-  }
+    border-radius: 6px;
 
-  /*.lyric .wrapper {*/
-  /*  transition: all 0.8s;*/
-  /*}*/
+    transition: text-indent 0.6s;
+  }
 
   .lyric-caluse.active {
     color: white;
+    background-color: rgba(0, 0, 0, .2);
+    text-indent: 8px;
   }
 
   .icon-fanyi {

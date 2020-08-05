@@ -61,6 +61,7 @@
 
     created() {
       this.loadData()
+      console.log(this.isIE())
     },
 
     methods: {

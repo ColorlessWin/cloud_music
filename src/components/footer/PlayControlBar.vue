@@ -47,6 +47,17 @@
         this.next()
       })
 
+
+      this.$audioer.addEventListener('onerror', ()=> {
+        future(() => {
+          this.next()
+          this.$notify.warning({
+            title: '播放失败',
+            message: `你暂时无法播放该歌曲，将自动播放下一曲`
+          })
+        }, 300)
+      })
+
       //让进度条跟播放进度同步
       setInterval(() =>{
         this.duration = this.$audioer.duration
@@ -91,15 +102,8 @@
         this.pause()
         this.$audioer.src = `https://music.163.com/song/media/outer/url?id=${id}.mp3`
         this.$bus.$emit(BusTypes.AUDIO_CHANGE, id)
-        future(function () {
-          this.$audioer.play().catch(err => {
-            this.next()
-            this.$notify.warning({
-              title: '播放失败',
-              message: `你暂时无法播放该歌曲，将自动播放下一曲`
-            })
-          })
-        }, 300, this)
+        this.$audioer.play()
+
         this.$store.commit(StoreTypes.AUDIO_PLAY)
       },
 

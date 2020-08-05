@@ -51,12 +51,19 @@ export function lyricParse(lyric) {
   let lyrics_arr = lyric.split('\n')
   let lyric_map = {}
   for (let i = 0; i < lyrics_arr.length - 1; i++) {
-    let str_time = /\[\d{1,2}[.,:]\d{1,2}[.,:]\d{2,3}]/.exec(lyrics_arr[i])
+    let str_time = /\d{1,2}[.,:]\d{1,2}[.,:]\d{2,3}/.exec(lyrics_arr[i])
     if (str_time) {
       str_time = str_time[0]
-      let time = (parseInt(/(?<=\[)\d{1,2}/.exec(str_time)[0]) * 60) + parseInt(/(?<=\[\d{1,2}[.,:])\d{1,2}/.exec(str_time)[0])
-      let result = /(?<=]).+/.exec(lyrics_arr[i])
-      lyric_map[time] = result ? result[0] : ''
+      // IE 中的一个大坑
+      // IE 浏览器不支持正则中的后置断言和前置断言
+      // let m = /(?<=\[)\d{1,2}/.exec(str_time)[0]
+      // let s = /(?<=\[\d{1,2}[.,:])\d{1,2}/.exec(str_time)[0]
+      let times = str_time.split(/[.,:]/)
+      let m = times[0]
+      let s = times[1]
+      let time = (parseInt(m) * 60) + parseInt(s)
+      let result = lyrics_arr[i].split(/\[\d{1,2}[.,:]\d{1,2}[.,:]\d{2,3}]/)[1]
+      lyric_map[time] = result ? result : '...'
     }
   }
   return lyric_map

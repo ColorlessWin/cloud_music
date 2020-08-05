@@ -102,7 +102,13 @@
       },
 
       onfullScreen() {
-        this.video.webkitRequestFullScreen()
+        if (this.video.webkitRequestFullScreen) {
+          this.video.webkitRequestFullScreen()
+        } else if(this.video.mozRequestFullScreen) {
+          this.video.mozRequestFullScreen()
+        } else if(this.video.requestFullscreen) {
+          this.video.requestFullscreen()
+        }
       },
 
       onReplay() {
@@ -175,6 +181,8 @@
 
   .play-end {
     position: absolute;
+    top: 0;
+    left: 0;
     width: 100%;
     height: 100%;
 
@@ -201,6 +209,7 @@
   .controls {
     position: absolute;
     bottom: 0;
+    left: 0;
     width: 100%;
     height: 70px;
     box-sizing: border-box;

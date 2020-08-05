@@ -43,13 +43,25 @@
   font-size: 12px;
 }
 
-.el-tabs .el-tabs__nav-scroll {
+.el-tabs .el-tabs__nav-scroll,
+.el-tabs.align-left .el-tabs__nav-scroll{
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
   display: flex;
+}
+
+.el-tabs .el-tabs__nav-scroll {
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
   justify-content: center;
 }
 
 .el-tabs.align-left .el-tabs__nav-scroll {
-  display: flex;
+  -webkit-box-pack: start;
+  -ms-flex-pack: start;
+  -webkit-justify-content: flex-start;
   justify-content: left;
 }
 
