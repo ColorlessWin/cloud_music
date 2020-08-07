@@ -1,5 +1,5 @@
 <template>
-  <div class="user-caluse clearfix">
+  <div class="user-caluse clearfix" @click="$router.push(`/profile/${adapter.uid(user)}`)">
     <div class="left">
       <avatar class="avatar" :avatar-url="adapter.avatarUrl(user)" :uid="adapter.uid(user)" size="35px"/>
       <span class="name"> {{ adapter.name(user) }} </span>

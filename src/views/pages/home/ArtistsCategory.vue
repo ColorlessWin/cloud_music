@@ -4,9 +4,17 @@
     <span>分类:</span> <simple-radio v-model="type" :options="typeLabel" @radio-click="onTypeChanged"/>       <br/>
     <span>筛选:</span> <simple-radio v-model="initial" :options="initialLabel" @radio-click="onInitChanged"/> <br/>
 
-    <l-area :header="true" font-size="14px" title="歌手"/>
+    <l-area font-size="14px" title="歌手">
 
-    <artist-matrices class="artists" :datas="artists" :adapter="adapter" v-loading="loading"/>
+      <rendering
+        :component="require('@/components/content/matrices/ArtistMatrices').default"
+        :filling="filling"
+        :col="5"
+        :unique="querystring"
+        :adapter="adapter"
+      />
+
+    </l-area>
 
   </div>
 </template>
@@ -16,11 +24,11 @@
   import {artist_cate_list} from "@/network/request_show";
   import SimpleRadio from "@/components/common/SimpleRadio";
   import LArea from "@/components/common/LArea";
-  import ArtistMatrices from "@/components/content/matrices/ArtistMatrices";
+  import Rendering from "@/components/layout/Rendering";
 
   export default {
     name: "ArtistsCategory",
-    components: {ArtistMatrices, LArea, SimpleRadio},
+    components: {Rendering, LArea, SimpleRadio},
     data() {
       return {
         max_limit: 50,
@@ -57,33 +65,26 @@
       }
     },
 
-    created() {
-      this.reload()
-    },
-
     methods: {
       onAreaChanged(option) {
         this.from.area = option.value
-        this.reload()
       },
 
       onTypeChanged(option) {
         this.from.type = option.value
-        this.reload()
       },
 
       onInitChanged(option) {
         this.from.initial = option.value
-        this.reload()
       },
 
-      reload() {
+      filling() {
         let from = this.from
-        this.loading = true
-        artist_cate_list(from.area, from.type, from.initial, 0, this.max_limit)
-          .then(result => {
-            this.artists = result['artists']
-            this.loading = false
+        return new Promise(resolve =>  {
+          artist_cate_list(from.area, from.type, from.initial, 0, this.max_limit)
+            .then(result => {
+              resolve(result['artists'])
+            })
         })
       }
     },
@@ -99,9 +100,5 @@
 <style scoped>
   .artists-category span {
     font-size: 10px;
-  }
-
-  .artists {
-    margin-top: 15px;
   }
 </style>

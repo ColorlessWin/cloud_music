@@ -17,10 +17,6 @@
       value: { type: Number,  default: 0}
     },
 
-    mounted() {
-      console.log(this.icons)
-    },
-
     methods: {
       onClick() {
         let change = this.value + 1

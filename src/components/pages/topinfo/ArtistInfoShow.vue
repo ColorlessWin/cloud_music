@@ -5,11 +5,13 @@
     </div>
     <div class="right">
       <div class="name">
-        <artist class="artist"
-                :disabled="true"
-                :name="artist['name']"
-                :id="artist['id']"
-                :alia="artist['alias']"/>
+        <artist
+          class="artist"
+          :disabled="true"
+          :name="artist['name']"
+          :id="artist['id']"
+          :alia="artist['alias']"
+        />
       </div>
       <br/>
       <span>单曲数：{{ artist['musicSize'] }}</span> <br/>
@@ -42,7 +44,7 @@
   }
 
   .left {
-    padding-left: 25px;
+    padding-left: 5px;
   }
 
   .right {

@@ -1,6 +1,6 @@
 <template>
   <div class="big-video-caluse">
-    <div class="cover" @click="$router.push(`/video/${adapter.vid(video)}`)">
+    <div class="cover" @click="onClick">
       <img :src="adapter.coverUrl(video)" alt="">
       <span class="play-time"> {{ adapter.playTime(video) | logogram }} </span>
     </div>
@@ -20,6 +20,14 @@
     props: {
       video:  { type: Object,   default: () =>{} },
       adapter:{ type: Object,   default: ()=> {} }
+    },
+
+    methods: {
+      onClick() {
+        let type = this.adapter.type(this.video)
+        let id = this.adapter.vid(this.video)
+        this.$router.push(`/video?type=${type}&id=${id}`)
+      }
     }
   }
 </script>

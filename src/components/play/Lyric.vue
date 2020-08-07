@@ -125,13 +125,13 @@
     padding: 0.5em 20px 0.5em 0;
     border-radius: 6px;
 
-    transition: text-indent 0.6s;
+    transition: padding-left 0.6s;
   }
 
   .lyric-caluse.active {
     color: white;
-    background-color: rgba(0, 0, 0, .2);
-    text-indent: 8px;
+    background-color: rgba(0, 0, 0, .15);
+    padding-left: 0.5em;
   }
 
   .icon-fanyi {

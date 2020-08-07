@@ -1,5 +1,5 @@
 <template>
-  <grid class="artist-matrices" :list="datas" col="5">
+  <grid class="artist-matrices" :list="datas" v-bind="$attrs">
     <template v-slot:default="slotProps">
       <artist-cover class="artist-cover" :artist="slotProps.item" :adapter="adapter"/>
     </template>

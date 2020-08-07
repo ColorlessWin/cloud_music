@@ -1,12 +1,15 @@
 <template>
   <div class="pagination__container">
 
-    <el-pagination layout="prev, pager, next"
-                   :total="total"
-                   :page-size="limit"
-                   :current-page="page"
-                   @current-change="onPageChange"
-                   :disabled="!enable"/>
+    <el-pagination
+      :class="{ hidden: (total <= 0 || total <= limit ) }"
+      layout="prev, pager, next"
+      :total="total"
+      :page-size="limit"
+      :current-page="page"
+      @current-change="onPageChange"
+      :disabled="(!enable || loading)"
+    />
   </div>
 </template>
 
@@ -17,7 +20,7 @@
 
     props: {
       unique:  { default: null },
-      limit:   { type: Number,      default: 20 },
+      limit:   { type: Number,      default: 40 },
       total:   { type: Number,      default: 0 },
       index:   { type: Boolean,     default: false },
       enable:  { type: Boolean,     default: true },
@@ -31,6 +34,7 @@
 
     data() {
       return {
+        loading: false,
         datas: { 1 : [] },
         offset: 0,
         page: 1
@@ -51,10 +55,10 @@
 
       load() {
         if (!this.enable) return
-        this.$emit('loading')
+        this.$emit('loading'); this.loading = true
         this.fillingData().then(res => {
           this.commit();
-          this.$emit('loaded')
+          this.$emit('loaded'); this.loading = false
         })
       },
 
@@ -87,7 +91,8 @@
       },
 
       reload() {
-        this.datas = { 1 : [] }
+        this.datas = { }
+        this.$emit('changed', [])
         this.offset = 0
         this.page = 1
 
@@ -114,5 +119,9 @@
 <style scoped>
   .pagination__container .el-pagination{
     text-align: center;
+  }
+
+  .hidden {
+    display: none;
   }
 </style>

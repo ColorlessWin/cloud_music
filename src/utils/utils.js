@@ -19,7 +19,7 @@ export function call(func) { return func() }
 
 
 export function future(func, delay, _this) {
-  setTimeout(function () {
+  setTimeout( () => {
     if (_this) func.call(_this)
     else func()
   }, delay)

@@ -1,3 +1,4 @@
+import {video_detail} from "@/network/request_show";
 
 const search_to_artists = {
   avatarUrl: (artist) => artist['img1v1Url'] + '?param=50y50',
@@ -24,6 +25,7 @@ const search_to_album = {
 const search_to_video = {
   coverUrl: (video) => video['coverUrl'] + '?param=200y110',
   title:    (video) => video['title'],
+  type:     (video) => video['type'] === 0? 'mv': 'video',
   author:   (video) => {
     return {
       name: video['creator'][0]['userName'],

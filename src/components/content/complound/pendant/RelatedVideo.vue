@@ -23,7 +23,8 @@
           creatorId:(video) => video['creator'][0]['userId'],
           creatorName: (video) => video['creator'][0]['userName'],
           playTime: (video) => video['playTime'],
-          vid:      (video) => video['vid']
+          vid:      (video) => video['vid'],
+          type:     (video) => video['type'] === 0? 'mv': 'video',
         }
       }
     },

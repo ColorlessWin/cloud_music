@@ -81,6 +81,11 @@ export function comment_album(id, offset, limit ) {
   return request( { url: '/comment/album', params: { id, offset, limit } } )
 }
 
+// 调用此接口 , 传入视频 id 和 limit 参数 , 可获得该mv的所有评论 ( 不需要 登录 )
+export function comment_mv(id, offset, limit ) {
+  return request( { url: '/comment/mv', params: { id, offset, limit } } )
+}
+
 
 //调用此接口 , 传入歌单 id 可获取歌单的所有收藏者
 export function playlist_subscribers(id, offset, limit ) {
@@ -88,13 +93,21 @@ export function playlist_subscribers(id, offset, limit ) {
 }
 
 //调用此接口 , 可获取视频详情
-export function video_detail(id) {
-  return request( { url: '/video/detail', params: { id } } )
+export function video_detail(type, id) {
+  let config = null
+  if (type === 'video') config = { url: '/video/detail', params: { id } }
+  if (type === 'mv') config = { url: '/mv/detail', params: { mvid: id } }
+  if (!config) console.error('not type:', type)
+  return request(config)
 }
 
-//调用此接口 , 可获取视频详情
-export function get_video_url(id) {
-  return request( { url: '/video/url', params: { id } } )
+//传入 mv id,可获取 mv 播放地址
+export function get_video_url(type, id) {
+  let url = '/'
+  if (type === 'video') url = '/video/url'
+  else if (type === 'mv') url = '/mv/url'
+  else console.error('not type:', type)
+  return request( { url: url, params: { id } } )
 }
 
 //调用此接口 , 可获取相关视频

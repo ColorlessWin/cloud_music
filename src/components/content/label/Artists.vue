@@ -2,7 +2,7 @@
   <span>
     <span v-for="(artist, index) in artists">
       <span v-if="index !== 0"> / </span>
-      <artist :id="artist['id']" :name="artist['name']" :alia="artist['alia']"/>
+      <artist :id="artist['id']" :name="artist['name']" :alia="artist['alia']? artist['alia']: []"/>
     </span>
   </span>
 </template>

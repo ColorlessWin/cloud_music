@@ -8,35 +8,32 @@
       </span>
     </div>
 
-    <normal-songs-matrices class="content"
-                           :datas="playlists"
-                           :adapter="adapter"
-                           v-loading="loading"/>
+    <rendering
+      :component="require('@/components/content/matrices/NormalSongsMatrices').default"
+      :filling="filling"
+      :col="5"
+      :adapter="adapter"
 
-    <pagination :limit="50"
-                v-model="playlists"
-                :unique="currentTag"
-                :total="total" :filling="filling"
-                @loading="loading = true"
-                @loaded="loading = false"/>
+      :unique="currentTag"
+      :total="total"
+      :limit="50"
+    />
   </div>
 </template>
 
 <script>
   import {playlist_category, top_playlist} from "@/network/request_show";
-  import NormalSongsMatrices from "@/components/content/matrices/NormalSongsMatrices";
-  import Pagination from "@/components/common/Pagination";
+  import Rendering from "@/components/layout/Rendering";
 
   export default {
     name: "PlaylistCategory",
-    components: {NormalSongsMatrices, Pagination},
+    components: {Rendering},
     data() {
       return {
         tags: null,
         total: 0,
         currentTag: '华语',
         playlists: [],
-        loading: false,
         adapter: {
           coverUrl: (songs) => songs['coverImgUrl'],
           title:    (songs) => songs['name'],
@@ -89,7 +86,4 @@
     padding: 0 10px;
   }
 
-  .content {
-    margin-bottom: 15px;
-  }
 </style>

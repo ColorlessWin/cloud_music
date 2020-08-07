@@ -1,5 +1,5 @@
 <template>
-  <grid class="album-matrices" :list="datas" col="5">
+  <grid class="album-matrices" :list="datas" v-bind="$attrs">
     <template v-slot:default="slotProps">
       <album-cover class="album-cover" :album="slotProps.item" :adapter="adapter"/>
     </template>

@@ -1,29 +1,26 @@
 <template>
   <div>
-    <song-tracks :datas="songTrack"
-                 :id="parseInt(id)"
-                 v-loading="loading"
-                 v-on="$attrs"
-                 :adapter="$adapter.songs_list_to_songs"/>
+    <rendering
+      :component="require('@/components/content/tracks/SongTracks').default"
+      v-bind="$attrs"
+      :id="parseInt(id)"
+      :adapter="$adapter.songs_list_to_songs"
 
-    <pagination class="pagination"
-                v-model="songTrack" :limit="40"
-                :total="total"
-                :filling="filling"
-                :unique="id"
-                :index="true"
-                @loading="loading = true"
-                @loaded="loading = false"/>
+      :filling="filling"
+      :total="total"
+      :unique="id"
+      :index="true"
+    />
+
   </div>
 </template>
 
 <script>
   import { song_tracks } from "@/network/resolved";
-  import SongTracks from "@/components/content/tracks/SongTracks";
-  import Pagination from "@/components/common/Pagination";
+  import Rendering from "@/components/layout/Rendering";
   export default {
     name: "BetterSongTrack",
-    components: {SongTracks, Pagination},
+    components: {Rendering},
     props: {
       id: { type: [Number, String],   default: 0 }
     },
@@ -31,7 +28,6 @@
     data() {
       return {
         songTrack: [],
-        loading: false,
         total: 0
       }
     },

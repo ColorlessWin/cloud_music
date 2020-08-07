@@ -1,5 +1,5 @@
 <template>
-  <grid class="normal-songs-matrices" :list="datas" col="5">
+  <grid class="normal-songs-matrices" :list="datas" v-bind="$attrs">
     <template v-slot:default="slotProps">
       <normal-songs-cover class="normal-songs-cover" :songs="slotProps.item" :adapter="adapter"/>
     </template>

@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="artist-detail">
     <artist-info-show :artist="artist"/>
 
     <el-tabs class="tabs align-left" v-model="selected">
@@ -16,6 +16,7 @@
       </el-tab-pane>
       <el-tab-pane label="MV" name="mv" :lazy="true">
 
+        <artist-videos :id="id"/>
 
       </el-tab-pane>
       <el-tab-pane label="歌手详情" name="artist-detail" :lazy="true">
@@ -34,9 +35,10 @@
   import {artist_info} from "@/network/request_show";
   import ArtistAlbums from "@/components/content/complound/ArtistAlbums";
   import ArtistDesc from "@/components/content/complound/ArtistDesc";
+  import ArtistVideos from "@/components/content/complound/ArtistVideos";
   export default {
     name: "ArtistDetail",
-    components: {ArtistDesc, ArtistAlbums, ArtistInfoShow, SongTracks},
+    components: {ArtistVideos, ArtistDesc, ArtistAlbums, ArtistInfoShow, SongTracks},
     data() {
       return {
         id: 0,
@@ -73,5 +75,7 @@
 </script>
 
 <style scoped>
-
+  .artist-detail {
+    min-width: 780px;
+  }
 </style>

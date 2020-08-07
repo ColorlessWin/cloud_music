@@ -1,6 +1,6 @@
 module.exports = {
   publicPath: process.env.NODE_ENV === 'production'? './' : '/',
-  productionSourceMap: true,
+  productionSourceMap: false,
   transpileDependencies: [
     './src/utils/utils.js'
   ],

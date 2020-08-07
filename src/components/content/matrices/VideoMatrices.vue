@@ -1,5 +1,5 @@
 <template>
-  <grid class="video-matrices" :list="datas" col="4">
+  <grid class="video-matrices" :list="datas" v-bind="$attrs">
     <template v-slot:default="slotProps">
       <video-cover class="video-cover" :video="slotProps.item" :adapter="adapter"/>
     </template>

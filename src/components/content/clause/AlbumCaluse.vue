@@ -7,9 +7,11 @@
       <span class="name">{{ adapter.name(album) }}</span>
     </div>
     <div class="right">
-      <artist :id="adapter.artist(album)['id']"
-              :name="adapter.artist(album)['name']"
-              :alia="adapter.artist(album)['alia']"/>
+      <artist
+        :id="adapter.artist(album)['id']"
+        :name="adapter.artist(album)['name']"
+        :alia="adapter.artist(album)['alia']"
+      />
     </div>
   </div>
 </template>

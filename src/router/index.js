@@ -42,7 +42,7 @@ const routes = [
 
   { path: '/search' , component: SearchDetail },
 
-  { path: '/video/:id' , component: VideoPlay },
+  { path: '/video' , component: VideoPlay },
 
   { path: '/album/:id' , component: AlbumDetail },
 

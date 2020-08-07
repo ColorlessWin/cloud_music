@@ -6,23 +6,21 @@
       <el-tab-pane label="专辑" name="10"></el-tab-pane>
       <el-tab-pane label="视频" name="1014"></el-tab-pane>
       <el-tab-pane label="歌单" name="1000"></el-tab-pane>
-      <el-tab-pane label="歌词" name="1006"></el-tab-pane>
-      <el-tab-pane label="电台" name="1009"></el-tab-pane>
       <el-tab-pane label="用户" name="1002"></el-tab-pane>
     </el-tabs>
 
     <div class="result-total"> 为你找到 {{this.total}} 条内容</div>
 
-    <div class="content" v-loading="loading">
+    <div class="content">
 
-      <component :is="dynComponent[type].component"
-                 :datas="result"
-                 v-bind="dynComponent[type].props"/>
-
-
-      <pagination class="pagination"     :total="total" v-model="result"
-                  :limit="40"            :filling="load"
-                  :unique="$route.query" :index="true"/>
+      <rendering
+        :component="current.component"
+        v-bind="current.props"
+        :total="total"
+        :unique="keywords + type"
+        :filling="filling"
+        :index="true"
+      />
 
     </div>
 
@@ -38,36 +36,38 @@
   import UserTrack from "@/components/content/tracks/UserTrack";
   import VideoMatrices from "@/components/content/matrices/VideoMatrices";
 
-  import Pagination from "@/components/common/Pagination";
+  import Rendering from "@/components/layout/Rendering";
 
   export default {
     name: "SearchDetail",
-    components: {
-      Pagination, AlbumTrack, ArtistTrack,
-      SongTracks, SongsTrack, UserTrack, VideoMatrices
-    },
+    components: {Rendering},
     data() {
       return {
-        component: 'SongTracks',
-        result: [],
-        adapter: null,
+        current: {
+          component: SongTracks,
+          props: {},
+        },
         keywords: '',
         type: '1',
         total: 0,
-        loading: true,
         dynComponent: {
-          '1'     : { component: 'SongTracks',
-                      props: {
-                        adapter: this.$adapter.search_to_songs,
-                        playType: 'next'
-                      }},
-          '10'    : { component: 'AlbumTrack', props: { adapter: this.$adapter.search_to_album  }},
-          '100'   : { component: 'ArtistTrack',props: { adapter: this.$adapter.search_to_artists}},
-          '1000'  : { component: 'SongsTrack', props: { adapter: this.$adapter.search_to_playlists}},
-          '1002'  : { component: 'UserTrack',  props: { adapter: this.$adapter.search_to_users}},
-          '1006'  : { },
-          '1009'  : { },
-          '1014'  : { component: 'VideoMatrices', props: { adapter: this.$adapter.search_to_video} }
+          '1'     : {
+              component: SongTracks,
+              props: {
+                adapter: this.$adapter.search_to_songs,
+                playType: 'next'
+           }},
+          '1014'  : {
+              component: VideoMatrices,
+              props: {
+                adapter: this.$adapter.search_to_video,
+                col: 4
+           }},
+          '10'    : { component: AlbumTrack, props: { adapter: this.$adapter.search_to_album  }},
+          '100'   : { component: ArtistTrack,props: { adapter: this.$adapter.search_to_artists}},
+          '1000'  : { component: SongsTrack, props: { adapter: this.$adapter.search_to_playlists}},
+          '1002'  : { component: UserTrack,  props: { adapter: this.$adapter.search_to_users}},
+
         },
         field: {
           '1'     : { result: 'songs',       total: 'songCount',      },
@@ -75,8 +75,6 @@
           '100'   : { result: 'artists',     total: 'artistCount',    },
           '1000'  : { result: 'playlists',   total: 'playlistCount'   },
           '1002'  : { result: 'userprofiles',total: 'userprofileCount'},
-          '1006'  : { result: 'songs',       total: 'songCount'       },
-          '1009'  : { result: 'djRadios',    total: 'djRadiosCount'   },
           '1014'  : { result: 'videos',      total: 'videoCount'      }
         }
       }
@@ -89,22 +87,22 @@
       },
 
       refresh() {
-        this.result = []
-
         const query = this.$route.query
         this.keywords = query.keywords
         this.type = query.type
+
+        setTimeout(() => {
+          this.current.component = this.dynComponent[this.type].component
+          this.current.props = this.dynComponent[this.type].props
+        })
       },
 
-      load(offset, limit) {
-        this.loading = true
+      filling(offset, limit) {
         return new Promise(resolve => {
           search(this.keywords, offset, limit, this.type).then(res => {
             this.total = res['result'][this.field[this.type].total]
             let result = res['result'][this.field[this.type].result]
             resolve(result)
-
-            this.loading = false
           })
         })
       },
