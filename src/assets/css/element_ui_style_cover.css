@@ -70,7 +70,21 @@
 }
 
 
-/* Card Style */
+.el-tabs.small .el-tabs__item {
+  padding: 0 10px;
+  font-size: 10px;
+  height: 35px;
+}
+
+.el-tabs.small .el-tabs__nav-wrap  {
+  padding-left: 20px ;
+}
+
+.el-tabs.small .el-tabs__nav-wrap::after {
+  height: 1px;
+}
+
+  /* Card Style */
 
 .el-card {
   border: none;

@@ -145,6 +145,16 @@ export function artist_desc(id) {
   return request( { url: '/artist/desc', params: { id } } )
 }
 
+//调用此接口 , 可获取新歌速递
+export function top_song(type) {
+  return request( { url: '/top/song', params: { type } } )
+}
+
+//调用此接口 , 可获取新碟上架列表
+export function top_album(area, offset, limit) {
+  return request( { url: '/top/album', params: { area, offset, limit } } )
+}
+
 
 
 

@@ -6,11 +6,11 @@
       <el-tab-pane label="主播电台"></el-tab-pane>
       <el-tab-pane label="排行榜" name="toplist"></el-tab-pane>
       <el-tab-pane label="歌手" name="artists"></el-tab-pane>
-      <el-tab-pane label="最新音乐"></el-tab-pane>
+      <el-tab-pane label="最新音乐" name="newsongs"></el-tab-pane>
     </el-tabs>
 
     <!---->
-    <router-view/>
+    <router-view class="content"/>
 
   </div>
 </template>
@@ -25,7 +25,8 @@
           'personal': '/discover/recommend',
           'playlist': '/discover/playlists',
           'toplist' : '/discover/toplist',
-          'artists' : '/discover/artists'
+          'artists' : '/discover/artists',
+          'newsongs' : '/discover/newsongs'
         }
       }
     },
@@ -57,8 +58,8 @@
 </script>
 
 <style scoped>
-  .home {
-    width: 880px;
+  .content {
+    width: 900px;
     margin: 0 auto;
   }
 </style>
