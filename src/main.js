@@ -38,6 +38,7 @@ import {
   ButtonGroup,
   RadioButton,
   RadioGroup,
+  Popover,
 
   Loading,
   Notification,
@@ -71,6 +72,7 @@ Vue.use(Slider)
 Vue.use(ButtonGroup)
 Vue.use(RadioButton)
 Vue.use(RadioGroup)
+Vue.use(Popover)
 Vue.use(Loading.directive)
 
 //安装全局filter

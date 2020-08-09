@@ -1,7 +1,11 @@
 <template>
-  <grid class="normal-songs-matrices" :list="datas" v-bind="$attrs">
+  <grid :list="datas" v-bind="$attrs">
     <template v-slot:default="slotProps">
-      <normal-songs-cover class="normal-songs-cover" :songs="slotProps.item" :adapter="adapter"/>
+      <normal-songs-cover
+        :songs="slotProps.item"
+        :adapter="adapter"
+        v-bind="$attrs"
+      />
     </template>
   </grid>
 </template>

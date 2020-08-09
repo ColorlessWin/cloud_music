@@ -9,6 +9,7 @@
 
 <script>
   import { playlist } from "@/network/request_uesr";
+  import StoreTypes from "@/store/types";
 
   export default {
     name: "OwnSongList",
@@ -21,6 +22,9 @@
           if (!value.subscribed) return value
         })
         this.playlist = resolved
+        this.$store.commit(StoreTypes.PLAYLIST, {
+          track: resolved
+        })
       })
     }
   }

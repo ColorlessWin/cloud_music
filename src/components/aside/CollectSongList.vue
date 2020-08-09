@@ -9,7 +9,7 @@
 
 <script>
   import { playlist } from "@/network/request_uesr";
-
+  import StoreTypes from "@/store/types";
   export default {
     name: "CollectSongList",
     data() {
@@ -21,6 +21,9 @@
           if (value['subscribed']) return value
         })
         this.playlist = resolved
+        this.$store.commit(StoreTypes.COLL_PLAYLIST, {
+          track: resolved
+        })
       })
     }
   }

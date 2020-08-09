@@ -8,6 +8,7 @@
 <script>
   import LightVideo from "@/components/common/video/LightVideo";
   import RelatedVideo from "@/components/content/complound/pendant/RelatedVideo";
+  import {user_subcount} from "@/network/request_uesr";
   export default {
     name: "test",
     components: {RelatedVideo, LightVideo},
@@ -17,7 +18,7 @@
     },
 
     methods: {
-      
+
     }
   }
 </script>

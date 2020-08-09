@@ -7,8 +7,10 @@
       <el-col :span="7">专辑</el-col>
       <el-col :span="2">时长</el-col>
     </el-row>
-    <el-row v-for="(song, index) in datas" :key="index" @dblclick.native="onClick(index, adapter.id(song))">
-
+    <el-row v-for="(song, index) in datas" :key="index"
+      @dblclick.native="onClick(adapter.index(song) - 1,
+      adapter.id(song))"
+    >
       <el-col class="index" :span="2">{{ adapter.index(song) }}</el-col>
       <el-col :span="8">{{ adapter.name(song) }}</el-col>
       <el-col :span="5">

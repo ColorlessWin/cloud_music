@@ -2,7 +2,7 @@
   <div class="pagination__container">
 
     <el-pagination
-      :class="{ hidden: (total <= 0 || total <= limit ) }"
+      v-if="!(total <= 0 || total <= limit )"
       layout="prev, pager, next"
       :total="total"
       :page-size="limit"

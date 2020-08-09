@@ -13,6 +13,9 @@ export default new Vuex.Store({
       name: null,
       UID: 0,
       avatarUrl: null,
+      playlist: [],
+      coll_playlist: [],
+      liked_song: [],
     },
 
     player: {
@@ -44,7 +47,10 @@ export default new Vuex.Store({
     },
 
     [types.AUDIO_PLAY] (state) { state.player.playing = true },
-    [types.AUDIO_STOP] (state) { state.player.playing = false }
+    [types.AUDIO_STOP] (state) { state.player.playing = false },
+    [types.PLAYLIST] (state, { track }) { state.profile.playlist =  track },
+    [types.COLL_PLAYLIST] (state, { track }) { state.profile.coll_playlist =  track },
+    [types.LIKED_SONG] (state, { track }) { state.profile.liked_song =  track }
   },
   actions: {
     [types.AUDIO_CHANGE] (content, { songsId, index }) {

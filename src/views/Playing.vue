@@ -5,13 +5,26 @@
          @click="secondary = !secondary">
     <div class="container" :class="{ 'show-secondary': secondary }">
       <div class="content">
-        <blur-background height="400px" :bg="song['al']['picUrl']">
+
+        <blur-background
+          height="400px"
+          :bg="song['al']['picUrl']"
+        >
+
           <div class="primary">
 
             <div class="left">
-              <discplayer class="discplayer"
-                          :cover="song['al']['picUrl']"
-                          :playing="$store.state.player.playing"/>
+
+              <discplayer
+                class="discplayer"
+                :cover="song['al']['picUrl']"
+                :playing="$store.state.player.playing"
+              />
+
+              <div class="option">
+                <like :id="id" :liked.sync="song['liked']"/>
+                <collect :id="id"/>
+              </div>
             </div>
 
             <div class="right">
@@ -24,7 +37,10 @@
         </blur-background>
       </div>
       <div class="secondary light-scroll">
-        <comment-area :id="id" type="music" :enable="(!animating) && (secondary && show)"/>
+        <comment-area
+          :id="id" type="music"
+          :enable="(!animating) && (secondary && show)"
+        />
       </div>
     </div>
   </div>
@@ -40,9 +56,11 @@
   import BusTypes from "@/utils/bus/types";
   import CommentArea from "@/components/content/complound/CommentArea";
   import {future} from "@/utils/utils";
+  import Like from "@/components/play/Like";
+  import Collect from "@/components/play/Collect";
   export default {
     name: "Play",
-    components: {CommentArea, Lyric, SongBaseInfo, Discplayer, BlurBackground},
+    components: {Collect, Like, CommentArea, Lyric, SongBaseInfo, Discplayer, BlurBackground},
     data() {
       return {
         id: 0,
@@ -148,8 +166,19 @@
     width: 50%;
   }
 
-  .discplayer {
-    float: right;
+  .option {
+    display: flex;
+    justify-content: flex-end;
+    width: 260px;
+    box-sizing: border-box;
+    padding: 0 15px;
+    margin-top: 35px;
+
+    opacity: 0.1;
+  }
+
+  .option > * {
+    margin: 0 10px;
   }
 
   .right {
@@ -158,6 +187,9 @@
   }
 
   .left {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
     padding-right: 90px;
   }
 
