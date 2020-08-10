@@ -10,13 +10,13 @@
 
 <script>
   import BusType from '@/utils/bus/types'
+  import StoreTypes from "@/store/types";
   import { like } from "@/network/behavior";
   import Icon from "@/components/common/Icon";
   export default {
     name: "Like",
     components: {Icon},
     props: {
-      liked: { type: Boolean,  default: false },
       id:    { type: [String, Number],  default: -1 }
     },
 
@@ -34,8 +34,20 @@
               message: '已添加到我喜欢的音乐'
             })
           }
-          this.$emit('update:liked', !this.liked)
+
+          if (this.liked) {
+            this.$store.commit(StoreTypes.LIKE_LIST_DEL, { id: this.id })
+          }else {
+            this.$store.commit(StoreTypes.LIKE_LIST_ADD, { id: this.id })
+          }
         })
+      }
+    },
+
+    computed: {
+      liked() {
+        let likelist = this.$store.state.profile.liked_song
+        return likelist.includes(this.id)
       }
     }
   }

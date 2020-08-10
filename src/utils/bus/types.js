@@ -1,4 +1,5 @@
 export default {
+  USER_LOGIN:           'user_login',  
   LOGIN_PANEL_CUTOVER : 'login_panel_cutover',
   AUDIO_PLAY:           'audio_play',
   AUDIO_CHANGE:         'audio_change',

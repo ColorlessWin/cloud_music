@@ -23,7 +23,6 @@
 <script>
   import UserName from "@/components/content/label/UserName";
   import Artists from "@/components/content/label/Artists";
-  import adapter from "@/utils/adapter";
   export default {
     name: "CommonVideoCover",
     components: {Artists, UserName},

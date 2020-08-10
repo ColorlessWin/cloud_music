@@ -3,34 +3,29 @@
     :component="require('@/components/content/matrices/AlbumMatrices').default"
     :show-creator="true"
     :col="5"
-
-    :total="total"
+    :adapter="adapter"
     :filling="filling"
-    :limit="50"
-    :unique="area"
   />
 </template>
 
 <script>
   import Rendering from "@/components/layout/Rendering";
-  import {top_album} from "@/network/request_show";
+  import {album_sublist} from "@/network/request_uesr";
   export default {
-    name: "NewAlbumsGlance",
+    name: "CollectionAlbums",
     components: {Rendering},
-    props: {
-      area: { type: String,   default:'ALL' }
-    },
     data() {
       return {
-        total: 0,
+        adapter: {
+          coverUrl: (album) => album['picUrl'] + '?param=200y200'
+        }
       }
     },
     methods: {
-      filling(offset, limit) {
-        return new Promise(resolve => {
-          top_album(this.area, offset, limit).then(result => {
-            this.total = result['total']
-            resolve(result['albums'])
+      filling(...args) {
+        return new Promise(resolve =>  {
+          album_sublist(...args).then(result => {
+            resolve(result['data'])
           })
         })
       }

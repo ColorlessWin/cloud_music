@@ -1,7 +1,12 @@
 <template>
   <list class="artist-list" :list="datas">
     <template  v-slot:default="slotProps">
-      <artist-caluse class="artist-cover" :artist="slotProps.item" :adapter="adapter"/>
+      <artist-caluse
+        class="artist-cover"
+        :artist="slotProps.item"
+        :adapter="Object.assign(def_adapter, adapter)"
+        v-bind="$attrs"
+      />
     </template>
   </list>
 </template>
@@ -13,8 +18,19 @@
     name: "ArtistTrack",
     components: {ArtistCaluse, List },
     props: {
-      datas:    { type: Array,    default: () => [] },
-      adapter:  { type: Object,   default: () => {} }
+      datas:   { type: Array,    default: () => [] },
+      adapter: { type: Object,   default: () => {} }
+    },
+
+    data() {
+      return {
+        def_adapter: {
+          avatarUrl: (artist) => artist['img1v1Url'] + '?param=50y50',
+          name:      (artist) => artist['name'],
+          alias:     (artist) => artist['alias'],
+          id:        (artist) => artist['id']
+        }
+      }
     },
 
     mounted() {

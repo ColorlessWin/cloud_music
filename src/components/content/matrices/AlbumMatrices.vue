@@ -28,7 +28,16 @@
           coverUrl: (album) => album['blurPicUrl'] + '?param=200y200',
           name:     (album) => album['name'],
           id:       (album) => album['id'],
-          publishTime: (album) => album['publishTime']
+          publishTime: (album) => album['publishTime'],
+          artists: (album) => {
+            return album['artists'].map(value => {
+              return {
+                id: value['id'],
+                name: value['name'],
+                alia: value['alias']
+              }
+            })
+          }
         }
       }
     }

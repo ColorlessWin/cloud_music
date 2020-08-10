@@ -1,9 +1,9 @@
 <template>
-  <span v-if="(alia != null && alia.length != 0)" class="artist" @click="onclick">
+  <span v-if="(alia != null && alia.length != 0)" class="artist" @click.stop="onclick">
       <span>{{ name }}</span>
       <span  class="alia">({{ alia.join(' / ') }})</span>
   </span>
-  <span v-else class="artist" @click="onclick">{{ name }}</span>
+  <span v-else class="artist" @click.stop="onclick">{{ name }}</span>
 </template>
 
 <script>

@@ -10,6 +10,7 @@ const PlaylistCategory = () => import('@/views/pages/home/PlaylistCategory')
 const TopList = () => import('@/views/pages/home/TopList')
 const ArtistCategory = ()=> import('@/views/pages/home/ArtistsCategory')
 const NewSongs = () => import('@/views/pages/home/NewSongs')
+const Collects = () => import('@/views/pages/MyCollects')
 
 const SongsDetail = () => import('@/views/pages/SongsDetail')
 const SearchDetail = () => import('@/views/pages/SearchDetail')
@@ -50,6 +51,8 @@ const routes = [
   { path: '/artist/:id' , component: ArtistDetail },
 
   { path: '/profile/:id' , component: Profile },
+
+  { path: '/collects' , component: Collects },
 ]
 
 const router = new VueRouter({

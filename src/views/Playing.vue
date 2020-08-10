@@ -22,7 +22,7 @@
               />
 
               <div class="option">
-                <like :id="id" :liked.sync="song['liked']"/>
+                <like :id="id"/>
                 <collect :id="id"/>
               </div>
             </div>

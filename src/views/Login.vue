@@ -66,6 +66,7 @@
 
             //保存Cookie
             cookie.value = result['cookie']
+            this.$bus.$emit(BusTypes.USER_LOGIN)
 
             future(function () {
               this.logging = false; this.show = false

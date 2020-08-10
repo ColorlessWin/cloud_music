@@ -7,7 +7,11 @@
 <script>
   import CloudMusicWindow from '@/views/Window.vue'
 
-  import { login_refresh, login_status } from "@/network/request_login";
+  import {
+    login_refresh,
+    login_status,
+  } from "@/network/request_login";
+  import { playlist, likelist } from "@/network/request_uesr";
   import StoreTypes from "@/store/types";
   import BusTypes from "@/utils/bus/types"
 
@@ -24,11 +28,18 @@
           isLogin: true,
           profile: result.profile
         })
+
+        this.$bus.$emit(BusTypes.USER_LOGIN)
       })
     },
 
 
     created() {
+
+      this.$bus.$on(BusTypes.USER_LOGIN, () => {
+        this.initInfo()
+      })
+
       this.$bus.$on(BusTypes.PLACE_LOGIN, () => {
         this.$notify.warning({
           title: '请先登录',
@@ -36,6 +47,26 @@
         })
         this.$bus.$emit(BusTypes.LOGIN_PANEL_CUTOVER)
       })
+    },
+
+    methods: {
+
+      initInfo() {
+        let uid = this.$store.state.profile.UID
+        playlist(uid).then(result => {
+          this.$store.commit(StoreTypes.COLL_PLAYLIST, {
+            track: result['playlist'].filter((value) => value['subscribed'])
+          })
+
+          this.$store.commit(StoreTypes.PLAYLIST, {
+            track: result['playlist'].filter(value => !value['subscribed'])
+          })
+        })
+
+        likelist(uid).then(result => {
+          this.$store.commit(StoreTypes.LIKED_SONG, { track: result['ids'] })
+        })
+      }
     }
   }
 </script>
