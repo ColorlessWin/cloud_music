@@ -35,7 +35,6 @@ import {
   Col,
   Pagination,
   Slider,
-  ButtonGroup,
   RadioButton,
   RadioGroup,
   Popover,
@@ -69,7 +68,6 @@ Vue.use(Row)
 Vue.use(Col)
 Vue.use(Pagination)
 Vue.use(Slider)
-Vue.use(ButtonGroup)
 Vue.use(RadioButton)
 Vue.use(RadioGroup)
 Vue.use(Popover)
