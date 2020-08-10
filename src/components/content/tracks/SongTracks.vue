@@ -8,18 +8,18 @@
       <el-col :span="2">时长</el-col>
     </el-row>
     <el-row v-for="(song, index) in datas" :key="index"
-      @dblclick.native="onClick(adapter.index(song) - 1,
-      adapter.id(song))"
+      @dblclick.native="onClick(adter.index(song) - 1,
+      adter.id(song))"
     >
-      <el-col class="index" :span="2">{{ adapter.index(song) }}</el-col>
-      <el-col :span="8">{{ adapter.name(song) }}</el-col>
+      <el-col class="index" :span="2">{{ adter.index(song) }}</el-col>
+      <el-col :span="8">{{ adter.name(song) }}</el-col>
       <el-col :span="5">
-        <artists :artists="adapter.artists(song)"/>
+        <artists :artists="adter.artists(song)"/>
       </el-col>
       <el-col :span="7">
-        <album :name="adapter.album_name(song)" :id="adapter.album_id(song)"/>
+        <album :name="adter.album_name(song)" :id="adter.album_id(song)"/>
       </el-col>
-      <el-col :span="2">{{ adapter.duration(song) | timeLongFormat(true)}}</el-col>
+      <el-col :span="2">{{ adter.duration(song) | timeLongFormat(true)}}</el-col>
     </el-row>
   </div>
 </template>
@@ -40,6 +40,26 @@
       adapter: { type: Object, default: () => {} }
     },
 
+    data() {
+      return {
+        def_adapter: {
+          index     :  (song) => song['__index'],
+          name      :  (song) => song['name'],
+          artists   :  (song) => song['artists'].map((value) => {
+            return {
+              name: value['name'],
+              id: value['id'],
+              alia: value['alias']
+            }
+          }),
+          album_name:  (song) => song['album']['name'],
+          album_id  :  (song) => song['album']['id'],
+          duration  :  (song) => song['duration'],
+          id:         (song) => song['id']
+        }
+      }
+    },
+
     methods: {
       onClick(index, id) {
         if (this.playType === 'songs') {
@@ -58,6 +78,12 @@
           })
         }
         this.$bus.$emit(BusTypes.AUDIO_PLAY, { id })
+      }
+    },
+
+    computed: {
+      adter() {
+        return Object.assign(this.def_adapter, this.adapter)
       }
     }
   }

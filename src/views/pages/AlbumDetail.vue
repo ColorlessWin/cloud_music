@@ -6,7 +6,7 @@
       <el-tab-pane label="歌曲列表" name="song-tracks" :lazy="true">
 
         <!--  歌曲列表-->
-        <song-tracks :datas="songs" play-type="track" :adapter="$adapter.songs_list_to_songs"/>
+        <song-tracks-decorator :datas="songs" play-type="track"/>
 
       </el-tab-pane>
       <el-tab-pane label="评论" name="comments" :lazy="true">
@@ -26,13 +26,13 @@
 
 <script>
   import AlbumInfoShow from "@/components/pages/topinfo/AlbumInfoShow";
-  import SongTracks from "@/components/content/tracks/SongTracks";
   import CommentArea from "@/components/content/complound/CommentArea";
   import {album_detail} from "@/network/request_show";
   import Description from "@/components/common/Description";
+  import SongTracksDecorator from "@/components/content/tracks/SongTracksDecorator";
   export default {
     name: "AlbumDetail",
-    components: {Description, AlbumInfoShow, SongTracks, CommentArea},
+    components: {SongTracksDecorator, Description, AlbumInfoShow, CommentArea},
     data() {
       return {
         id: 0,

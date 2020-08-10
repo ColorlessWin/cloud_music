@@ -2,39 +2,50 @@
   <div>
     <div class="content" v-loading="loading">
 
-      <l-area v-if="$Check(hotComment)"
-              title="精彩评论"
-              font-size="12px">
+      <l-area
+        v-if="$Check(hotComment)"
+        title="精彩评论"
+        font-size="12px"
+      >
 
-        <comment-track :datas="hotComment" 
-                       :sid="id"
-                       :type="type"
-                       :adapter="$adapter.comment_caluse"/>
+        <comment-track
+          :datas="hotComment"
+          :sid="id"
+          :type="type"
+        />
+
       </l-area>
 
-      <l-area v-if="$Check(comment)"
-              title="最新评论"
-              font-size="12px">
+      <l-area
+        v-if="$Check(comment)"
+        title="最新评论"
+        font-size="12px"
+      >
 
-        <comment-track :datas="comment" 
-                       :sid="id"
-                       :type="type"
-                       :adapter="$adapter.comment_caluse"/>
+        <comment-track
+          :datas="comment"
+          :sid="id"
+          :type="type"
+        />
+
       </l-area>
+
       <div v-else class="empty">
         <h1>还没有任何评论，快来抢沙发吧~</h1>
       </div>
 
     </div>
 
-    <pagination class="pagination"
-                :filling="filling"
-                :total="total" :limit="30"
-                v-model="comment"
-                :enable="enable"
-                :unique="parseInt(id)"
-                @loading="loading = true"
-                @loaded="loading = false"/>
+    <pagination
+      class="pagination"
+      :filling="filling"
+      :total="total" :limit="30"
+      v-model="comment"
+      :enable="enable"
+      :unique="parseInt(id)"
+      @loading="loading = true"
+      @loaded="loading = false"
+    />
 
   </div>
 </template>

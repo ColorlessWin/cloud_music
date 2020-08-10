@@ -1,21 +1,20 @@
 <template>
     <el-tabs>
-      <el-tab-pane label="专辑">
+      <el-tab-pane label="专辑" :lazy="true">
 
         <l-area title="收藏的专辑">
           <collection-albums/>
         </l-area>
 
       </el-tab-pane>
-      <el-tab-pane label="歌手">
+      <el-tab-pane label="歌手" :lazy="true">
 
         <l-area title="收藏的歌手">
           <collection-artists/>
         </l-area>
 
-
       </el-tab-pane>
-      <el-tab-pane label="视频">
+      <el-tab-pane label="视频" :lazy="true">
 
         <l-area title="收藏的视频">
           <collection-videos/>

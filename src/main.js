@@ -8,7 +8,6 @@ import store from './store'
 import cookie from "./utils/cookie";
 import Bus from "./utils/bus";
 import Filter from "@/utils/filter";
-import Adapter from "@/utils/adapter";
 import Audioer from "@/utils/audioer";
 import Directive from "@/utils/directive"
 
@@ -95,7 +94,6 @@ Vue.prototype.$cookie = cookie
 Vue.prototype.$notify = Notification
 Vue.prototype.$bus = Bus
 Vue.prototype.$Check = Check
-Vue.prototype.$adapter = Adapter
 
 
 new Vue({

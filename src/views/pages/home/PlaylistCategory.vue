@@ -12,8 +12,6 @@
       :component="require('@/components/content/matrices/NormalSongsMatrices').default"
       :filling="filling"
       :col="5"
-      :adapter="adapter"
-
       :unique="currentTag"
       :total="total"
       :limit="50"
@@ -34,18 +32,6 @@
         total: 0,
         currentTag: '华语',
         playlists: [],
-        adapter: {
-          coverUrl: (songs) => songs['coverImgUrl'],
-          title:    (songs) => songs['name'],
-          playTime: (songs) => songs['playCount'],
-          id:       (songs) => songs['id'],
-          author:   (songs) => {
-            return {
-              id: songs['creator']['userId'],
-              name: songs['creator']['nickname']
-            }
-          }
-        }
       }
     },
     created() {

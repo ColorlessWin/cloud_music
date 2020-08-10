@@ -51,22 +51,12 @@
         type: '1',
         total: 0,
         dynComponent: {
-          '1'     : {
-              component: SongTracks,
-              props: {
-                adapter: this.$adapter.search_to_songs,
-                playType: 'next'
-           }},
-          '1014'  : {
-              component: VideoMatrices,
-              props: {
-                adapter: this.$adapter.search_to_video,
-                col: 4
-           }},
-          '10'    : { component: AlbumTrack, props: { adapter: this.$adapter.search_to_album  }},
-          '100'   : { component: ArtistTrack,props: { adapter: this.$adapter.search_to_artists}},
-          '1000'  : { component: SongsTrack, props: { adapter: this.$adapter.search_to_playlists}},
-          '1002'  : { component: UserTrack,  props: { adapter: this.$adapter.search_to_users}},
+          '1'     : { component: SongTracks,    props: { playType: 'next' }},
+          '1014'  : { component: VideoMatrices, props: { col: 4 }},
+          '10'    : { component: AlbumTrack, props: { }},
+          '100'   : { component: ArtistTrack,props: { }},
+          '1000'  : { component: SongsTrack, props: { }},
+          '1002'  : { component: UserTrack,  props: { }},
 
         },
         field: {

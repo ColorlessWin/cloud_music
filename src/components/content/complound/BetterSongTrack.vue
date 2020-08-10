@@ -1,18 +1,14 @@
 <template>
-  <div>
-    <rendering
-      :component="require('@/components/content/tracks/SongTracks').default"
-      v-bind="$attrs"
-      :id="parseInt(id)"
-      :adapter="$adapter.songs_list_to_songs"
+  <rendering
+    :component="require('@/components/content/tracks/SongTracksDecorator').default"
+    v-bind="$attrs"
+    :id="parseInt(id)"
 
-      :filling="filling"
-      :total="total"
-      :unique="id"
-      :index="true"
-    />
-
-  </div>
+    :filling="filling"
+    :total="total"
+    :unique="id"
+    :index="true"
+  />
 </template>
 
 <script>

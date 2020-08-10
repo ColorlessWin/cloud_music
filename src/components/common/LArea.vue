@@ -1,11 +1,24 @@
 <template>
   <div class="area">
     <div class="header">
-      <div style="display: inline-block"
-           :style="{ fontSize: fontSize }"
-           class="primary">{{title}}</div>
-      <span v-if="is_more" class="more" @click="$router.push(more)">更多<span class="el-icon-arrow-right"></span></span>
+      <div
+        style="display: inline-block"
+        :style="{ fontSize: fontSize }"
+        class="primary"
+      >
+        {{title}}
+      </div>
+
+      <span
+        v-if="is_more"
+        class="more"
+        @click="$router.push(more)"
+      >
+        更多
+        <span class="el-icon-arrow-right"/>
+      </span>
     </div>
+
     <div v-if="!header" class="content">
       <slot></slot>
     </div>

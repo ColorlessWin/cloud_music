@@ -6,7 +6,7 @@
       <el-tab-pane label="热门歌曲(TOP 50)" name="hot-songs" :lazy="true">
 
         <!--  歌曲列表-->
-        <song-tracks :datas="hotSongs" play-type="track" :adapter="$adapter.songs_list_to_songs"/>
+        <song-tracks :datas="hotSongs" play-type="track" :adapter="songTrackAdapter"/>
 
       </el-tab-pane>
       <el-tab-pane label="专辑" name="album" :lazy="true">
@@ -44,7 +44,19 @@
         id: 0,
         artist: {},
         hotSongs:[],
-        selected: 'hot-songs'
+        selected: 'hot-songs',
+        songTrackAdapter: {
+          artists: (song) => song['ar'].map((value) => {
+            return {
+              name: value['name'],
+              id: value['id'],
+              alia: value['alias']
+            }
+          }),
+          album_name: (song) => song['al']['name'],
+          album_id  :  (song) => song['al']['id'],
+          duration:   (song) => song['dt'],
+        }
       }
     },
 

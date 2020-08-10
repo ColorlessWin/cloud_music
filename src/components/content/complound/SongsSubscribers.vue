@@ -2,7 +2,6 @@
   <div>
     <rendering
       :component="require('@/components/content/tracks/UserTrack').default"
-      :adapter="$adapter.search_to_users"
       :unique="id"
       :total="total"
       :filling="filling"

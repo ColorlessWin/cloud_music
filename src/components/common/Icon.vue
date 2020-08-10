@@ -1,13 +1,15 @@
 <template>
   <span>
-     <img v-if="!activated"
-          :style="{ width: size, height: size }"
-          :src="normal"
-          @click="onclick">
-     <img v-else
-       :style="{ width: size, height: size }"
-       :src="active"
-       @click="onclick">
+    <img v-if="!activated"
+      :style="{ width: size, height: size }"
+      :src="normal"
+      @click="onclick"
+    >
+    <img v-else
+      :style="{ width: size, height: size }"
+      :src="active"
+      @click="onclick"
+    >
   </span>
 </template>
 

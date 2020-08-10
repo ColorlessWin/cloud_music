@@ -1,6 +1,10 @@
 <template>
-  <input class="light-input" :type="type" :placeholder="placeholder"
-         @input="$emit('input', $event.target.value)"/>
+  <input
+    class="light-input"
+    :type="type"
+    :placeholder="placeholder"
+    @input="$emit('input', $event.target.value)"
+  />
 </template>
 :
 <script>

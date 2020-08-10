@@ -3,7 +3,7 @@
     <template v-slot:default="slotProps">
       <normal-songs-cover
         :songs="slotProps.item"
-        :adapter="adapter"
+        :adapter="Object.assign(def_adapter, adapter)"
         v-bind="$attrs"
       />
     </template>
@@ -20,6 +20,23 @@
       datas:    { type: Array,    default: () => [] },
       adapter:  { type: Object,   default: () => {} }
     },
+
+    data() {
+      return {
+        def_adapter: {
+          coverUrl: (songs) => songs['coverImgUrl'],
+          title:    (songs) => songs['name'],
+          playTime: (songs) => songs['playCount'],
+          id:       (songs) => songs['id'],
+          author:   (songs) => {
+            return {
+              id: songs['creator']['userId'],
+              name: songs['creator']['nickname']
+            }
+          }
+        }
+      }
+    }
   }
 </script>
 

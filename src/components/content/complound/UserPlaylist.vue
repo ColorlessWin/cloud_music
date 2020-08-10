@@ -1,11 +1,11 @@
 <template>
   <div class="user-playlist">
     <l-area class="area" title="创建的歌单">
-      <normal-songs-matrices :col="5" :datas="selfPlaylist" :adapter="adapter"/>
+      <normal-songs-matrices :col="5" :datas="selfPlaylist"/>
     </l-area>
 
     <l-area class="area" title="收藏的歌单">
-      <normal-songs-matrices :col="5" :datas="collPlaylist" :adapter="adapter"/>
+      <normal-songs-matrices :col="5" :datas="collPlaylist"/>
     </l-area>
   </div>
 </template>
@@ -26,18 +26,6 @@
       return {
         selfPlaylist:[],
         collPlaylist:[],
-        adapter: {
-          coverUrl: (songs) => songs['coverImgUrl'],
-          title:    (songs) => songs['name'],
-          playTime: (songs) => songs['playCount'],
-          id:       (songs) => songs['id'],
-          author:   (songs) => {
-            return {
-              id: songs['creator']['userId'],
-              name: songs['creator']['nickname']
-            }
-          }
-        }
       }
     },
 

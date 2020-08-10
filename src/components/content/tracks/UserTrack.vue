@@ -1,7 +1,11 @@
 <template>
   <list class="user-track" :list="datas">
     <template v-slot:default="slotProps">
-      <user-caluse class="user-caluse" :user="slotProps.item" :adapter="adapter"/>
+      <user-caluse
+        class="user-caluse"
+        :user="slotProps.item"
+        :adapter="Object.assign(def_adapter, adapter)"
+      />
     </template>
   </list>
 </template>
@@ -15,6 +19,16 @@
     props: {
       datas:    { type: Array,    default: () => [] },
       adapter:  { type: Object,   default: () => {} }
+    },
+    data() {
+      return {
+        def_adapter: {
+          avatarUrl: (user) => user['avatarUrl'] + '?param=50y50',
+          uid:       (user) => user['userId'],
+          name:      (user) => user['nickname'],
+          synopsis:  (user) => user['signature']
+        }
+      }
     }
   }
 </script>
