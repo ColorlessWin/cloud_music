@@ -8,18 +8,18 @@
         发现音乐
       </el-menu-item>
       <el-menu-item
-        index=""
+        index="/mv"
       >
         视频
       </el-menu-item>
       <el-menu-item
-        index="1-4"
+        index="/todo"
         :disabled="!$store.state.isLogin"
       >
         朋友
       </el-menu-item>
       <el-menu-item
-        index="1-2"
+        index="/todo"
         :disabled="!$store.state.isLogin"
       >
         私人FM

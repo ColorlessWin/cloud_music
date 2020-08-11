@@ -20,10 +20,10 @@
 
     props: {
       unique:  { default: null },
-      limit:   { type: Number,      default: 40 },
-      total:   { type: Number,      default: 0 },
-      index:   { type: Boolean,     default: false },
-      enable:  { type: Boolean,     default: true },
+      limit:   { type: Number,   default: 40 },
+      total:   { type: Number,   default: 0 },
+      index:   { type: Boolean,  default: false },
+      enable:  { type: Boolean,  default: true },
       filling: {
         type: Function,
         default: (...args) => { console.warn( 'expect a "filling" func' ); return {}}
@@ -53,17 +53,17 @@
         }
       },
 
-      load() {
+      load(first) {
         if (!this.enable) return
         this.$emit('loading'); this.loading = true
-        this.fillingData().then(res => {
+        this.fillingData(first).then(res => {
           this.commit();
           this.$emit('loaded'); this.loading = false
         })
       },
 
-      async fillingData() {
-        let result = this.filling(this.offset, this.limit)
+      async fillingData(first) {
+        let result = this.filling(this.offset, this.limit, first)
         if (result.then && (typeof result.then) === 'function') {
           return new Promise((resolve, reject) => {
             result.then(res => {
@@ -96,7 +96,7 @@
         this.offset = 0
         this.page = 1
 
-        this.load()
+        this.load(true)
       },
     },
 

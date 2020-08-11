@@ -1,7 +1,8 @@
 <template>
   <list class="comment-track" :list="datas">
     <template v-slot:default="slotProps">
-      <comment-clause class="comment-caluse"
+      <comment-clause
+        class="comment-caluse"
         :comment="slotProps.item"
         :ater="Object.assign(def_adapter, adapter)"
         v-bind="$attrs"

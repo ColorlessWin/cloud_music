@@ -3,6 +3,7 @@ import VueRouter from 'vue-router'
 
 Vue.use(VueRouter)
 
+const TODO = ()=> import('@/views/pages/TODO')
 
 const Discover = () => import('@/views/pages/home/Discover')
 const PersonalRec = () => import('@/views/pages/home/PersonalRec')
@@ -11,6 +12,7 @@ const TopList = () => import('@/views/pages/home/TopList')
 const ArtistCategory = ()=> import('@/views/pages/home/ArtistsCategory')
 const NewSongs = () => import('@/views/pages/home/NewSongs')
 const Collects = () => import('@/views/pages/MyCollects')
+const Mv = () => import('@/views/pages/Mv')
 
 const SongsDetail = () => import('@/views/pages/SongsDetail')
 const SearchDetail = () => import('@/views/pages/SearchDetail')
@@ -40,6 +42,8 @@ const routes = [
     ]
   },
 
+  { path: '/todo',  component: TODO },
+
   { path: '/playlist/:id',  component: SongsDetail },
 
   { path: '/search' , component: SearchDetail },
@@ -53,6 +57,8 @@ const routes = [
   { path: '/profile/:id' , component: Profile },
 
   { path: '/collects' , component: Collects },
+
+  { path: '/mv' , component: Mv },
 ]
 
 const router = new VueRouter({

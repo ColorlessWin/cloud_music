@@ -20,12 +20,12 @@
           artists:    (song) => song['ar'].map((value) => {
             return {
               name: value['name'],
-              id: value['id'],
+              id:   value['id'],
               alia: value['alias']
             }
           }),
           album_name: (song) => song['al']['name'],
-          album_id  :  (song) => song['al']['id'],
+          album_id  : (song) => song['al']['id'],
           duration:   (song) => song['dt'],
         }
       }

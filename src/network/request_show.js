@@ -155,6 +155,12 @@ export function top_album(area, offset, limit) {
   return request( { url: '/top/album', params: { area, offset, limit } } )
 }
 
+//调用此接口 , 可获取全部 mv
+export function mvs(area, type, order, offset, limit) {
+  return request( { url: '/mv/all', params: { area, type, order, offset, limit } } )
+}
+
+
 
 
 

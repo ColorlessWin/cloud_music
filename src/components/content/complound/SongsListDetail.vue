@@ -3,13 +3,20 @@
     <blur-background :enable="!small" height="200px" :bg="this.detail['coverImgUrl']">
 
       <!--歌单详情-->
-      <songs-info-show :small="small" :detail="detail" v-loading="loading_one"/>
+      <songs-info-show
+        :small="small"
+        :detail="detail"
+        v-loading="loading_one"
+      />
 
       <el-tabs class="tabs align-left" v-model="selected">
         <el-tab-pane label="歌曲列表" name="song-tracks" :lazy="true">
 
 <!--          歌曲列表-->
-          <better-song-track playType="songs" :id="id"/>
+          <better-song-track
+            playType="songs"
+            :id="id"
+          />
 
         </el-tab-pane>
         <el-tab-pane label="评论" name="comments" :lazy="true">
@@ -21,7 +28,10 @@
         <el-tab-pane label="收藏者" name="collect" :lazy="true">
 
 <!--          收藏者列表-->
-          <SongsSubscribers :id="id" :total="detail['subscribedCount']"/>
+          <SongsSubscribers
+            :id="id"
+            :total="detail['subscribedCount']"
+          />
 
         </el-tab-pane>
       </el-tabs>

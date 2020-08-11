@@ -3,19 +3,19 @@
     <el-submenu  index="2" collapse="false">
       <div class="primary" slot="title">我的音乐</div>
       <el-menu-item
-        index="2-3"
+        index="/todo"
         :disabled="!$store.state.isLogin"
       >
         每日推荐
       </el-menu-item>
       <el-menu-item
-        index="2-1"
+        index="/todo"
         :disabled="!$store.state.isLogin"
       >
         我的音乐云盘
       </el-menu-item>
       <el-menu-item
-        index="2-2"
+        index="/todo"
         :disabled="!$store.state.isLogin"
       >
         我的电台

@@ -29,7 +29,9 @@
     computed: {
       options_map() {
         return this.options.reduce((pre, cur) => {
-          return Object.assign(pre, cur)
+          return (typeof cur !== 'object' && typeof cur === 'string')
+            ?Object.assign(typeof pre === 'string'? { [pre]: pre } : pre, { [cur]: cur })
+            :Object.assign(pre, cur)
         })
       }
     }
@@ -56,6 +58,6 @@
 
   .active {
     color: white;
-    background-color: #78909c;
+    background-color: #bdbdbd;
   }
 </style>

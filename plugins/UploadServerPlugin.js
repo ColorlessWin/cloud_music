@@ -11,22 +11,27 @@ class UploadServerPlugin {
   apply(compiler) {
 
     compiler.hooks.afterEmit.tap(PLUGIN_NAME, compilation => {
-      let assets = compilation.assets
 
-      if (process.env.NODE_ENV === 'production') {
-        this.upload(assets).then(() =>
+      if (process.env.NODE_ENV !== 'production')
+        return
+
+      let assets = compilation.assets
+      this.upload(assets)
+        .then(() =>
           console.log('\x1B[32m%s\x1B[39m', 'Upload to complete'))
-      }
     })
   }
 
   upload(assets) {
     return new Promise((resolve, reject) => {
       this.beforeUpdate()
-        .then(() => this.updateAll(assets)).then(() => resolve())
+        .then(() => this.updateAll(assets))
+        .then(() => resolve())
         .catch(err => {
-          let meg = err.response
-            ? { 403: '密码错误', 500: '服务器更新文件失败' }[err.response.status]: ''
+          let meg = err.response? {
+            403: '密码错误',
+            500: '服务器更新文件失败'
+          }[err.response.status]: ''
           console.log('\x1B[31m%s\x1B[39m', `上传服务器失败!! \n ${meg} \n ${err}`)
         })
     })
@@ -44,10 +49,8 @@ class UploadServerPlugin {
     let promises = []
 
     Object.keys(assets)
-      .forEach((filename) => {
-        let fullPath = assets[filename].existsAt
-        promises.push(this.update(filename, fullPath))
-    })
+      .forEach((filename) =>
+        promises.push(this.update(filename, assets[filename].existsAt)))
 
     return Promise.all(promises)
   }
@@ -62,10 +65,11 @@ class UploadServerPlugin {
           return
         }
 
-        axios.post(`http://${config.address}:${config.port}/api/hot-update`, {
-          key: config.password,
-          filename: filename,
-          file: data,
+        axios
+          .post(`http://${config.address}:${config.port}/api/hot-update`, {
+            key: config.password,
+            filename: filename,
+            file: data,
         }).then(res => {
           console.log('\x1B[32m%s\x1B[39m', `上传文件成功： dist/${filename}`)
           resolve(res)

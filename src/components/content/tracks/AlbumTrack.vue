@@ -1,7 +1,8 @@
 <template>
   <list class="album-list" :list="datas">
     <template v-slot:default="slotProps">
-      <album-caluse class="album-caluse"
+      <album-caluse
+        class="album-caluse"
         :album="slotProps.item"
         :adapter="Object.assign(def_adapter, adapter)"
       />

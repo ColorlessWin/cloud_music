@@ -9,6 +9,7 @@
         v-bind="Object.assign(props, $attrs)"
         v-on="$listeners"
       />
+
     </div>
     <pagination
       class="pagination"
