@@ -22,14 +22,18 @@
               />
 
               <div class="option">
+
                 <like :id="id"/>
                 <collect :id="id"/>
+
               </div>
             </div>
 
             <div class="right">
+
               <song-base-info :song="song"/>
               <lyric class="lyric" :id="id"/>
+
             </div>
 
           </div>

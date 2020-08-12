@@ -43,7 +43,7 @@
           artists:  (video) => {
             return video['artists'].map(value => {
               return {
-                id: value['id'],
+                id:   value['id'],
                 name: value['name'],
                 alia: value['alias'].slice(-2)
               }

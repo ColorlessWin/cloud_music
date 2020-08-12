@@ -1,8 +1,7 @@
 import axios from 'axios'
 import cookie from "./cookie";
-const HOST = 'http://121.41.231.220'
-// const HOST = 'http://192.168.10.6'
-const PORT = 3000
+const HOST = process.env.VUE_APP_HOST || 'http://localhost'
+const PORT = process.env.VUE_APP_PORT || 3000
 
 const instance = axios.create({
   baseURL: `${HOST}:${PORT}`,
@@ -23,8 +22,6 @@ instance
 instance
   .interceptors
   .response
-  .use(
-    result => result.data
-)
+  .use(result => result.data)
 
 export default instance
