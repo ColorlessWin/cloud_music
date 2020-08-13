@@ -78,11 +78,11 @@ $ npm run build
 我们将通过项目中的一个简单的页面来介绍这个组件。  
 这是一个MV分类页面，通过切换不同的分类标签，页面将向你展示相对应的MV列表，底部还有一个简单的分页功能  
 
-![mvs_page](./docs/mvs_page.jpg)  
+![mvs_page](http://121.41.231.220/statics/docs/mvs_page.jpg)  
 
 底部的分页  
 
-![mvs_footer](./docs/mvs_footer.jpg)  
+![mvs_footer](http://121.41.231.220/statics/docs/mvs_footer.jpg)
 
 我们再看看这个页面源码部分的大致结构
 > 这里折叠掉了一些暂时不需要关注的内容
@@ -187,7 +187,7 @@ $ npm run build
 > 项目中有着不少与 `CommonVideoMatrices`设计类似的组件他们都通过一个`datas`的prop渲染各自的数据, `<rendering/>`内也**只能**传入一个包含`datas`prop的组件
 > 这些组件分别位于 `src/cmoponents/content/tracks`和`src/component/content/matrices`下  
 ##### `<Pagination/>`会在页面上渲染一个分页组件用于提供互交
-![pagination](./docs/pagination.jpg)
+![pagination](http://121.41.231.220/statics/docs/pagination.jpg)
 
 > 只有在你提供了 `total`这个prop的时候才会渲染这个分页组件，否则不渲染，但仍可以管理数据的加载
 
