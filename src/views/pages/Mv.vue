@@ -1,15 +1,21 @@
 <template>
   <l-area class="mv" title="全部MV">
 
-    <span>地区：</span><simple-radio :options="areaLabel" v-model="area"/> <br>
-    <span>类型：</span><simple-radio :options="typeLabel" v-model="type"/> <br>
-    <span>排序：</span><simple-radio :options="orderLabel" v-model="order"/> <br>
+    <span>地区：</span>
+    <simple-radio :options="areaLabel" v-model="area"/>   <br>
+
+    <span>类型：</span>
+    <simple-radio :options="typeLabel" v-model="type"/>   <br>
+
+    <span>排序：</span>
+    <simple-radio :options="orderLabel" v-model="order"/> <br>
 
     <rendering
       class="mvs"
       :component="require('@/components/content/matrices/CommonVideoMatrices').default"
       :adapter="adapter"
       :show-creator="true"
+
       :total="total"
       :filling="filling"
       :unique="area + type + order"

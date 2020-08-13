@@ -58,6 +58,6 @@
 
   .active {
     color: white;
-    background-color: #bdbdbd;
+    background-color: #78909c;
   }
 </style>
