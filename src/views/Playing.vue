@@ -52,6 +52,7 @@
 
 <script>
   import {song_detail} from "@/network/request_show";
+  import {future} from "@/utils/utils";
 
   import BlurBackground from "@/components/common/BlurBackground";
   import Discplayer from "@/components/play/Discplayer";
@@ -59,7 +60,6 @@
   import Lyric from "@/components/play/Lyric";
   import BusTypes from "@/utils/bus/types";
   import CommentArea from "@/components/content/complound/CommentArea";
-  import {future} from "@/utils/utils";
   import Like from "@/components/play/Like";
   import Collect from "@/components/play/Collect";
   export default {

@@ -19,7 +19,7 @@
     model: { prop: 'resolved',  event: 'changed' },
 
     props: {
-      unique:  { default: null },
+      unique:  { default: 'default' },
       limit:   { type: Number,   default: 40 },
       total:   { type: Number,   default: 0 },
       index:   { type: Boolean,  default: false },
@@ -35,7 +35,7 @@
     data() {
       return {
         loading: false,
-        datas: { 1 : [] },
+        datas: {},
         offset: 0,
         page: 1
       }
@@ -46,8 +46,12 @@
         this.page = val
         this.offset = (val - 1) * this.limit
 
-        if (!this.datas[this.page]) {
-          this.load()
+        this.resolve()
+      },
+
+      resolve(first) {
+        if (!this.existPage(this.page)) {
+          this.load(first)
         }else {
           this.commit()
         }
@@ -75,11 +79,16 @@
       },
 
       loadinfo(page, data) {
-        this.datas[page] = []
-        this.datas[page].push(...data);
+        if (!this.datas[this.unique]) this.datas[this.unique] = {}
+        this.datas[this.unique][page] = []
+        this.datas[this.unique][page].push(...data)
       },
 
-      discharge(page) {  return this.datas[page] },
+      discharge(page) { return this.datas[this.unique][page] },
+
+      existPage(page) {
+        return this.datas[this.unique] && this.datas[this.unique][page]
+      },
 
       commit() {
         let res = this.discharge(this.page).map(( value, index ) => {
@@ -91,12 +100,11 @@
       },
 
       reload() {
-        this.datas = { }
         this.$emit('changed', [])
         this.offset = 0
         this.page = 1
 
-        this.load(true)
+        this.resolve(true)
       },
     },
 
@@ -110,7 +118,7 @@
       },
 
       enable: function () {
-        this.load()
+        this.resolve()
       }
     }
   }
@@ -119,9 +127,5 @@
 <style scoped>
   .pagination__container .el-pagination{
     text-align: center;
-  }
-
-  .hidden {
-    display: none;
   }
 </style>

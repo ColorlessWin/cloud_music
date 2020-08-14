@@ -51,7 +51,7 @@
               return {
                 id:   value['id'],
                 name: value['name'],
-                alia: value['alias'].slice(-2)
+                alia: value['alias']? value['alias'].slice(-2): []
               }
             })
           }
