@@ -1,14 +1,12 @@
 # cloud_music 
 
 ## 项目介绍
-这是一个仿网易云音乐PC端的网页应用，基于 Vue + Element UI 构建，网页主体被设计为类似Windows桌面下打开一个窗口app一样，应用的主体就是一个窗口，可以通过拖动右下角来改变窗口大小，尽管作为一个web应用它被设计成这样可能有点奇怪，但这并不是不可行的，或许以后还能衍生出web桌面，类似与云桌面的感觉。
+这是一个仿网易云音乐PC端的网页应用，基于 Vue + Element UI 构建，整体页面样式都比较简洁，网页主体被设计为类似Windows桌面下打开一个窗口app一样，应用的主体就是一个窗口，可以通过拖动右下角来改变窗口大小，尽管作为一个web应用它被设计成这样可能有点奇怪，但这并不是不可行的，或许以后还能衍生出web桌面，类似于云桌面的感觉。
 > 好像是个挺不错的想法，或许以后可是试着搭建一个这样的web桌面，提供一个基础平台管理每个窗口的生命周期，再基于这个平台开发web应用, 将自己的web应用都放上去。
 
 #### 项目后端
 项目后端来自 [网易云音乐 NodeJS 版 API](https://github.com/Binaryify/NeteaseCloudMusicApi) 以及该项目的完整接口[文档](https://binaryify.github.io/NeteaseCloudMusicApi/#/)
-```
-$ git clone https://github.com/Binaryify/NeteaseCloudMusicApi.git
-```
+> 该项目的接口文档页面已经无法访问了，我生成了一份离线文档，你可以从这里[下载](http://121.41.231.220/statics/docs/NeteaseCloudMusicApi.zip)
 
 #### 项目预览
 项目目前还有部分页面没有完成，不过主要页面都已完成，并将持续更新
@@ -42,7 +40,7 @@ $ PORT=4000
 $ cd NeteaseCloudMusicApi
 $ node app.js
 ```
-#### 准备前端（本项目）
+#### 前端（本项目）
 
 ##### 将本项目clone到本地或服务器, 完成初始化工作
 ```
@@ -56,7 +54,7 @@ VUE_APP_HOST=/*这里填你的服务器地址（需要加http或https前缀）*/
 VUE_APP_PORT=/*这里填你的服务器端口*/
 /**
  * 示例
- * VUE_APP_HOST=https://www.baidu.com
+ * VUE_APP_HOST=https://webservices.fun
  * VUE_APP_PORT=80
  */
 ```
@@ -71,12 +69,12 @@ $ npm run build
 
 ## 快速上手
 这部分将向你介绍项目中的一个核心组件`<Rendering/>`，项目中的大量页面中都使用到了这个组件，了解这个组件的工作方式是了解本项目大部分源码的重要途径。  
-> `<Rendering/>`组件是一个负责渲染项目中所有其可以被抽象为`Array<Object>`格式的数据，该项目中有着大量的这样的数据，比如歌曲列表、歌手列表、专辑列表、评论列表等等一切符合`Array<Object>`格式的数据。
-
-> 并且`<Rendering/>`组件还会接管这些数据的加载，分页处理等等，你要做的事情很简单 只需要实现一个`filling`方法并通过props传递给`<Rendering/>`组件
+> `<Rendering/>`组件是一个负责渲染项目中所有其可以被抽象为`Array<Object>`格式的数据，该项目中有着大量的这样的数据，比如歌曲列表、歌手列表、专辑列表、评论列表等等一切符合`Array<Object>`格式的数据。  
+>> 并且`<Rendering/>`组件还会接管这些数据的加载，分页处理等等，你要做的事情很简单 只需要实现一个`filling`方法并通过props传递给`<Rendering/>`组件
 #### 开始
 我们将通过项目中的一个简单的页面来介绍这个组件。  
-这是一个MV分类页面，通过切换不同的分类标签，页面将向你展示相对应的MV列表，底部还有一个简单的分页功能  
+这是一个MV分类页面，通过切换不同的分类标签，页面将向你展示相对应的MV列表，底部还有一个简单的分页功能。 让我们看看是怎么使用`<Rendering/>`方便的实现这些功能的
+> 你可以先[**体验一下**](http://121.41.231.220/colorless/cloud_music/#/mv)这个页面
 
 ![mvs_page](http://121.41.231.220/statics/docs/mvs_page.jpg)  
 
@@ -85,7 +83,6 @@ $ npm run build
 ![mvs_footer](http://121.41.231.220/statics/docs/mvs_footer.jpg)
 
 我们再看看这个页面源码部分的大致结构
-> 这里折叠掉了一些暂时不需要关注的内容
 ```vue
 <template>
     <span>地区：</span>
@@ -135,11 +132,13 @@ $ npm run build
   }
 </script>
 ```
+> 这里折叠掉了一些暂时不需要关注的内容, 完整源码请看 [这里](./src/views/pages/Mv.vue)
+
 可以看到页面中的template部分还是比较简洁的，首先是3个 `<simple-radio/>`组件它们的功能很简单，
 通过`data`中定义的三个Label数组渲染出对应的标签，并在标签被点击后通过`v-model`更新相应的被绑定的属性, 然后是一个`<rendering/>` 组件，上面绑定了许多prop
 #### `<rendering/>`组件细节
 看起来`<rendering/>`有很多prop啊，其实不然，`<rendering/>`只有2个prop, 其他的prop都会被传递给其内部的`<component/>`和`<pagination/>`
-> 这里删掉了一些不需要关注的内容
+
 ```vue
 <template>
   <div>
@@ -177,19 +176,22 @@ $ npm run build
   }
 </script>
 ```
+> `<Rendering/>`源码片段，这里删掉了一些不需要关注的内容， 完整源码请看 [这里](./src/components/layout/Rendering.vue)  
+
 `<pagination/>`是一个分页组件，它负责渲染一个分页组件提供互交的同时也负责管理数据的加载处理  
 `<component/>` 则负责加载你通过`component`这个prop传递进来的组件，在这个MV的页面中我通过
 `require([path]).default`的方式动态的将一个`CommonVideoMatrices`组件传递给了`component`
 而且可以看到我通过`v-on="$listeners"`将`CommonVideoMatrices`内部的事件代理了出去，这意味着你可以直接在
 `<rendering/>`上监听到`CommonVideoMatrices`内部`$emit`的事件 
 > `CommonVideoMatrices`是负责渲染一个实际的MV展示列表，他是在这个页面中真正负责展示数据的，
->其内部接受一个`datas`的prop，(`datas`应该始终是一个`Array<Object>`格式的数据) 并通过`datas`来渲染页面   
-> 项目中有着不少与 `CommonVideoMatrices`设计类似的组件他们都通过一个`datas`的prop渲染各自的数据, `<rendering/>`内也**只能**传入一个包含`datas`prop的组件
-> 这些组件分别位于 `src/cmoponents/content/tracks`和`src/component/content/matrices`下  
+> 其内部接受一个`datas`的prop，(`datas`应该始终是一个`Array<Object>`格式的数据) 并通过`datas`来渲染页面  
+>> 项目中有着不少与 `CommonVideoMatrices`设计类似的组件他们都通过一个`datas`的prop渲染各自的数据, `<rendering/>`内也**只能**传入一个包含`datas`prop的组件
+>> 这些组件分别位于 `src/cmoponents/content/tracks`和`src/component/content/matrices`下  
 ##### `<Pagination/>`会在页面上渲染一个分页组件用于提供互交
 ![pagination](http://121.41.231.220/statics/docs/pagination.jpg)
 
-> 只有在你提供了 `total`这个prop的时候才会渲染这个分页组件，否则不渲染，但仍可以管理数据的加载
+> 只有在你提供了 `total`这个prop的时候才会渲染这个分页组件，否则不渲染，但仍可以管理数据的加载  
+> 了解`<Pagination/>`的更多细节可以查看 [源码](./src/components/common/Pagaintion.vue)
 
 #### 数据的加载
 上面介绍了 `<Rendering/>`组件的内部结构与部分细节, 至少我们知道了通过`component`这个prop我们可以传递一个包含`datas`prop的组件进去 `<Rendering/>`会帮我们渲染这个组件,
@@ -231,11 +233,12 @@ methods: {
 />
 ```
 > `unique`最终会被传递给`<pagination/>`   
-> `area`,`type`,`order` 它们都分别通过`v-model` 绑定在三个不同的`<simple-radio/>`上
+> `area` `type` `order` 它们都分别通过`v-model` 绑定在三个不同的`<simple-radio/>`上
 >
 我只需要在 `<rendering/>`组件上添加一个`unique`的prop并给它传递一个用于响应数据更新的值，当传递给`unique`的值改变时filling就会被调用，
 这会非常有用我们经常会遇到这种场景，比如当歌单的id被改变时, 重新加载新的歌单数据，这时我们只需要将id传递给 `unique`并实现一个filling方法，当id改变时就会自动加载新的歌单数据了。  
-**至此我们的页面就能正常工作了**
+
+**可以看到在这个页面中`<Rendering/>`使用起来还是很方便的，我们在编写这个页面时可以只关注`CommonVideoMatrices`的内容而不用去考虑数据的获取方式跟逻辑，实际上在这个页面中数据在加载时会显示一个loading...的动画效果，这些也是由`<Rendering/>`来完成的，只不过在这里展示的代码片段中这部分被精简掉了**
 
 > 其实还有一个叫`adapter`的东西是用来解决后端在不同的地方返回相同类型的数据但数据结构却不太一样的问题的，但我这里就不介绍了
 
