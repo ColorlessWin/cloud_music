@@ -50,8 +50,8 @@
 
   .label {
     display: inline-block;
-    padding: 0 5px;
-    border-radius: 3px;
+    padding: 1px 5px;
+    border-radius: 8px;
 
     cursor: pointer;
   }

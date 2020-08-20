@@ -151,7 +151,7 @@
         let { songsId, current } =  this.$store.state.player
         let index = 0
         if (jump) {
-          index = index + 1
+          index = current + 1
           if (index > this.$store.getters.TrackLength - 1) {
             this.pause()
             return

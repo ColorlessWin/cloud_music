@@ -59,6 +59,7 @@
               index: index
             })}
         }else if (this.playType === 'next') {
+          this.$store.commit(StoreTypes.AUDIO_INSERT, { id })
           // TODO
         }else if (this.playType === 'track')  {
           this.$store.commit(StoreTypes.AUDIO_CHANGE, {

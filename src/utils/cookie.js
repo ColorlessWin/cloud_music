@@ -1,13 +1,11 @@
-const cookie = { __value: null }
+const cookie = { }
 
 Object.defineProperty(cookie, 'value', {
   get() {
-    if (!this.__value) this.__value = localStorage.getItem('cookie')
-    return this.__value
+    return localStorage.getItem('cookie')
   },
   set(v) {
     localStorage.setItem('cookie', v)
-    this.__value = v
   }
 })
 

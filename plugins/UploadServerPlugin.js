@@ -29,8 +29,9 @@ class UploadServerPlugin {
         .then(() => resolve())
         .catch(err => {
           let meg = err.response? {
-            403: '密码错误',
-            500: '服务器更新文件失败'
+            401: '密码错误！',
+            403: '请求暂时被拒接！',
+            500: '服务器更新文件失败！'
           }[err.response.status]: ''
           console.log('\x1B[31m%s\x1B[39m', `上传服务器失败!! \n ${meg} \n ${err}`)
         })
@@ -40,7 +41,7 @@ class UploadServerPlugin {
   beforeUpdate() {
     let config = this.config
     return axios
-      .post(`http://${config.address}:${config.port}/api/before-update`,{
+      .post(`${config.address}:${config.port}/api/before-update`,{
         key: config.password
     })
   }
@@ -66,7 +67,7 @@ class UploadServerPlugin {
         }
 
         axios
-          .post(`http://${config.address}:${config.port}/api/hot-update`, {
+          .post(`${config.address}:${config.port}/api/hot-update`, {
             key: config.password,
             filename: filename,
             file: data,

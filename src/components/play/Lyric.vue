@@ -8,11 +8,13 @@
         <div v-if="transformLyric">{{ lyric['tlyric'] }} </div>
       </div>
     </div>
-    <icon class="icon-fanyi"
-          :activated="transformLyric"
-          :normal="require('@/assets/img/fanyi.svg')"
-          :active="require('@/assets/img/fanyi_full.svg')"
-          @click="onTLyric"/>
+    <icon
+      class="icon-fanyi"
+      :activated="transformLyric"
+      :normal="require('@/assets/img/fanyi.svg')"
+      :active="require('@/assets/img/fanyi_full.svg')"
+      @click="onTLyric"
+    />
   </div>
 </template>
 

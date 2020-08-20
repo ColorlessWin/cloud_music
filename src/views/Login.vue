@@ -57,6 +57,7 @@
 
       login() {
         this.logging = true
+        // 登录接口，默认使用MD5加密密码
         login_cellphone(this.loginFrom.account, this.loginFrom.password)
           .then(result => {
             this.$store.commit(StoreTypes.UPDATE_LOGIN_STATUS, {

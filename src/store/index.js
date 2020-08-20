@@ -46,6 +46,13 @@ export default new Vuex.Store({
       state.player.songsId = songsId
     },
 
+    [types.AUDIO_INSERT] (state, { id }) {
+      let current = state.player.current
+      let index = state.player.playTracks.length !== 0? current + 1: 0
+      state.player.playTracks.splice(index, 0, { id })
+      state.player.current = index
+    },
+
     [types.LIKE_LIST_ADD] (state, { id } ) {
       let likelist = state.profile.liked_song
       if (!likelist.includes(id))

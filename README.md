@@ -191,7 +191,7 @@ $ npm run build
 ![pagination](http://121.41.231.220/statics/docs/pagination.jpg)
 
 > 只有在你提供了 `total`这个prop的时候才会渲染这个分页组件，否则不渲染，但仍可以管理数据的加载  
-> 了解`<Pagination/>`的更多细节可以查看 [源码](./src/components/common/Pagaintion.vue)
+> 了解`<Pagination/>`的更多细节可以查看 [源码](./src/components/common/Pagination.vue)
 
 #### 数据的加载
 上面介绍了 `<Rendering/>`组件的内部结构与部分细节, 至少我们知道了通过`component`这个prop我们可以传递一个包含`datas`prop的组件进去 `<Rendering/>`会帮我们渲染这个组件,
